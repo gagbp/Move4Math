@@ -218,10 +218,11 @@ public class Partida implements Cloneable{
         
         String iccPrimeiro[] = nivel.getPrimeiroICC().split(" ");
         String iccSegundo[] = nivel.getSegundoICC().split(" ");
+        String iccTerceiro[] = nivel.getTerceiroICC().split(" ");
         
-        if(move4math.Move4Math.indiceFaseAtual == 1){
-            for(int i=0;i<imagens.size();i++){
-                //if(i!=indiceParaIgnorar){ //remover este if
+        switch (move4math.Move4Math.indiceFaseAtual) {
+            case 1:
+                for(int i=0;i<imagens.size();i++){
                     for(int j=0;j<imagens.elementAt(i).size();j++){
                        for(int k=0; k<iccPrimeiro.length; k++){
                            if (Integer.parseInt(iccPrimeiro[k]) == (imagens.elementAt(i).elementAt(j).getId())){
@@ -232,48 +233,60 @@ public class Partida implements Cloneable{
                                    } catch (CloneNotSupportedException ex) {
                                        Logger.getLogger(Partida.class.getName()).log(Level.SEVERE, null, ex);
                                    }
-
-
                                 }else{
                                     filaElementos.add(imagens.elementAt(i).elementAt(j));
                                 }
 
                             } 
-                        }
-                        //verificar se o id pertence ao idsDoICC e, se sim, adicionar na filaElementos
+                        }//verificar se o id pertence ao idsDoICC e, se sim, adicionar na filaElementos
                     }
-                //}
-            }
-        }else{
-        for(int i=0;i<imagens.size();i++){
-            //if(i!=indiceParaIgnorar){ //remover este if
-                for(int j=0;j<imagens.elementAt(i).size();j++){
-                   for(int k=0; k<iccSegundo.length; k++){
-                       if (Integer.parseInt(iccSegundo[k]) == (imagens.elementAt(i).elementAt(j).getId())){
-                           if (k==0){
-                               try {
-                                   imgRef = imagens.elementAt(i).elementAt(j).clone();
-                                   filaElementos.add(imgRef);
-                               } catch (CloneNotSupportedException ex) {
-                                   Logger.getLogger(Partida.class.getName()).log(Level.SEVERE, null, ex);
-                               }
-                               
-                               
-                            }else{
-                                filaElementos.add(imagens.elementAt(i).elementAt(j));
-                            }
-                                
-                        } 
-                    }
-                    //verificar se o id pertence ao idsDoICC e, se sim, adicionar na filaElementos
                 }
-            //}
+                break;
+            case 2:
+                for(int i=0;i<imagens.size();i++){
+                    for(int j=0;j<imagens.elementAt(i).size();j++){
+                       for(int k=0; k<iccSegundo.length; k++){
+                           if (Integer.parseInt(iccSegundo[k]) == (imagens.elementAt(i).elementAt(j).getId())){
+                               if (k==0){
+                                    try {
+                                        imgRef = imagens.elementAt(i).elementAt(j).clone();
+                                        filaElementos.add(imgRef);
+                                    } catch (CloneNotSupportedException ex) {
+                                        Logger.getLogger(Partida.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }else{
+                                    filaElementos.add(imagens.elementAt(i).elementAt(j));
+                                }
+                            } 
+                        }//verificar se o id pertence ao idsDoICC e, se sim, adicionar na filaElementos
+                    }
+                }
+                break;
+            case 3:
+                for(int i=0;i<imagens.size();i++){
+                    for(int j=0;j<imagens.elementAt(i).size();j++){
+                       for(int k=0; k<iccTerceiro.length; k++){
+                           if (Integer.parseInt(iccTerceiro[k]) == (imagens.elementAt(i).elementAt(j).getId())){
+                                if (k==0){
+                                    try {
+                                        imgRef = imagens.elementAt(i).elementAt(j).clone();
+                                        filaElementos.add(imgRef);
+                                    } catch (CloneNotSupportedException ex) {
+                                        Logger.getLogger(Partida.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }else{
+                                    filaElementos.add(imagens.elementAt(i).elementAt(j));
+                                }
+
+                            } 
+                        }//verificar se o id pertence ao idsDoICC e, se sim, adicionar na filaElementos
+                    }
+                }
+                break;
+            default:
+                System.out.println("Não existe essa fase!");
         }
-            
-        }
-        
-        
-        
+
         //Collections.shuffle(filaElementos);
         //System.out.println("filaElementos: ");
         for (int i=0; i<filaElementos.size(); i++){
@@ -296,14 +309,17 @@ public class Partida implements Cloneable{
        
        String bufferPrimeiro[] = nivel.getPrimeiroICC().split(" ");
        String bufferSegundo[] = nivel.getSegundoICC().split(" ");
+       String bufferTerceiro[] = nivel.getTerceiroICC().split(" ");
+
 
 //       for (int a=0; a< buffer.length; a++){
 //            System.out.println(buffer[a]);
 //       }
         
-
-        if(move4math.Move4Math.indiceFaseAtual == 1){
-            for(int i=0;i<imagens.size();i++){
+        System.out.println("Fase Atual: " + move4math.Move4Math.indiceFaseAtual);
+        switch (move4math.Move4Math.indiceFaseAtual) {
+            case 1:
+                for(int i=0;i<imagens.size();i++){
                     for(int j=0;j<imagens.elementAt(i).size();j++){
                         for(int k=0; k<jogadasDoNivel.size(); k++){
                             if (Integer.parseInt(bufferPrimeiro[k]) == (imagens.elementAt(i).elementAt(j).getId())){
@@ -311,9 +327,10 @@ public class Partida implements Cloneable{
                             }
                         }
                     }
-            }
-        }else{
-            for(int i=0;i<imagens.size();i++){
+                }
+                break;
+            case 2:
+                for(int i=0;i<imagens.size();i++){
                     for(int j=0;j<imagens.elementAt(i).size();j++){
                         for(int k=0; k<jogadasDoNivel.size(); k++){
                             if (Integer.parseInt(bufferSegundo[k]) == (imagens.elementAt(i).elementAt(j).getId())){
@@ -321,19 +338,34 @@ public class Partida implements Cloneable{
                             }
                         }
                     }
-            }
+                }
+                break;
+            case 3:
+                for(int i=0;i<imagens.size();i++){
+                    for(int j=0;j<imagens.elementAt(i).size();j++){
+                        for(int k=0; k<jogadasDoNivel.size(); k++){
+                            if (Integer.parseInt(bufferTerceiro[k]) == (imagens.elementAt(i).elementAt(j).getId())){
+                            filaElementos.add(imagens.elementAt(i).elementAt(j));
+                            }
+                        }
+                    }
+                }
+                break;
+            default:
+                System.out.println("Não existe essa fase!");
         }
 
+
         
-        
+        /*
         //System.out.println("--");
         
-       // Collections.shuffle(filaElementos);
-       // System.out.println("Fila elementos:");
+        // Collections.shuffle(filaElementos);
+        // System.out.println("Fila elementos:");
         for(int a=0;a<filaElementos.size();a++){
-       //     System.out.println(filaElementos.elementAt(a).getId());
+        //     System.out.println(filaElementos.elementAt(a).getId());
         }
-        
+        //*/
         geraFilaReferenciaAleatoria(referencia);
         
         

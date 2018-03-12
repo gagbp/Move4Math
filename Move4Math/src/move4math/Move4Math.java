@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Vector;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
 import jogo.Player;
 import parsers.ParserJogos;
 import parsers.ParserTables;
@@ -42,7 +43,7 @@ public class Move4Math {
     public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 
         String jogo;
-
+        
         MainWindow janelaPrincipal = new MainWindow();
         janelaPrincipal.setLocationRelativeTo(null);
         //janelaPrincipal.dispose();

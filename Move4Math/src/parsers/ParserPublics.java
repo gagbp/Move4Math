@@ -113,8 +113,6 @@ public class ParserPublics {
             aux = new Nivel();
             vet1 = new Vector<String>(Arrays.asList(row));
             
-            //System.out.println(vet1);
-            
                 if("G".equals(vet1.elementAt(0))){
                     linhaAtual++;
                    // System.out.print(vet1.elementAt(0) + " ");
@@ -130,7 +128,6 @@ public class ParserPublics {
                    // System.out.print(vet1.elementAt(0) + " ");
                    // System.out.println("linha: " + linhaAtual);
                 }
-
                 if (linhaAtual == vet.size()){
                     aux.setNumeroLinha(vet.size());
                     linhaAtual = 0;

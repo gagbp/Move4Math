@@ -106,7 +106,7 @@ public class ParserTables {
             
             //System.out.println("Resources/images/" + vet.elementAt(i).elementAt(2));
             
-            //ATENÇÂO!
+            //ATENCAO!
             //o parametro 1 em imread abaixo faz com que todas as imagens lidas sejam imagens com 3 canais - RGB
             //significa que imagens PNG com o canal alfa terão o mesmo ignorado
             //imagens com um grau de opacidade na transparencia serão afetadas!
@@ -169,8 +169,7 @@ public class ParserTables {
                     if(aux.elementAt(h)==""){
                         aux.removeElementAt(h);
                         h=0;
-                    }
-                    
+                    }                    
                 }
                 idsImagensMatrix.add(aux);
             }
