@@ -301,7 +301,6 @@ public class Game extends javax.swing.JFrame {
             this.indexFase = indexFase;
             this.indexNivel = indexNivel;
             
-            //System.out.println("Nivel em 03: " + indexNivel);
         }
 
         @Override
@@ -362,8 +361,6 @@ public class Game extends javax.swing.JFrame {
             Mat degrade = Imgcodecs.imread("Resources/images/TES-degrade.png", 1);
             Mat barraBordas = Imgcodecs.imread("Resources/images/TES-vazio.png", 1);
             Mat ref_background = Imgcodecs.imread("Resources/images/ref-background.png", 1);
-            //Mat logoEsq = Imgcodecs.imread("Resources/images/logoEsq.png", 1);
-            //Mat logoDir = Imgcodecs.imread("Resources/images/logoDir.png", 1);
             Mat silhueta = Imgcodecs.imread("Resources/images/corpo.png",1);
 
             //adicionando a imagem das vidas
@@ -464,16 +461,6 @@ public class Game extends javax.swing.JFrame {
                     Mat roiSilhueta = cenario.submat(new Rect(new Point(220, 230),new Point(420, 480)));
                     Core.addWeighted(roiSilhueta,1.0,silhueta,0.8,0.0,dst);
                     dst.copyTo(cenario.colRange(220,420).rowRange(230,480));
-                    // -+-+-+-+-+-+  mostra logoEsq e logoDir
-                    //dst = new Mat();
-                    //Mat roiLogoEsq = cenario.submat(new Rect(new Point(0, 0),new Point(25, 27)));
-                    //Core.addWeighted(roiLogoEsq,1.0,logoEsq,0.8,0.0,dst);
-                    //dst.copyTo(cenario.colRange(0,25).rowRange(0,27));
-
-                    //dst = new Mat();
-                    //Mat roiLogoDir = cenario.submat(new Rect(new Point(615, 0),new Point(640, 27)));
-                    //Core.addWeighted(roiLogoDir,1.0,logoDir,0.8,0.0,dst);
-                    //dst.copyTo(cenario.colRange(615,640).rowRange(0,27));
 
                     Mat roiCalibrando = cenario.submat(new Rect(new Point(260, 25), new Point(420, 110)));
                     putText( roiCalibrando,"Posicione-se!", new Point(0,20),Core.FONT_HERSHEY_COMPLEX,0.6,new Scalar(0,0,0), 2, 9, false );
@@ -489,7 +476,7 @@ public class Game extends javax.swing.JFrame {
                     if(buff!=null){
                         g.drawImage(buff, 0, 0, jPanel1.getWidth(), jPanel1.getHeight() , 0, 0, buff.getWidth(), buff.getHeight(), null);
                     }
-                    //System.out.println("jogo.Game.WebcamFeed.run()");
+
                     //teclas de atalho ESC, enter ou space pra começar
                     //System.out.println("Tecla inicial: " + MainWindow.tecla.getKeyCode());
                     if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_ENTER)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_SPACE)){
@@ -540,16 +527,7 @@ public class Game extends javax.swing.JFrame {
                     }
                     segundos = cronometro.get(Calendar.SECOND); //segundos começando de 00
                     minutos = cronometro.get(Calendar.MINUTE); //minutos começando de 00
-                    //segundos = tempoAtual.get(Calendar.SECOND); 
-                    //minutos = tempoAtual.get(Calendar.MINUTE); 
 
-                    /*
-                    if(segundos<10)
-                        putText( roiTempo, "0"+String.valueOf(minutos)+":0"+String.valueOf(segundos), new Point(10,25),Core.FONT_HERSHEY_COMPLEX,0.6,new Scalar(0,0,0),2,9,false );
-                    else
-                        putText( roiTempo, "0"+String.valueOf(minutos)+":"+String.valueOf(segundos), new Point(10,25),Core.FONT_HERSHEY_COMPLEX,0.6,new Scalar(0,0,0),2,9,false );
-                    */
-                    
                     // -+-+-+-+-+-+  mostra logoEsq e logoDir
                     
                     /*dst = new Mat();
@@ -587,13 +565,6 @@ public class Game extends javax.swing.JFrame {
                     }else{
                         putText( roiFase, "Fase: " + partida.getFase().getNumeroFase() + "  de " + qtdFases, new Point(10,12), Core.FONT_HERSHEY_SIMPLEX,0.5,new Scalar(0,0,0),1,8,false );
                     }
-                    //putText( roiFase, Integer.toString(partida.getFase().getNumeroFase()), new Point(20,40), Core.FONT_HERSHEY_SIMPLEX,0.5,new Scalar(0,0,0),1,8,false );
-
-
-    //                    String qtdFases = publico.getFases().lastElement().getNome();
-    //                    Mat roiFase = cenario.submat(new Rect(new Point(460, 15),new Point(520, 110)));
-    //                    putText( roiFase, partida.getFase().getNome() + "/" + qtdFases, new Point(5,20), Core.FONT_HERSHEY_SIMPLEX,0.5,new Scalar(0,0,0),1,8,false );
-    //                    putText( roiFase, partida.getFase().getNome(), new Point(5,20), Core.FONT_HERSHEY_SIMPLEX,0.5,new Scalar(0,0,0),1,8,false );
 
                     int qtdNiveis = publico.getNiveis().size() / 4;
                     Mat roiNivel = cenario.submat(new Rect(new Point(20, 60),new Point(150, 120)));
@@ -615,6 +586,7 @@ public class Game extends javax.swing.JFrame {
                             mostrarTopoFeedback(piscarTopo, partida); 
                         }else{
                             //topoFeedback = Imgcodecs.imread("Resources/images/topoFeedback.png",1);
+                            mostrarTopoFeedback(piscarTopo, partida);
                         }
                             //iDiferenca = 0;
                     }
@@ -935,9 +907,8 @@ public class Game extends javax.swing.JFrame {
                                 //isso garante que o cenario tenha sido copiado para o cenarioAnterior
                                 if(Calendar.getInstance().getTimeInMillis()>mostrarBlobs.getTimeInMillis()+200){
                                     // -+-+-+-+-+-+ verificar colisão (se houve colisão zera as grades)
-                                    switch (partida.getNivel().getLAD()) {
+                                    switch (partida.getNivel().getLAD()) {// 1=esquerda, 2=direita, 3=ambos
                                         case 1:
-                                            // 1=esquerda, 2=direita, 3=ambos
                                             houveColisao = checarColisao(cenario, cenarioAnterior, gradeEsq, partida);
                                             break;
                                         case 2:
@@ -981,15 +952,6 @@ public class Game extends javax.swing.JFrame {
                                         }
                                         atualizaVidas();
                                         
-
-    //                                    if (Move4Math.indiceJogoAtual == 0){
-    //                                        mostrarReferencias = false;
-    //                                    }else{
-    //                                        mostrarReferencias = true;
-    //                                        }
-    //                                    }
-
-
                                         mostrarReferencias = false;
                                         jogando = true;
                                         houveColisao=0;
@@ -1062,8 +1024,10 @@ public class Game extends javax.swing.JFrame {
                                         rodada.setAcao("Omitiu");
                                         //Pontos Motor
                                         rodada.setPontosMotor(iPontosMotor);
+                                        System.out.println("Pontos Motor: " + rodada.getPontosMotor() + " : " + iPontosMotor);
                                         //Pontos Cognitivo
                                         rodada.setPontosCognitivo(iPontosCognitivo);
+                                        System.out.println("Pontos Cognitivo: " + rodada.getPontosCognitivo()+ " : " + iPontosCognitivo);
 
                                         piscarTopo = true;
                                         segundosAux = segundos;
@@ -1266,31 +1230,30 @@ public class Game extends javax.swing.JFrame {
         }
 
         void escreveCSV(Sessao sessao, Partida partida) throws IOException{
-                String arquivo = "Users/"+String.valueOf(partida.getPlayer().getId())+"_"+String.valueOf(partida.getPlayer().getNome())+".csv";
+            String arquivo = "Users/"+String.valueOf(partida.getPlayer().getId())+"_"+String.valueOf(partida.getPlayer().getNome())+".csv";
 
-                FileWriter mFileWriter = new FileWriter(arquivo, true);
-                CSVWriter writer = new CSVWriter(mFileWriter,';',CSVWriter.NO_QUOTE_CHARACTER);
+            FileWriter mFileWriter = new FileWriter(arquivo, true);
+            CSVWriter writer = new CSVWriter(mFileWriter,';',CSVWriter.NO_QUOTE_CHARACTER);
 
-                Calendar c = Calendar.getInstance();
-                SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
-                String a = s.format(c.getTime());
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
+            String a = s.format(c.getTime());
 
-                String[] record = {String.valueOf(sessao.getId()),String.valueOf(sessao.getData()),String.valueOf(sessao.getHora()),String.valueOf(sessao.getJogo()),String.valueOf(sessao.getFase()),String.valueOf(sessao.getNivel()),String.valueOf(partida.getPontuacao()),String.valueOf(sessao.getTempoTotal())};
-                writer.writeNext(record);
-                writer.close();
+            String[] record = {String.valueOf(sessao.getId()),String.valueOf(sessao.getData()),String.valueOf(sessao.getHora()),String.valueOf(sessao.getJogo()),String.valueOf(sessao.getFase()),String.valueOf(sessao.getNivel()),String.valueOf(partida.getPontuacao()),String.valueOf(sessao.getTempoTotal())};
+            writer.writeNext(record);
+            writer.close();
         }
 
         void escreveCSVDetalhado(Rodada rodada) throws IOException{
+            String arquivoDetalhado = "Users/"+String.valueOf(player.getId())+"_"+String.valueOf(player.getNome())+"_detalhado.csv";
 
-                String arquivoDetalhado = "Users/"+String.valueOf(player.getId())+"_"+String.valueOf(player.getNome())+"_detalhado.csv";
+            FileWriter mFileWriter = new FileWriter(arquivoDetalhado, true);
+            CSVWriter writerDet = new CSVWriter(mFileWriter,';',CSVWriter.NO_QUOTE_CHARACTER);
 
-                FileWriter mFileWriter = new FileWriter(arquivoDetalhado, true);
-                CSVWriter writerDet = new CSVWriter(mFileWriter,';',CSVWriter.NO_QUOTE_CHARACTER);
+            String[] record = {String.valueOf(rodada.getIdSessao()),String.valueOf(rodada.getData()),String.valueOf(rodada.getHora()),String.valueOf(rodada.getJogo()),String.valueOf(rodada.getFase()),String.valueOf(rodada.getNivel()),String.valueOf(rodada.getLinhaNivel()),rodada.getImgRef(),rodada.getImgTocada(),String.valueOf(rodada.getTempoToque()),rodada.getAcao(),String.valueOf(rodada.getPontosMotor()),String.valueOf(rodada.getPontosCognitivo())};
 
-                String[] record = {String.valueOf(rodada.getIdSessao()),String.valueOf(rodada.getData()),String.valueOf(rodada.getHora()),String.valueOf(rodada.getJogo()),String.valueOf(rodada.getFase()),String.valueOf(rodada.getNivel()),String.valueOf(rodada.getLinhaNivel()),rodada.getImgRef(),rodada.getImgTocada(),String.valueOf(rodada.getTempoToque()),rodada.getAcao(),String.valueOf(rodada.getPontosMotor()),String.valueOf(rodada.getPontosCognitivo())};
-
-                writerDet.writeNext(record);
-                writerDet.close();
+            writerDet.writeNext(record);
+            writerDet.close();
         }
 
         void escreveCorpoHTML (Rodada rodada, String horaErro, Partida partida, String dataErro) throws IOException{
@@ -1324,65 +1287,63 @@ public class Game extends javax.swing.JFrame {
         }
 
         void verificaTransicaoDeNivel(Partida partida) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
-               // System.out.println("Verificando transição de nivel");
+            // System.out.println("Verificando transição de nivel");
 
-                posicaoJogadasDoNivel=1;
-                irParaProximaLinha = false;
-                geraProximaLinha = false;
-                numAcertosNaRodada=0;
-                mostrarReferencias = true;
-                jogando = false;
-                numErrosLimite = 0;
-                feedback2 = true;
-                primeiroToque = true;
-                mostrarEstrelas = false;
-                tamanhoEFeedback = 100;
+            posicaoJogadasDoNivel=1;
+            irParaProximaLinha = false;
+            geraProximaLinha = false;
+            numAcertosNaRodada=0;
+            mostrarReferencias = true;
+            jogando = false;
+            numErrosLimite = 0;
+            feedback2 = true;
+            primeiroToque = true;
+            mostrarEstrelas = false;
+            tamanhoEFeedback = 100;
 
-                double desempenhoCognitivo, desempenhoMotor, mediaTempoToque;
-                tempoExposicao = partida.getNivel().getTEI();
-                desempenhoCognitivo = (double)(numAcertos-numErros)/numRodadasGeradas;
-                mediaTempoToque = (double)somaTempoToque / numRodadasGeradas;
-                desempenhoMotor = (double)(mediaTempoToque/(tempoExposicao));
+            double desempenhoCognitivo, desempenhoMotor, mediaTempoToque;
+            tempoExposicao = partida.getNivel().getTEI();
+            desempenhoCognitivo = (double)(numAcertos-numErros)/numRodadasGeradas;
+            mediaTempoToque = (double)somaTempoToque / numRodadasGeradas;
+            desempenhoMotor = (double)(mediaTempoToque/(tempoExposicao));
+            System.out.println("----------");
+            System.out.println("numAcertos: " + numAcertos +" numErros: " + numErros);
+            System.out.println("desempenhoCognitivo: " + desempenhoCognitivo);
+            System.out.println("somaTempoToque: " + somaTempoToque + " numRodadasGeradas: " + numRodadasGeradas+ " mediaTempoToque: "+mediaTempoToque);
+            System.out.println("desempenhoMotor: " + desempenhoMotor + " tempoExposicao: " + tempoExposicao);
+            System.out.println("----------");
 
-                System.out.println("----------");
-                System.out.println("numAcertos: " + numAcertos +" numErros: " + numErros);
-                System.out.println("desempenhoCognitivo: " + desempenhoCognitivo);
-                System.out.println("somaTempoToque: " + somaTempoToque + " numRodadasGeradas: " + numRodadasGeradas+ " mediaTempoToque: "+mediaTempoToque);
-                System.out.println("desempenhoMotor: " + desempenhoMotor + " tempoExposicao: " + tempoExposicao);
-                System.out.println("----------");
+            if((desempenhoMotor<0.4)&&(desempenhoCognitivo>0.6)){
+                System.out.println("avancou nivel");
+                avancaNivel(partida);
+                tipoFeedback = 1;
 
-               if((desempenhoMotor<0.4)&&(desempenhoCognitivo>0.6)){
-                   System.out.println("avancou nivel");
-                   avancaNivel(partida);
-                   tipoFeedback = 1;
+            }else if((desempenhoMotor>0.6) && (desempenhoCognitivo<0.3)){ // tava OU 
+                System.out.println("retrocedeu nivel");
+                iNiveisRetrocedidos++;
+                retrocedeNivel(partida);
+                tipoFeedback = 3;
+            }else{
+                System.out.println("permaneceu no nivel");
+                iNiveisRepetidos++;
+                permaneceNivel(partida);
+                tipoFeedback = 2;
+            }
 
-               }else if((desempenhoMotor>0.6) && (desempenhoCognitivo<0.3)){ // tava OU 
-                   System.out.println("retrocedeu nivel");
-                   iNiveisRetrocedidos++;
-                   retrocedeNivel(partida);
-                   tipoFeedback = 3;
-               }else{
-                   System.out.println("permaneceu no nivel");
-                   iNiveisRepetidos++;
-                   permaneceNivel(partida);
-                   tipoFeedback = 2;
-               }
+            atualizaVidas();
+            NST = partida.getNivel().getQIO();
+//            if(true){
+//                avançaNivel(partida);
+//            }
 
-               atualizaVidas();
-               NST = partida.getNivel().getQIO();
-    //            if(true){
-    //                avançaNivel(partida);
-    //            }
+            tempoExposicao = partida.getNivel().getTEI();
+            numRodadasGeradas = 0;
+            somaTempoToque = 0;
+            numAcertos = 0;
+            numErros = 0;
 
-                tempoExposicao = partida.getNivel().getTEI();
-                numRodadasGeradas = 0;
-
-                somaTempoToque = 0;
-                numAcertos = 0;
-                numErros = 0;
-
-                segundosAux = segundos;
-                minutosAux = minutos;
+            segundosAux = segundos;
+            minutosAux = minutos;
         }
 
         void avancaNivel(Partida partida) throws UnsupportedAudioFileException, LineUnavailableException, IOException{
@@ -1470,20 +1431,20 @@ public class Game extends javax.swing.JFrame {
         }
         
         void avancaFase(Partida partida){
-                //System.out.println("entrou AVANCA FASE" + partida.getFase().getNumeroFase());
-                int numeroFaseAntiga = partida.getFase().getNumeroFase();
-                int numeroFaseNova = numeroFaseAntiga + 1;
-                //System.out.println("IND: " + indexFase + "Tam Fase:" + publico.getFases().size() + "Nova: " + numeroFaseNova);
-                if(indexFase<publico.getFases().size()){
-                  //  System.out.println("entrou IF AVANCA FASE" + "IND: " + indexFase + "Tam Fase:" + publico.getFases().size());
-                    partida.setFase(publico.getFases().elementAt(numeroFaseNova));
-                }
-                //System.out.println("SAINDO AVANCA FASE" + partida.getFase().getNumeroFase());
+            //System.out.println("entrou AVANCA FASE" + partida.getFase().getNumeroFase());
+            int numeroFaseAntiga = partida.getFase().getNumeroFase();
+            int numeroFaseNova = numeroFaseAntiga + 1;
+            //System.out.println("IND: " + indexFase + "Tam Fase:" + publico.getFases().size() + "Nova: " + numeroFaseNova);
+            if(indexFase<publico.getFases().size()){
+                //System.out.println("entrou IF AVANCA FASE" + "IND: " + indexFase + "Tam Fase:" + publico.getFases().size());
+                partida.setFase(publico.getFases().elementAt(numeroFaseNova));
+            }
+            //System.out.println("SAINDO AVANCA FASE" + partida.getFase().getNumeroFase());
         }
         
         void retrocedeFase(Partida partida){
-        int numeroFaseAntigo = 0;
-        int numeroFaseNovo;
+            int numeroFaseAntigo = 0;
+            int numeroFaseNovo;
             if(indexFase>1){
                 numeroFaseAntigo = partida.getFase().getNumeroFase();
                 numeroFaseNovo = numeroFaseAntigo - 1;
@@ -1522,74 +1483,70 @@ public class Game extends javax.swing.JFrame {
         }
         
         int checarColisao(Mat cenario,Mat cenarioAnterior, Grade grade,Partida partida) throws UnsupportedAudioFileException, IOException, LineUnavailableException, AWTException{
+            int colisao = 0;
+            int threshold = 10;
 
-                int colisao = 0;
-                int threshold = 10;
+            for(int i=0;i<grade.getRegioes().size();i++){
+                if(grade.getRegioes().elementAt(i).isOcupado()){
+                    int x1 = (int)grade.getRegioes().elementAt(i).getpInicial().x;
+                    int y1 = (int)grade.getRegioes().elementAt(i).getpInicial().y;
+                    int x2 = (int)grade.getRegioes().elementAt(i).getpFinal().x;
+                    int y2 = (int)grade.getRegioes().elementAt(i).getpFinal().y;
 
-                for(int i=0;i<grade.getRegioes().size();i++){
-                    if(grade.getRegioes().elementAt(i).isOcupado()){
-                        int x1 = (int)grade.getRegioes().elementAt(i).getpInicial().x;
-                        int y1 = (int)grade.getRegioes().elementAt(i).getpInicial().y;
-                        int x2 = (int)grade.getRegioes().elementAt(i).getpFinal().x;
-                        int y2 = (int)grade.getRegioes().elementAt(i).getpFinal().y;
+                    Mat cena1 = new Mat();
+                    Mat cena2 = new Mat();
+                    cenario.submat(new Rect(new Point(x1, y1),new Point(x2, y2))).copyTo(cena1);
+                    cenarioAnterior.submat(new Rect(new Point(x1, y1),new Point(x2, y2))).copyTo(cena2);
 
-                        Mat cena1 = new Mat();
-                        Mat cena2 = new Mat();
-                        cenario.submat(new Rect(new Point(x1, y1),new Point(x2, y2))).copyTo(cena1);
-                        cenarioAnterior.submat(new Rect(new Point(x1, y1),new Point(x2, y2))).copyTo(cena2);
+                    Mat dst = new Mat();
 
-                        Mat dst = new Mat();
+                    Imgproc.GaussianBlur(cena1, cena1, new Size(3, 3), 0);
+                    Imgproc.GaussianBlur(cena2, cena2, new Size(3, 3), 0);
 
-                        Imgproc.GaussianBlur(cena1, cena1, new Size(3, 3), 0);
-                        Imgproc.GaussianBlur(cena2, cena2, new Size(3, 3), 0);
+                    Core.subtract(cena1, cena2, dst);
 
-                        Core.subtract(cena1, cena2, dst);
+                    Imgproc.cvtColor(dst, dst, Imgproc.COLOR_RGB2GRAY);
 
-                        Imgproc.cvtColor(dst, dst, Imgproc.COLOR_RGB2GRAY);
+                    Imgproc.threshold(dst, dst, threshold, 255, Imgproc.THRESH_BINARY);
 
-                        Imgproc.threshold(dst, dst, threshold, 255, Imgproc.THRESH_BINARY);
+                    Mat v = new Mat();
 
-                        Mat v = new Mat();
+                    List<MatOfPoint> contours = new ArrayList();
 
-                        List<MatOfPoint> contours = new ArrayList();
+                    Imgproc.findContours(dst, contours, v, Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_SIMPLE);
 
-                        Imgproc.findContours(dst, contours, v, Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_SIMPLE);
+                    //System.out.println(contours.size());
 
-                        //System.out.println(contours.size());
+                    double maxArea = 40;//valor fixo para sensibilidade da colisão
 
-                        double maxArea = 40;//valor fixo para sensibilidade da colisão
-
-                        for(int idx = 0; idx < contours.size(); idx++){
-
-                            Mat contour = contours.get(idx);
-                            double contourarea = Imgproc.contourArea(contour);
-                            if(contourarea > maxArea){
-                                //System.out.println(contourarea);
-                                //System.out.println("colisao!");
-                                colisao = 1;
-                            }
+                    for(int idx = 0; idx < contours.size(); idx++){
+                        Mat contour = contours.get(idx);
+                        double contourarea = Imgproc.contourArea(contour);
+                        if(contourarea > maxArea){
+                            //System.out.println(contourarea);
+                            //System.out.println("colisao!");
+                            colisao = 1;
                         }
-
                     }
+                }
 
-                    if(colisao==1){
-                        Rodada rodada = new Rodada();
-                        int tempoToque = (int) (Calendar.getInstance().getTimeInMillis()-mostrarBlobs.getTimeInMillis());
-                            tempoToque = tempoToque/1000; //tempo que o player levou para tocar na figura em segundos
+                if(colisao==1){
+                    Rodada rodada = new Rodada();
+                    int tempoToque = (int) (Calendar.getInstance().getTimeInMillis()-mostrarBlobs.getTimeInMillis());
+                    tempoToque = tempoToque/1000; //tempo que o player levou para tocar na figura em segundos
 
-                        int pontuacaoPorTempo = partida.getNivel().getTEI()/5;
-                        rodada.setIdSessao(partida.getPlayer().getSessoes().lastElement().getId());
-                        rodada.setNivel(partida.getNivel().getNumero());
-                        rodada.setLinhaNivel(partida.getNivel().getNumeroLinha());
-                        rodada.setImgRef(referencia.getRefImgStr());
-                        rodada.setImgTocada(grade.getRegioes().elementAt(i).getImg().getDescricao());
-                        rodada.setTempoToque(tempoToque);
+                    int pontuacaoPorTempo = partida.getNivel().getTEI()/5;
+                    rodada.setIdSessao(partida.getPlayer().getSessoes().lastElement().getId());
+                    rodada.setNivel(partida.getNivel().getNumero());
+                    rodada.setLinhaNivel(partida.getNivel().getNumeroLinha());
+                    rodada.setImgRef(referencia.getRefImgStr());
+                    rodada.setImgTocada(grade.getRegioes().elementAt(i).getImg().getDescricao());
+                    rodada.setTempoToque(tempoToque);
 
+                    somaTempoToque += tempoToque;
 
-                        somaTempoToque += tempoToque;
-
-                        //o if abaixo decide se a imagem tocada está certa ou errada
-                        if(grade.getRegioes().elementAt(i).getImg().getId()==referencia.getId()){
+                    //o if abaixo decide se a imagem tocada está certa ou errada
+                    if(grade.getRegioes().elementAt(i).getImg().getId()==referencia.getId()){
 
     /*                        rodada.setAcao("Acertou");
                             numAcertos++;
@@ -1650,128 +1607,128 @@ public class Game extends javax.swing.JFrame {
                             clip.open(stream);
                             clip.start();
     */                        
-                            //Acho que é assim que separa os pontos...
-                            tipoColisao = 1;
-                            rodada.setAcao("Acertou");
-                            //escreveHTML(rodada, data);
-                            numAcertos++;
-                            numAcertosNaRodada++;
-                            jogando = true;
+                        //Acho que é assim que separa os pontos...
+                        tipoColisao = 1;
+                        rodada.setAcao("Acertou");
+                        //escreveHTML(rodada, data);
+                        numAcertos++;
+                        numAcertosNaRodada++;
+                        jogando = true;
 
-                            if(tempoToque<pontuacaoPorTempo){
-                                partida.setPontuacao(partida.getPontuacao()+10);
-                                iPontosCognitivo = iPontosCognitivo + 5;
-                                iPontosMotor = iPontosMotor + 5;                            
-                            }else{
-                                if(tempoToque<(pontuacaoPorTempo*2)){
-                                    partida.setPontuacao(partida.getPontuacao()+9);
-                                    iPontosCognitivo = iPontosCognitivo + 5;
-                                    iPontosMotor = iPontosMotor + 4;
-                                }else{
-                                    if(tempoToque<(pontuacaoPorTempo*3)){
-                                        partida.setPontuacao(partida.getPontuacao()+8);
-                                        iPontosCognitivo = iPontosCognitivo + 5;
-                                        iPontosMotor = iPontosMotor + 3;
-                                    }else{
-                                        if(tempoToque<(pontuacaoPorTempo*4)){
-                                            partida.setPontuacao(partida.getPontuacao()+7);
-                                            iPontosCognitivo = iPontosCognitivo + 5;
-                                            iPontosMotor = iPontosMotor + 2;
-                                        }else{
-                                                partida.setPontuacao(partida.getPontuacao()+6);
-                                                iPontosCognitivo = iPontosCognitivo + 5;
-                                                iPontosMotor = iPontosMotor + 1;
-                                        }
-                                    }
-                                }
-                            }
-
-                            //som de acerto
-                            if (reproduzirAudio){
-                                File yourFile = new File("Resources/sounds/acertou3.wav");
-                                AudioInputStream stream;
-                                AudioFormat format;
-                                DataLine.Info info;
-                                Clip clip;
-
-                                stream = AudioSystem.getAudioInputStream(yourFile);
-                                format = stream.getFormat();
-                                info = new DataLine.Info(Clip.class, format);
-                                clip = (Clip) AudioSystem.getLine(info);
-                                clip.open(stream);
-                                clip.start();
-                            }
-
-
-                            partida.getPlayer().getSessoes().lastElement().getRodadas().add(rodada);
-
-                            buscaDadosCSVDetalhado(rodada,partida);
-
-                            escreveCSVDetalhado(rodada);
-
+                        if(tempoToque<pontuacaoPorTempo){
+                            partida.setPontuacao(partida.getPontuacao()+10);
+                            iPontosCognitivo = iPontosCognitivo + 5;
+                            iPontosMotor = iPontosMotor + 5;                            
                         }else{
-                            tipoColisao = 2;
-                            rodada.setAcao("Errou");
-
-                            //numErros++;
-                            //numErrosLimite++;
-
-                            geraRelatorioErros(cenario, rodada, partida, numErros);
-                            if(tempoToque<pontuacaoPorTempo){
-                                partida.setPontuacao(partida.getPontuacao()+5);
-                                iPontosMotor = iPontosMotor + 5;
+                            if(tempoToque<(pontuacaoPorTempo*2)){
+                                partida.setPontuacao(partida.getPontuacao()+9);
+                                iPontosCognitivo = iPontosCognitivo + 5;
+                                iPontosMotor = iPontosMotor + 4;
                             }else{
-                                if(tempoToque<(pontuacaoPorTempo*2)){
-                                    partida.setPontuacao(partida.getPontuacao()+4);
-                                    iPontosMotor = iPontosMotor + 4;
+                                if(tempoToque<(pontuacaoPorTempo*3)){
+                                    partida.setPontuacao(partida.getPontuacao()+8);
+                                    iPontosCognitivo = iPontosCognitivo + 5;
+                                    iPontosMotor = iPontosMotor + 3;
                                 }else{
-                                    if(tempoToque<(pontuacaoPorTempo*3)){
-                                        partida.setPontuacao(partida.getPontuacao()+3);
-                                        iPontosMotor = iPontosMotor + 3;
+                                    if(tempoToque<(pontuacaoPorTempo*4)){
+                                        partida.setPontuacao(partida.getPontuacao()+7);
+                                        iPontosCognitivo = iPontosCognitivo + 5;
+                                        iPontosMotor = iPontosMotor + 2;
                                     }else{
-                                        if(tempoToque<(pontuacaoPorTempo*4)){
-                                            partida.setPontuacao(partida.getPontuacao()+2);
-                                            iPontosMotor = iPontosMotor + 2;
-                                        }else{
-                                            partida.setPontuacao(partida.getPontuacao()+1);
-                                            iPontosMotor = iPontosMotor + 1;
-                                        }
+                                        partida.setPontuacao(partida.getPontuacao()+6);
+                                        iPontosCognitivo = iPontosCognitivo + 5;
+                                        iPontosMotor = iPontosMotor + 1;
                                     }
                                 }
                             }
-
-                            //som de erro
-                            if (reproduzirAudio){
-                                File yourFile = new File("Resources/sounds/errou.wav");
-                                AudioInputStream stream;
-                                AudioFormat format;
-                                DataLine.Info info;
-                                Clip clip;
-
-                                stream = AudioSystem.getAudioInputStream(yourFile);
-                                format = stream.getFormat();
-                                info = new DataLine.Info(Clip.class, format);
-                                clip = (Clip) AudioSystem.getLine(info);
-                                clip.open(stream);
-                                clip.start();
-                            }
-
-                            //setar a vida menos 1;
-                            //partida.getPlayer().setVidas(partida.getPlayer().getVidas() -1 );
-                            System.out.println("vidas : " + partida.getPlayer().getVidas());
-                            //Se zerou as vidas, Game Over
-                            if(partida.getPlayer().getVidas()<=0){
-                                System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER");
-                                MainWindow.tecla = null;
-                                break;  
-                            }
-
-                            partida.getPlayer().getSessoes().lastElement().getRodadas().add(rodada);
-
-                            buscaDadosCSVDetalhado(rodada,partida);
-
-                            escreveCSVDetalhado(rodada);
                         }
+
+                        //som de acerto
+                        if (reproduzirAudio){
+                            File yourFile = new File("Resources/sounds/acertou3.wav");
+                            AudioInputStream stream;
+                            AudioFormat format;
+                            DataLine.Info info;
+                            Clip clip;
+
+                            stream = AudioSystem.getAudioInputStream(yourFile);
+                            format = stream.getFormat();
+                            info = new DataLine.Info(Clip.class, format);
+                            clip = (Clip) AudioSystem.getLine(info);
+                            clip.open(stream);
+                            clip.start();
+                        }
+
+
+                        partida.getPlayer().getSessoes().lastElement().getRodadas().add(rodada);
+
+                        buscaDadosCSVDetalhado(rodada,partida);
+
+                        escreveCSVDetalhado(rodada);
+
+                    }else{
+                        tipoColisao = 2;
+                        rodada.setAcao("Errou");
+
+                        //numErros++;
+                        //numErrosLimite++;
+
+                        geraRelatorioErros(cenario, rodada, partida, numErros);
+                        if(tempoToque<pontuacaoPorTempo){
+                            partida.setPontuacao(partida.getPontuacao()+5);
+                            iPontosMotor = iPontosMotor + 5;
+                        }else{
+                            if(tempoToque<(pontuacaoPorTempo*2)){
+                                partida.setPontuacao(partida.getPontuacao()+4);
+                                iPontosMotor = iPontosMotor + 4;
+                            }else{
+                                if(tempoToque<(pontuacaoPorTempo*3)){
+                                    partida.setPontuacao(partida.getPontuacao()+3);
+                                    iPontosMotor = iPontosMotor + 3;
+                                }else{
+                                    if(tempoToque<(pontuacaoPorTempo*4)){
+                                        partida.setPontuacao(partida.getPontuacao()+2);
+                                        iPontosMotor = iPontosMotor + 2;
+                                    }else{
+                                        partida.setPontuacao(partida.getPontuacao()+1);
+                                        iPontosMotor = iPontosMotor + 1;
+                                    }
+                                }
+                            }
+                        }
+
+                        //som de erro
+                        if (reproduzirAudio){
+                            File yourFile = new File("Resources/sounds/errou.wav");
+                            AudioInputStream stream;
+                            AudioFormat format;
+                            DataLine.Info info;
+                            Clip clip;
+
+                            stream = AudioSystem.getAudioInputStream(yourFile);
+                            format = stream.getFormat();
+                            info = new DataLine.Info(Clip.class, format);
+                            clip = (Clip) AudioSystem.getLine(info);
+                            clip.open(stream);
+                            clip.start();
+                        }
+
+                        //setar a vida menos 1;
+                        //partida.getPlayer().setVidas(partida.getPlayer().getVidas() -1 );
+                        System.out.println("vidas : " + partida.getPlayer().getVidas());
+                        //Se zerou as vidas, Game Over
+                        if(partida.getPlayer().getVidas()<=0){
+                            System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER");
+                            MainWindow.tecla = null;
+                            break;  
+                        }
+
+                        partida.getPlayer().getSessoes().lastElement().getRodadas().add(rodada);
+
+                        buscaDadosCSVDetalhado(rodada,partida);
+
+                        escreveCSVDetalhado(rodada);
+                    }
     //                    //Apresenta as estrelas de acordo com os pontos de cada rodada....
     //                    iPontosAux = iPontosAtual;
     //                    iPontosAtual = partida.getPontuacao();
@@ -1782,50 +1739,50 @@ public class Game extends javax.swing.JFrame {
                         break; //nao precisa verificar o resto das imagens já que houve colisao
 
 
-                    }
-
                 }
-
-                //System.out.println(colisao);
-                return colisao;
+            }
+            //System.out.println(colisao);
+            return colisao;
         }
 
         void gerarImagens2(Grade grade, Partida partida, int numSimbolosParaGerar, boolean emitirSom,boolean isReferencia) throws LineUnavailableException, UnsupportedAudioFileException, IOException{
-                //System.out.println("Entrou no gerarImagens2");
+            /*            
+            System.out.println("Entrou no gerarImagens2");
 
-                //MAYCO
-               // int Gao = partida.getFase().getGAO();
-                //System.out.println(partida.getFilaElementosReferencia().isEmpty());
+            //MAYCO
+            int Gao = partida.getFase().getGAO();
+            System.out.println(partida.getFilaElementosReferencia().isEmpty());
 
-                //if(Gao==2){
-                //    partida.geraFilaFixaReferencias();
-                //}else
-                 //   partida.geraNovaFilaReferencias();
+            if(Gao==2){
+                partida.geraFilaFixaReferencias();
+            }else
+                partida.geraNovaFilaReferencias();
 
-    //            if(partida.getFilaElementosReferencia().isEmpty()&&(Gao == 2)){
-    //                partida.geraFilaFixaReferencias();
-    //            }else
-    //                partida.geraNovaFilaReferencias();
+            if(partida.getFilaElementosReferencia().isEmpty()&&(Gao == 2)){
+                partida.geraFilaFixaReferencias();
+            }else
+                partida.geraNovaFilaReferencias();
 
-               if(partida.getFilaElementosReferencia().isEmpty()){
-                   //System.out.println("chamou geraNovaFilaReferencias");
-                  // partida.geraNovaFilaReferencias(partida.imagensDaCena(partida.getNivel()));
-               }
+            if(partida.getFilaElementosReferencia().isEmpty()){
+                System.out.println("chamou geraNovaFilaReferencias");
+                partida.geraNovaFilaReferencias(partida.imagensDaCena(partida.getNivel()));
+            }
+            */
 
-               boolean controle = false;
-                /*
-                if(partida.getFilaElementos().size()<numSimbolosParaGerar) //se fila nao tem imagens suficientes
-                    if(isReferencia)                                        //se a referencia ainda sera gerada
-                        partida.atualizaFilaElementos(partida.getFilaElementosReferencia().firstElement().getGrupo());
-                    else                                                    //a referencia já foi gerada e removida do vetor
-                        partida.atualizaFilaElementos(referencia.getGrupo());
-                */
-                if(isReferencia){                                      //se a referencia ainda sera gerada
+            boolean controle = false;
+            /*
+            if(partida.getFilaElementos().size()<numSimbolosParaGerar) //se fila nao tem imagens suficientes
+                if(isReferencia)                                        //se a referencia ainda sera gerada
                     partida.atualizaFilaElementos(partida.getFilaElementosReferencia().firstElement().getGrupo());
-                }else{                                                   //a referencia já foi gerada e removida do vetor
+                else                                                    //a referencia já foi gerada e removida do vetor
                     partida.atualizaFilaElementos(referencia.getGrupo());
-                }
-                int GRADE_MAX = 6;
+            */
+            if(isReferencia){                                      //se a referencia ainda sera gerada
+                partida.atualizaFilaElementos(partida.getFilaElementosReferencia().firstElement().getGrupo());
+            }else{                                                   //a referencia já foi gerada e removida do vetor
+                partida.atualizaFilaElementos(referencia.getGrupo());
+            }
+            int GRADE_MAX = 6;
             switch (grade.getTamanhoGrade()) {
                 case 2:
                     GRADE_MAX = 6; //2 = grande
@@ -1840,10 +1797,11 @@ public class Game extends javax.swing.JFrame {
                     break;
             }
 
-                //ajusta tamanho da imagem de acordo com a grade atual
-                        int cellWidth = (int)(grade.getScreenWidth()*0.325)/16;
-                        int cellHeight = (int)(grade.getScreenHeight()*0.65)/24;
-                        double width=0.0, height=0.0;
+            //ajusta tamanho da imagem de acordo com a grade atual
+            int cellWidth = (int)(grade.getScreenWidth()*0.325)/16;
+            int cellHeight = (int)(grade.getScreenHeight()*0.65)/24;
+            double width=0.0, height=0.0;
+            
             switch (grade.getTamanhoGrade()) {
                 case 2:
                     width = cellWidth*6;
@@ -1878,7 +1836,8 @@ public class Game extends javax.swing.JFrame {
                         referencia.setX(280);
                         break;
                 }
-/*                if (Move4Math.indiceJogoAtual == 0){
+/*                
+                if (Move4Math.indiceJogoAtual == 0){
                     switch (partida.getNivel().getQIS()) {
                     case 5:
                         referencia.setX(195);
@@ -2066,13 +2025,13 @@ public class Game extends javax.swing.JFrame {
              6 - Perde vida;
             */        
 
-                int somaEstrelasNivel = 0, mediaEstrelasNivel = 0;
-                if(iOpcao == 1 || iOpcao == 2 || iOpcao == 3){
-                    for (int i=0; i<numEstrelasNivel.size();i++){
-                        somaEstrelasNivel += (int)numEstrelasNivel.get(i);
-                    }
-                    mediaEstrelasNivel = somaEstrelasNivel / numEstrelasNivel.size();
-                }        
+            int somaEstrelasNivel = 0, mediaEstrelasNivel = 0;
+            if(iOpcao == 1 || iOpcao == 2 || iOpcao == 3){
+                for (int i=0; i<numEstrelasNivel.size();i++){
+                    somaEstrelasNivel += (int)numEstrelasNivel.get(i);
+                }
+                mediaEstrelasNivel = somaEstrelasNivel / numEstrelasNivel.size();
+            }        
 
             //System.err.println("Opção: " + iOpcao);
 
