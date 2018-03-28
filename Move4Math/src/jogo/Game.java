@@ -163,7 +163,7 @@ public class Game extends javax.swing.JFrame {
     public Game(){
         this.referencia = new Referencia();
         initComponents();
-        
+                
         fimDeJogo = false;
         MainWindow.tecla = null;
     }
@@ -933,7 +933,9 @@ public class Game extends javax.swing.JFrame {
 
                                         segundosAux = segundos;
                                         minutosAux = minutos;
-                                        //System.out.println("TIPO COLISAO: " + tipoColisao);
+                                        System.out.println("TIPO COLISAO: " + tipoColisao + "; Pontos Motor: " + iPontosMotor + "; Pontos Cognitivo: " + iPontosCognitivo);
+                                        iPontosMotor = 0;
+                                        iPontosCognitivo = 0;
                                         switch (tipoColisao) {
                                             case 1:
                                                 //acertou
@@ -977,12 +979,8 @@ public class Game extends javax.swing.JFrame {
                                         }
 
                                     }else if(Calendar.getInstance().getTimeInMillis()>(mostrarBlobs.getTimeInMillis()+tempoExposicao)){ //se passou o tempo e não houve colisao
-                                        if (numAcertosNaRodada == 0){
-                                            mostrarReferencias = true;
-                                        }else{
-                                            mostrarReferencias = false;
-                                        }
-
+                                        mostrarReferencias = true;
+                                        
                                         jogando = false;
                                         houveColisao=0;
                                         gradeEsq.setNumImagens(0);
@@ -994,19 +992,6 @@ public class Game extends javax.swing.JFrame {
                                         Rodada rodada = new Rodada();
                                         //ID da sessão
                                         rodada.setIdSessao(partida.getPlayer().getSessoes().lastElement().getId());
-    //                                    //Data da sessão
-    //                                    SimpleDateFormat sdfRodada = new SimpleDateFormat("dd/MM/yyyy");
-    //                                    String dateRodada = sdfRodada.format(new Date());
-    //                                    rodada.setData(dateRodada);
-    //                                    //Hora de Uso
-    //                                    SimpleDateFormat sdfHoraRodada = new SimpleDateFormat("HH:mm:ss");
-    //                                    Date horaRodada = Calendar.getInstance().getTime();
-    //                                    String horaInicioRodada = sdfHoraRodada.format(horaRodada);
-    //                                    rodada.setHora(horaInicioRodada);
-    //                                    //Jogo
-    //                                    rodada.setJogo(partida.getJogo().getNome());
-    //                                    //Fase
-    //                                    rodada.setFase(Integer.toString(partida.getFase().getNumeroFase()));
 
                                         buscaDadosCSVDetalhado(rodada,partida);
 
@@ -1017,32 +1002,24 @@ public class Game extends javax.swing.JFrame {
                                         //Imagem Objetivo
                                         rodada.setImgRef(referencia.getRefImgStr());
                                         //Imagem Tocada
-                                        rodada.setImgTocada("Não tocou");
+                                        rodada.setImgTocada("Nao tocou");
                                         //Tempo de toque
                                         rodada.setTempoToque(tempoExposicao/1000);
                                         //Ação
                                         rodada.setAcao("Omitiu");
                                         //Pontos Motor
-                                        rodada.setPontosMotor(iPontosMotor);
-                                        System.out.println("Pontos Motor: " + rodada.getPontosMotor() + " : " + iPontosMotor);
+                                        rodada.setPontosMotor(0);
                                         //Pontos Cognitivo
-                                        rodada.setPontosCognitivo(iPontosCognitivo);
-                                        System.out.println("Pontos Cognitivo: " + rodada.getPontosCognitivo()+ " : " + iPontosCognitivo);
+                                        rodada.setPontosCognitivo(0);
 
                                         piscarTopo = true;
                                         segundosAux = segundos;
                                         minutosAux = minutos;
-                                        //jogando = true;
 
-                                        //rodada.setSomRef(referencia.getSom().getDescricao());
-                                        //inserir a diminuição de 1 vida
-                                        //partida.getPlayer().setVidas(partida.getPlayer().getVidas() -1 );
                                         partida.getPlayer().getSessoes().lastElement().getRodadas().add(rodada);
 
                                         escreveCSVDetalhado(rodada);
 
-                                        //numErros++;
-                                        //numErrosLimite++;
                                         somaTempoToque += tempoExposicao/1000;
 
                                         if(numAcertosNaRodada==NST){
@@ -1055,7 +1032,6 @@ public class Game extends javax.swing.JFrame {
                                 }else if(jogando){
                                     mostrarReferencias = false;
                                 }
-
                         }
 
                         Imgcodecs.imencode(".bmp", cenario, mem);
@@ -1547,66 +1523,6 @@ public class Game extends javax.swing.JFrame {
 
                     //o if abaixo decide se a imagem tocada está certa ou errada
                     if(grade.getRegioes().elementAt(i).getImg().getId()==referencia.getId()){
-
-    /*                        rodada.setAcao("Acertou");
-                            numAcertos++;
-                            numAcertosNaRodada++;
-                            jogando = true;
-                            if(tempoToque<pontuacaoPorTempo)
-                                partida.setPontuacao(partida.getPontuacao()+10);
-                            else if(tempoToque<(pontuacaoPorTempo*2))
-                                partida.setPontuacao(partida.getPontuacao()+9);
-                            else if(tempoToque<(pontuacaoPorTempo*3))
-                                partida.setPontuacao(partida.getPontuacao()+8);
-                            else if(tempoToque<(pontuacaoPorTempo*4))
-                                partida.setPontuacao(partida.getPontuacao()+7);
-                            else
-                                partida.setPontuacao(partida.getPontuacao()+6);
-
-                            //som de acerto
-                            File yourFile = new File("Resources/sounds/acertou3.wav");
-                            AudioInputStream stream;
-                            AudioFormat format;
-                            DataLine.Info info;
-                            Clip clip;
-
-                            stream = AudioSystem.getAudioInputStream(yourFile);
-                            format = stream.getFormat();
-                            info = new DataLine.Info(Clip.class, format);
-                            clip = (Clip) AudioSystem.getLine(info);
-                            clip.open(stream);
-                            clip.start();
-
-                            partida.getPlayer().getSessoes().lastElement().getRodadas().add(rodada);
-
-                        }else{
-                            rodada.setAcao("Errou");
-                            numErros++;
-                            if(tempoToque<pontuacaoPorTempo)
-                                partida.setPontuacao(partida.getPontuacao()+5);
-                            else if(tempoToque<(pontuacaoPorTempo*2))
-                                partida.setPontuacao(partida.getPontuacao()+4);
-                            else if(tempoToque<(pontuacaoPorTempo*3))
-                                partida.setPontuacao(partida.getPontuacao()+3);
-                            else if(tempoToque<(pontuacaoPorTempo*4))
-                                partida.setPontuacao(partida.getPontuacao()+2);
-                            else
-                                partida.setPontuacao(partida.getPontuacao()+1);
-
-                            //som de erro
-                            File yourFile = new File("Resources/sounds/errou.wav");
-                            AudioInputStream stream;
-                            AudioFormat format;
-                            DataLine.Info info;
-                            Clip clip;
-
-                            stream = AudioSystem.getAudioInputStream(yourFile);
-                            format = stream.getFormat();
-                            info = new DataLine.Info(Clip.class, format);
-                            clip = (Clip) AudioSystem.getLine(info);
-                            clip.open(stream);
-                            clip.start();
-    */                        
                         //Acho que é assim que separa os pontos...
                         tipoColisao = 1;
                         rodada.setAcao("Acertou");
@@ -1658,20 +1574,9 @@ public class Game extends javax.swing.JFrame {
                             clip.open(stream);
                             clip.start();
                         }
-
-
-                        partida.getPlayer().getSessoes().lastElement().getRodadas().add(rodada);
-
-                        buscaDadosCSVDetalhado(rodada,partida);
-
-                        escreveCSVDetalhado(rodada);
-
                     }else{
                         tipoColisao = 2;
                         rodada.setAcao("Errou");
-
-                        //numErros++;
-                        //numErrosLimite++;
 
                         geraRelatorioErros(cenario, rodada, partida, numErros);
                         if(tempoToque<pontuacaoPorTempo){
@@ -1722,23 +1627,17 @@ public class Game extends javax.swing.JFrame {
                             MainWindow.tecla = null;
                             break;  
                         }
-
-                        partida.getPlayer().getSessoes().lastElement().getRodadas().add(rodada);
-
-                        buscaDadosCSVDetalhado(rodada,partida);
-
-                        escreveCSVDetalhado(rodada);
                     }
-    //                    //Apresenta as estrelas de acordo com os pontos de cada rodada....
-    //                    iPontosAux = iPontosAtual;
-    //                    iPontosAtual = partida.getPontuacao();
-    //                    iPontosAnt = iPontosAux;
-    //                    iDiferenca = iPontosAtual - iPontosAnt;
-    //                    partida.mostrarEstrelas(cenario, iDiferenca);
-    //                    iDiferenca = 0;
+                    
+                    rodada.setPontosCognitivo(iPontosCognitivo);
+                    rodada.setPontosMotor(iPontosMotor);
+
+                    partida.getPlayer().getSessoes().lastElement().getRodadas().add(rodada);
+
+                    buscaDadosCSVDetalhado(rodada,partida);
+
+                    escreveCSVDetalhado(rodada);
                         break; //nao precisa verificar o resto das imagens já que houve colisao
-
-
                 }
             }
             //System.out.println(colisao);
