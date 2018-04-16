@@ -1,4 +1,1 @@
-O que falta fazer:
-- Ajustar imagens de feedback (emojis) para terem o mesmo tamanho
-- Verificar teclas de atalho avança e retrocede nível (não está zerando o tempo nesse caso)
-- Verificar feedback de perdeu vida
+Move4Math é uma suíte de jogos sérios, produzido pelo grupo LARVA da UDESC de Joinville, com o objetivo de ajudar no estímulo motor, cognitivo e na inicialização da alfabetização da matemática.

@@ -728,7 +728,7 @@ public class Game extends javax.swing.JFrame {
                                     // sorteia um lado para conter o elemento igual ao da referencia
                                     MTRandom number = new MTRandom();
                                     int escolha = number.nextInt(2);
-                                    //System.out.println("escolha: " + escolha);
+                                    System.out.println("escolha: " + escolha);
                                     numSimbolosParaGerar = (numSimbolosParaGerar/2);
                                     if(escolha == 0){
                                         partida.geraFilaAleatoria();
@@ -1728,6 +1728,8 @@ public class Game extends javax.swing.JFrame {
                         referencia.setX(195);
                         break;
                     case 1:
+                        referencia.setX(250);
+                        break;
                     case 2:
                         referencia.setX(250);
                         break;
@@ -1806,21 +1808,16 @@ public class Game extends javax.swing.JFrame {
                         posicao = number.nextInt(grade.getRegioes().size());
                     
                     posicoesOcupadas.set(posicao,1);
-
                     Mat tempRef = new Mat();
                     tempRef = imgRefTemp.getImg();
                     Imgproc.resize(tempRef,tempRef,new Size(width, height));
                     imgRefTemp.setImg(tempRef);
-
                     grade.getRegioes().elementAt(posicao).setImg(imgRefTemp);
 
                     //seta regiao como ocupada
                     grade.getRegioes().elementAt(posicao).setOcupado(true);
-
                     int numImagens = grade.getNumImagens();
-                
                     grade.setNumImagens(numImagens+1);       
-
                     controle = false;
                     
                 }else{
@@ -1877,21 +1874,23 @@ public class Game extends javax.swing.JFrame {
         }
 
         void ocultaReferencia(Nivel nivel){
+            mostrarReferencias = false;
             if (move4math.Move4Math.indiceJogoAtual == 0){
-                mostrarReferencias = false;
-            } else {if (move4math.Move4Math.indiceJogoAtual == 1 || move4math.Move4Math.indiceJogoAtual == 2){
-                //Jogo de Ordenação ou Contagem
-                mostrarReferencias = true;
-                //Criar uma imagem para ocupar o espaço da segunda imagem da sequencia
-                //de imagens do objetivo da linha
-                //As coordenadas estão corretas
+                //mostrarReferencias = false;
+            } else {
+                if (move4math.Move4Math.indiceJogoAtual == 1 || move4math.Move4Math.indiceJogoAtual == 2){
+                    //Jogo de Ordenação ou Contagem
+                    //mostrarReferencias = false;
+                    //Criar uma imagem para ocupar o espaço da segunda imagem da sequencia
+                    //de imagens do objetivo da linha
+                    //As coordenadas estão corretas
 
-                Mat silhueta = Imgcodecs.imread("Resources/images/corpo.png",1);            
-                Imgproc.resize(silhueta, silhueta, new Size(50.0, 50.0));
-                dst = new Mat();
-                Mat roiSilhueta = cenario.submat(new Rect(new Point(250, 15),new Point(300, 65)));
-                Core.addWeighted(roiSilhueta,1.0,silhueta,0.8,0.0,dst);
-                dst.copyTo(cenario.colRange(250,300).rowRange(15,65));
+                    Mat silhueta = Imgcodecs.imread("Resources/images/corpo.png",1);            
+                    Imgproc.resize(silhueta, silhueta, new Size(50.0, 50.0));
+                    dst = new Mat();
+                    Mat roiSilhueta = cenario.submat(new Rect(new Point(250, 15),new Point(300, 65)));
+                    Core.addWeighted(roiSilhueta,1.0,silhueta,0.8,0.0,dst);
+                    dst.copyTo(cenario.colRange(250,300).rowRange(15,65));
                 } else {
                     //Jogo de Anterior/Proximo
                     if (nivel.getOTI()==1){
@@ -2058,7 +2057,6 @@ public class Game extends javax.swing.JFrame {
                     dst.copyTo(cenario.colRange(150,500).rowRange(100,450));
 
                     break;
-
                 default:
             }
             //*/

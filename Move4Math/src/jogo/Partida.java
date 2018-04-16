@@ -161,7 +161,6 @@ public class Partida implements Cloneable{
     // refazer, criando um vetor de imagens de 4 posições, onde cada posição é a primeira imagem contida em ICC
     public void geraNovaFilaReferencias(String[] imagensCena){
         filaElementosReferencia.clear();
-       // Vector<Vector<Imagem>> imagens = new Vector<Vector<Imagem>>();
         Vector<Vector<Imagem>> imagens = new Vector<Vector<Imagem>>();
         imagens = conjuntoImagem.getImagens();
         MTRandom random = new MTRandom();
@@ -290,7 +289,7 @@ public class Partida implements Cloneable{
         //Collections.shuffle(filaElementos);
         //System.out.println("filaElementos: ");
         for (int i=0; i<filaElementos.size(); i++){
-            //System.out.println(filaElementos.elementAt(i).getId());
+            System.out.println("filaElementos.elementAt(" + i + "): " + filaElementos.elementAt(i).getId());
         }
         
     }
