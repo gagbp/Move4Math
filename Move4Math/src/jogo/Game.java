@@ -305,9 +305,7 @@ public class Game extends javax.swing.JFrame {
 
         @Override
         public void run() {
-            
             ReiniciaVariaveis();
-             
             //seta a webcam e resolução
             //o zero na linha abaixo é o indice da webcam no sistema - se houver mais de uma é necessario alterar (ou criar uma caixa de dialogo para escolher... xD)
             VideoCapture webSource= new VideoCapture(0);
@@ -320,33 +318,22 @@ public class Game extends javax.swing.JFrame {
             partida.setPublico(publico);
             //partida.setJogo(publico.getJogos().elementAt(jogo.getId()).getNome().setId(Move4Math.getJogoId(jogo.getId());
             partida.setFase(publico.getFases().elementAt(indexFase-1)); //gambiarra
-
             jogadasDoNivel = partida.geraJogadasDoNivel(indexNivel);
             System.out.println("jogadas do nivel " + jogadasDoNivel.toString());
-
             linhaNivelSelecionado = partida.selecionaLinhaNivel(indexNivel);
-
             int o = Integer.parseInt(jogadasDoNivel.get(0).toString());//aqui dava problema, pois eu setava o próximo nivel a partir do cálculo da primeira linha; mas este deve ser setado com a primeira posição do jogadasDoNivel
-
             partida.setNivel(publico.getNiveis().elementAt(o)); //aqui é setado o "nivel" pelo JOGADASDONIVEL na primeira posição. O avanço depois é dado pela transiçãoDeLinha
-
             partida.setPlayer(player); //acho que não precisa, pois podemos alterar o player que foi passado por parametro na funcao
             //int CIT2 = partida.getJogo().getCIT();
             //int CIT = publico.getFases().elementAt(indexFase - 1).getCIT();
             System.out.println("AQUI: " + partida.getJogo().getNome() + " " + partida.getPublico().getNome() + " " + partida.getFase().getNumeroFase()+" "+partida.getNivel().getNumero());
-
             partida.imagensDaCena(move4math.Move4Math.indiceFaseAtual,partida.getNivel());
-
             partida.setPontuacao(0);
-
             partida.setFilaElementos(new Vector<Imagem>());
             partida.setFilaElementosReferencia(new Vector<Imagem>());
 
             //procura a fase no vetor de conjuntos de trabalho
-
-            //publico.get
             int CIT = publico.getFases().elementAt(indexFase-1).getCIT();//gambiarra
-
             System.out.println("CIT: " + CIT);
 
             for(int i=0;i<conjuntosDeTrabalho.size();i++){
