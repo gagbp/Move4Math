@@ -297,6 +297,7 @@ public class Partida implements Cloneable{
     public void shuffleElements(){
         Collections.shuffle(filaElementos);
     }
+    
     public void geraFilaAleatoria(){
         filaElementos.clear();
         Vector<Vector<Imagem>> imagens = new Vector<Vector<Imagem>>();
@@ -369,6 +370,7 @@ public class Partida implements Cloneable{
         
         
     }
+
     public void geraFilaReferenciaAleatoria(int referencia){
         filaElementosReferencia.clear();
         Vector<Vector<Imagem>> imagens = new Vector<Vector<Imagem>>();
@@ -429,6 +431,7 @@ public class Partida implements Cloneable{
         //Collections.shuffle(filaElementosReferencia);
         
     }
+
     public void mostrarPontuacao(Mat cenario){
         String pontos;
         

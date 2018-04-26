@@ -1175,7 +1175,7 @@ public class Game extends javax.swing.JFrame {
             webSource.release();
             gamewindow.dispose();
 
-            }//fim run
+        }//fim run
 
         //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1656,6 +1656,8 @@ public class Game extends javax.swing.JFrame {
             */
 
             boolean controle = false;
+            
+            Vector<Imagem> aux;
             /*
             if(partida.getFilaElementos().size()<numSimbolosParaGerar) //se fila nao tem imagens suficientes
                 if(isReferencia)                                        //se a referencia ainda sera gerada
@@ -1785,7 +1787,8 @@ public class Game extends javax.swing.JFrame {
                     for(int j=0;j<partida.getFilaElementosReferencia().size();j++){
                         if(partida.getFilaElementosReferencia().elementAt(j).getGrupo()==referencia.getGrupo()){
                             imgRefTemp = new Imagem(partida.getFilaElementosReferencia().remove(j));
-                            break;
+                            System.err.println("gerarImagens2" + j);
+                            //break;
                         }
                     }
                     //sorteia uma posição na grade
@@ -1807,7 +1810,7 @@ public class Game extends javax.swing.JFrame {
                     grade.setNumImagens(numImagens+1);       
                     controle = false;
                     
-                }else{
+                } else {
                     // System.out.println("entrou no ELSE");
                     if (elementoDaFila == partida.getFilaElementos().size()){
                         elementoDaFila = 0;

@@ -33,9 +33,9 @@ public class Imagem implements Cloneable{
     
     @Override
     public Imagem clone() throws CloneNotSupportedException {
-      Imagem clone = (Imagem) super.clone(); //Clona os tipos primitivos (no caso, binId)
-      //Clona o resto.
-         clone.img = img.clone();
+        Imagem clone = (Imagem) super.clone(); //Clona os tipos primitivos (no caso, binId)
+        //Clona o resto.
+        clone.img = img.clone();
         
         return clone;
    }
