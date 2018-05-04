@@ -1708,6 +1708,10 @@ public class Game extends javax.swing.JFrame {
             }
 
             if(isReferencia){ //seta a referencia que vai aparecer no topo da tela  aqui
+                /*for (int i = 0; i < partida.getFilaElementosReferencia().size(); i++) {
+                    System.out.println("partida.getFilaElementosReferencia(" + i + "): " + partida.getFilaElementosReferencia().get(i).getId() + " " + partida.getFilaElementosReferencia().get(i).getDescricao());
+                }*/
+                
                 Imagem imgRefTemp = new Imagem(partida.getFilaElementosReferencia().remove(0));
                 referencia.setWidth(partida.getNivel().getTIO());
                 referencia.setHeight(partida.getNivel().getTIO());
@@ -1787,7 +1791,7 @@ public class Game extends javax.swing.JFrame {
                     for(int j=0;j<partida.getFilaElementosReferencia().size();j++){
                         if(partida.getFilaElementosReferencia().elementAt(j).getGrupo()==referencia.getGrupo()){
                             imgRefTemp = new Imagem(partida.getFilaElementosReferencia().remove(j));
-                            System.err.println("gerarImagens2" + j);
+                            System.out.println("gerarImagens2" + j);
                             //break;
                         }
                     }
