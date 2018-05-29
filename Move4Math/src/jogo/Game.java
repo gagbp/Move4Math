@@ -1787,9 +1787,10 @@ public class Game extends javax.swing.JFrame {
                     for(int j=0;j<partida.getFilaElementosReferencia().size();j++){
                         if(partida.getFilaElementosReferencia().elementAt(j).getGrupo()==referencia.getGrupo()){
                             imgRefTemp = new Imagem(partida.getFilaElementosReferencia().remove(j));
-                            System.err.println("gerarImagens2" + j);
+                            System.out.println("gerarImagens2" + j);
                             //break;
                         }
+                        //System.out.println("J: " + j);
                     }
                     //sorteia uma posição na grade
                     //ps: refazer essa rotina para sortear com probabilidades
