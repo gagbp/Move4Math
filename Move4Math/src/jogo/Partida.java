@@ -85,7 +85,7 @@ public class Partida implements Cloneable{
     
     public String [] imagensDaCena(int faseAtual, Nivel nivel){
         
-        System.out.println("---------- " + move4math.Move4Math.indiceFaseAtual);
+        //System.out.println("---------- " + move4math.Move4Math.indiceFaseAtual);
         
         int tamanho = nivel.getQIS();
         
@@ -105,7 +105,7 @@ public class Partida implements Cloneable{
         }
 
         for (int i=0;i<imagensCena.length;i++){
-            System.out.println(imagensCena[i]);
+            //System.out.println(imagensCena[i]);
         }
 
         //filaElementosReferencia.add(imagensCena.)
@@ -289,7 +289,7 @@ public class Partida implements Cloneable{
         //Collections.shuffle(filaElementos);
         //System.out.println("filaElementos: ");
         for (int i=0; i<filaElementos.size(); i++){
-            System.out.println("filaElementos.elementAt(" + i + "): " + filaElementos.elementAt(i).getId());
+            //System.out.println("filaElementos.elementAt(" + i + "): " + filaElementos.elementAt(i).getId());
         }
         
     }
@@ -400,15 +400,12 @@ public class Partida implements Cloneable{
                 }
             }
         } else { // Jogo de Ordenação, Contagem ou Anterior e Próximo
-            System.out.println("idsDoICC[0] = " + idsDoICC[0]);
-            System.out.println("idsDoICC[1] = " + idsDoICC[1]);
-            System.out.println("idsDoICC[2] = " + idsDoICC[2]);
             for(int i=0;i<imagens.elementAt(referencia).size();i++){
                 if ((Integer.parseInt(idsDoICC[0]) == imagens.elementAt(referencia).elementAt(i).getId()) || 
                         (Integer.parseInt(idsDoICC[1]) == imagens.elementAt(referencia).elementAt(i).getId()) ||
                         (Integer.parseInt(idsDoICC[2]) == imagens.elementAt(referencia).elementAt(i).getId())){
                     filaElementosReferencia.add(imagens.elementAt(referencia).elementAt(i));
-                    System.out.println("Adicionou: " + imagens.elementAt(referencia).elementAt(i).getId());
+                    //System.out.println("Adicionou na filaElementosReferencia: " + imagens.elementAt(referencia).elementAt(i).getId());
                 }
             }
         }

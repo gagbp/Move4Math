@@ -301,7 +301,32 @@ public class MainWindow extends javax.swing.JFrame {
         int indexNivel = 0;
         int i;
         int indexJogo = 0;
-
+        if(cmbTipoJogo.getSelectedIndex() == -1){
+            JOptionPane.showMessageDialog(null, "Selecione o Tipo de jogo", "Selecione o Tipo de jogo", JOptionPane.ERROR_MESSAGE);
+            cmbTipoJogo.grabFocus();
+            return;
+        } 
+        if(cmbPublico.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione o Publico", "Selecione o Publico", JOptionPane.ERROR_MESSAGE);
+            cmbPublico.grabFocus();
+            return;
+        } 
+        if(cmbNome.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione o Jogador", "Selecione o Jogador", JOptionPane.ERROR_MESSAGE);
+            cmbNome.grabFocus();
+            return;
+        } 
+        if(cmbFase.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione a Fase", "Selecione a Fase", JOptionPane.ERROR_MESSAGE);
+            cmbFase.grabFocus();
+            return;
+        } 
+        if(cmbNivel.getSelectedIndex() == -1){
+            JOptionPane.showMessageDialog(null, "Selecione o Nivel", "Selecione o Nivel", JOptionPane.ERROR_MESSAGE);
+            cmbNivel.grabFocus();
+            return;
+        }
+        
         indexJogo = Move4Math.jogos.get(cmbTipoJogo.getSelectedIndex()).getId();
         Move4Math.indiceJogoAtual = indexJogo;
 
@@ -309,7 +334,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         indexPublico = Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().get(cmbPublico.getSelectedIndex()).getId();
         Move4Math.indicePublicoAtual = indexPublico;
-
+                
         for (i = 0; i < Move4Math.players.size(); i++) {
             if (Move4Math.players.elementAt(i).getNome().equals(cmbNome.getSelectedItem().toString())) {
                 indexPlayer = i;
@@ -320,8 +345,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         indexFase = Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbPublico.getSelectedIndex()).getFases().get(cmbFase.getSelectedIndex()).getNumeroFase();
         Move4Math.indiceFaseAtual = indexFase;
-        
-        System.out.println("idxNivel --- 01: " + cmbNivel.getSelectedItem().toString());
         
         indexNivel = Integer.parseInt(cmbNivel.getSelectedItem().toString());
         Move4Math.indiceNivelAtual = indexNivel;
@@ -367,23 +390,8 @@ public class MainWindow extends javax.swing.JFrame {
             } else {
 
                 try {
-                    /*
-                    System.out.println(indexJogo+" "+ indexPublico+" "+ indexPlayer+" "+ indexFase+" "+ indexNivel);
-                    System.out.println("GAME" + gameWindow);
-                    System.out.println("JOGO"+ "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getId() + "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getNome());
-                    System.out.println("PUBLICO"+Move4Math.getPublicoId(Move4Math.indicePublicoAtual).getNome());
-                    System.out.println("PLAYER"+Move4Math.players.elementAt(Move4Math.indicePlayerAtual).getNome());
-                    System.out.println("OUTROS"+Move4Math.conjuntosDeTrabalho +","+ indexFase +","+ indexNivel);
-                    gameWindow.Iniciar(gameWindow,"Classificacao",1, 1, Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                    gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getId(),Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbTipoJogo.getSelectedIndex()).getId(), Move4Math.players.elementAt(cmbNome.getSelectedIndex()).getId(), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                    */
-                    //NOVO 
                     System.out.println("mainwindow: " + Move4Math.indiceNivelAtual + "     " + Move4Math.indiceJogoAtual);
                     gameWindow.Iniciar(gameWindow, Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual), Move4Math.getPublicoId(Move4Math.indicePublicoAtual), Move4Math.players.elementAt(Move4Math.indicePlayerAtual), Move4Math.conjuntosDeTrabalho, Move4Math.indiceFaseAtual, Move4Math.indiceNivelAtual);
-                    //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(indexJogo),Move4Math.getPublicoId(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                    //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(Move4Math.jogos.get(cmbTipoJogo.getSelectedIndex()).getId()),Move4Math.publicos.elementAt(Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().get(cmbPublico.getSelectedIndex()).getId()), Move4Math.players.elementAt(cmbNome.getSelectedIndex()), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                    //ANTIGO
-                    //gameWindow.Iniciar(gameWindow,Move4Math.publicos.elementAt(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel, tempo);
                 } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
                     System.out.println(ex.getStackTrace());

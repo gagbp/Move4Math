@@ -100,7 +100,7 @@ public class Game extends javax.swing.JFrame {
      
     int tipoFeedback; //0 - Avança linha;1 - Avança nivel; 2 - Permanece nível; 3 - Retrocede nivel;
                       //4 - Avança fase; 5 - Retrocede fase; 6 - Perde vida;
-    Referencia referencia;
+    Vector<Referencia> referencia;
     int tempoExposicao;
 
     boolean primeiroToque = true;
@@ -161,7 +161,17 @@ public class Game extends javax.swing.JFrame {
     }
     
     public Game(){
-        this.referencia = new Referencia();
+        this.referencia = new Vector<Referencia>();
+        switch(Move4Math.indiceJogoAtual){
+            case 1:
+                this.referencia.add(new Referencia());
+                this.referencia.add(new Referencia());
+                this.referencia.add(new Referencia());
+                break;
+            default:
+                this.referencia.add(new Referencia());
+                break;
+        }
         initComponents();
                 
         fimDeJogo = false;
@@ -619,326 +629,289 @@ public class Game extends javax.swing.JFrame {
                             segundosAux = segundos;
                             minutosAux = minutos;
                         }else{
-                                //if((partida.getNivel().getNumeroLinha() - 1) != (int) jogadasDoNivel.get(0) && mostrarReferencias){
-                                //    System.out.println("Chamou o mostrarTopoFeedback que NAO EH da primeira linha");
-                                //    mostrarTopoFeedback(true, tempoAtual.getTimeInMillis());
-                                //}
-                                if (feedback2){
-                                    irParaProximaLinha = false;
-                                    segundosAux2 = segundos;
-                                    feedback2Aux = true;
-                                }else{
-                                    irParaProximaLinha = false;
-                                    geraProximaLinha = true;
-                                    contAguarda=0;
-                                    if (feedback2Aux){
-                                        mostrarReferencias = true;
-                                        feedback2Aux = false;
-                                    }
+                            //if((partida.getNivel().getNumeroLinha() - 1) != (int) jogadasDoNivel.get(0) && mostrarReferencias){
+                            //    System.out.println("Chamou o mostrarTopoFeedback que NAO EH da primeira linha");
+                            //    mostrarTopoFeedback(true, tempoAtual.getTimeInMillis());
+                            //}
+                            if (feedback2){
+                                irParaProximaLinha = false;
+                                segundosAux2 = segundos;
+                                feedback2Aux = true;
+                            }else{
+                                irParaProximaLinha = false;
+                                geraProximaLinha = true;
+                                contAguarda=0;
+                                if (feedback2Aux){
+                                    mostrarReferencias = true;
+                                    feedback2Aux = false;
                                 }
-                                feedback2 = false;
                             }
+                            feedback2 = false;
                         }
+                    }
 
+                    if((partida.getNivel().getNumeroLinha() - 1) == (int) jogadasDoNivel.get(0) && mostrarReferencias){
+                        //System.out.println("Chamou mostrarTopoFeedback da primeira linha");
+                        mostrarTopoFeedback(piscarTopo, partida);
+                    }
+
+                    if ((partida.getNivel().getNumeroLinha() - 1) == (int) jogadasDoNivel.get(3) && (numAcertosNaRodada == NST || numErrosLimite == 16)){
+                        //System.out.println("chegou na ultima posicao do jogadas do nivel, que eh: " + (int) jogadasDoNivel.get(3));
+                        segundosAux2 = segundos;
+                        minutosAux2 = minutos;
+                        verificaTransicaoDeNivel(partida);
+                    }
+
+                    if((gradeEsq.getNumImagens()==0)&&(gradeDir.getNumImagens()==0) && geraProximaLinha){
+                        /*
+                        * Antes de gerar, espera um tempo com o contador SLEEP_B
+                        * para que o jogador possa baixar os braços antes de gerar novas imagens.
+                        */
                         if((partida.getNivel().getNumeroLinha() - 1) == (int) jogadasDoNivel.get(0) && mostrarReferencias){
-                                //System.out.println("Chamou mostrarTopoFeedback da primeira linha");
-                                mostrarTopoFeedback(piscarTopo, partida);
+                            piscarTopo = true;
+                            topoFeedback = Imgcodecs.imread("Resources/images/topoReferencia.png",1);
                         }
 
-                        if ((partida.getNivel().getNumeroLinha() - 1) == (int) jogadasDoNivel.get(3) && (numAcertosNaRodada == NST || numErrosLimite == 16)){
-                            //System.out.println("chegou na ultima posicao do jogadas do nivel, que eh: " + (int) jogadasDoNivel.get(3));
-                            segundosAux2 = segundos;
-                            minutosAux2 = minutos;
-                            verificaTransicaoDeNivel(partida);
+                        float tempoJogada = ((mostrarBlobs.getTimeInMillis()+tempoExposicao) - Calendar.getInstance().getTimeInMillis());
+                        tempoJogada = (tempoJogada/1000 < 0)? 0 : tempoJogada/1000;
+                        float tempoExposicaoObjetivo = partida.getNivel().getTEO();
+                        //System.out.println("tempoJogada: " + tempoJogada);
+                        auxTopoFeedback = 0; //auxTopoFeedback é a variavel que faz piscar o topo amarelo
+                        //incrementa NST
+                        contNST++;
+                        if(numRodadasGeradas != NST*4){
+                            //verificaTransicaoDeNivel(partida);
+                            numRodadasGeradas++;
+                        } //Matheus
+                        //System.out.println("numRodadasGeradas : " + numRodadasGeradas);
+                        switch (partida.getNivel().getTAI()) {
+                            case 3:
+                                numSimbolosParaGerar=2;
+                                break;
+                            case 2:
+                                numSimbolosParaGerar=4;
+                                break;
+                            case 1:
+                                numSimbolosParaGerar=6;
+                                break;
+                            default:
+                                numSimbolosParaGerar=8;
+                                break;
                         }
-                        //System.out.println("geraProximaLinha = " +geraProximaLinha + " | grades = " + ((gradeEsq.getNumImagens()==0)&&(gradeDir.getNumImagens()==0)));
-                        if((gradeEsq.getNumImagens()==0)&&(gradeDir.getNumImagens()==0) && geraProximaLinha){
-                            /*
-                            * Antes de gerar, espera um tempo com o contador SLEEP_B
-                            * para que o jogador possa baixar os braços antes de gerar novas imagens.
-                            */
-                            if((partida.getNivel().getNumeroLinha() - 1) == (int) jogadasDoNivel.get(0) && mostrarReferencias){
-                                piscarTopo = true;
-                                topoFeedback = Imgcodecs.imread("Resources/images/topoReferencia.png",1);
+                        /*
+                        System.out.println("partida.getNivel().getQIS(): " + partida.getNivel().getQIS());
+                        numSimbolosParaGerar = partida.getNivel().getQIS();
+                        //*/
+                        //se vai gerar na esquerda, direita ou ambos
+                        switch (partida.getNivel().getLAD()) {
+                            case 1:
+                                // 1=esquerda, 2=direita, 3=ambos
+                                //System.out.println("chamou o 1o gerarImagens2");
+                                gerarImagens2(gradeEsq, partida, numSimbolosParaGerar, true, true);
+                                gerarRodada = Calendar.getInstance();
+                                break;
+                            case 2:
+                                //System.out.println("chamou o 2o gerarImagens2");
+                                gerarImagens2(gradeDir, partida, numSimbolosParaGerar, true, true);
+                                gerarRodada = Calendar.getInstance();
+                                break;
+                            case 3:
+                                // sorteia um lado para conter o elemento igual ao da referencia
+                                MTRandom number = new MTRandom();
+                                int escolha = number.nextInt(2);
+                                System.out.println("escolha: " + escolha);
+                                numSimbolosParaGerar = (numSimbolosParaGerar/2);
+                                if(escolha == 0){
+                                    partida.geraFilaAleatoria();
+                                    //System.out.println("chamou o 3o gerarImagens2 (esquerda)");
+                                    gerarImagens2(gradeEsq, partida, numSimbolosParaGerar, true, true);
+                                    //System.out.println("chamou o 4o gerarImagens2 (direita)");
+                                    gerarImagens2(gradeDir, partida, numSimbolosParaGerar, false,false);
+
+                                }else if(escolha == 1){
+                                    partida.geraFilaAleatoria();
+                                    //System.out.println("chamou o 5o gerarImagens2 (direita)");
+                                    gerarImagens2(gradeDir, partida, numSimbolosParaGerar, true, true);
+                                    // System.out.println("chamou o 6o gerarImagens2 (esquerda)");
+                                    gerarImagens2(gradeEsq, partida, numSimbolosParaGerar, false, false);
+
+                                }
+                                gerarRodada = Calendar.getInstance();
+                                break;
+                            default:
+                                break;
+                        }
+
+                        gerouImagens = true;
+                        //}//fimteste
+                    }else{
+                        // -+-+-+-+-+-+ mostra imagem e/ou som de REFERENCIA
+                        if( partida.getFase().getEST() != 0) {
+                            int deslocamento=0;
+                            if (partida.getNivel().getQIO() == 3){
+                                deslocamento = 50;
+                            }else if(partida.getNivel().getQIO() == 4){
+                                deslocamento = 25;
                             }
-/*
-                            if(Calendar.getInstance().getTimeInMillis()>(gerarRodada.getTimeInMillis()+SLEEP_BEFORE_GENERATE_BLOB)){
-                            System.out.println("gerando a proxima linha");
-                            if(Calendar.getInstance().getTimeInMillis()>(gerarRodada.getTimeInMillis()+SLEEP_BEFORE_GENERATE_BLOB)){
-                                System.out.println("mostrarReferencias = false");
-                            }else{//teste, este bloco de código ficava no if, não no else
-*/    
-                                float tempoJogada = ((mostrarBlobs.getTimeInMillis()+tempoExposicao) - Calendar.getInstance().getTimeInMillis());
-                                tempoJogada = (tempoJogada/1000 < 0)? 0 : tempoJogada/1000;
-                                float tempoExposicaoObjetivo = partida.getNivel().getTEO();
-                                //System.out.println("tempoJogada: " + tempoJogada);
-                                    auxTopoFeedback = 0; //auxTopoFeedback é a variavel que faz piscar o topo amarelo
-                                    //incrementa NST
-                                    contNST++;
-                                    if(numRodadasGeradas != NST*4){
-                                        //verificaTransicaoDeNivel(partida);
-                                        numRodadasGeradas++;
-                                    } //Matheus
-                                    //System.out.println("numRodadasGeradas : " + numRodadasGeradas);
-                            switch (partida.getNivel().getTAI()) {
-                                case 3:
-                                    numSimbolosParaGerar=2;
-                                    break;
-                                case 2:
-                                    numSimbolosParaGerar=4;
-                                    break;
-                                case 1:
-                                    numSimbolosParaGerar=6;
-                                    break;
-                                default:
-                                    numSimbolosParaGerar=8;
-                                    break;
+                            referencia.firstElement().setX(referencia.firstElement().getX() + deslocamento);
+
+                            if(mostrarReferencias && numAcertosNaRodada < partida.getNivel().getQIO()){ //No lugar do '3' seria partida.getNivel().getQIO() ????
+                                //mostrarReferencias é uma variável booleana que é desabilitada quando a função ocultaReferencia é chamada
+                                for (int i = 0;i<partida.getNivel().getQIO();i++){
+                                    dst = new Mat();
+                                    Mat mescRef = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
+                                    //Imgcodecs.imwrite("hue1.png",referencia.firstElement().getImagem());
+                                    //Imgcodecs.imwrite("hue2.png",mescRef);
+                                    Core.addWeighted(referencia.firstElement().getImagem(),1.0,mescRef , 0.3, 0.0, dst);
+                                    dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
+
+                                    //dst = new Mat();
+                                    referencia.firstElement().setX(referencia.firstElement().getX() + referencia.firstElement().getWidth());
+                                    //Mat mescRef2 = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
+                                    //Core.addWeighted(referencia.firstElement().getImagem(), 1.0, mescRef2, 0.3, 0.0, dst);
+                                    //dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
+                                }
+                                //System.out.println("mostrando referencias");
                             }
-                            /*
-                            System.out.println("partida.getNivel().getQIS(): " + partida.getNivel().getQIS());
-                            numSimbolosParaGerar = partida.getNivel().getQIS();
-                            se vai gerar na esquerda, direita ou ambos
-                            //*/
+
+                            if (jogando){ // jogando é um bool que indica que o usuário está tocando os objetos e por isso devem aparecer os acertos no lugar das referências
+                                for (int i = 0;i<numAcertosNaRodada;i++){
+                                    dst = new Mat();
+                                    Mat mescRef = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
+                                    Core.addWeighted(referencia.firstElement().getImagem(),1.0,mescRef , 0.3, 0.0, dst);
+                                    dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
+                                    referencia.firstElement().setX(referencia.firstElement().getX() + referencia.firstElement().getWidth());  
+                                }
+                                if (!mostrarEstrelas){ //talvez tirar esse if
+                                    for (int i=numAcertosNaRodada; i<partida.getNivel().getQIO(); i++){
+                                        //System.out.println("i: " + i);
+                                        Imgproc.resize(sombraObjetivo, sombraObjetivo, new Size(50.0, 50.0));
+                                        dst = new Mat();
+                                        Mat roiSombraObjetivo = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
+                                        Core.addWeighted(roiSombraObjetivo,0.0,sombraObjetivo,1.0,0.0,dst);
+                                        dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
+                                        referencia.firstElement().setX(referencia.firstElement().getX() + referencia.firstElement().getWidth());
+                                    } 
+                                }
+                            }
+
+                            if (Move4Math.indiceJogoAtual == 0){
+                                referencia.firstElement().setX(195);
+                            }else{
+                                if (Move4Math.indiceJogoAtual == 1 || Move4Math.indiceJogoAtual == 2){
+                                    referencia.firstElement().setX(250);
+                                }else{
+                                    referencia.firstElement().setX(280);
+                                }
+                            }
+                            //cenario.notifyAll();
+                            //cenario.wait(partida.getNivel().getTEO()*1000);
+                            //int tempoExposicao = partida.getNivel().getTEI()*1000;
+                        }
+        
+                        //Thread.sleep(partida.getNivel().getTEO()*1000);
+
+                        dst2 = new Mat();
+                        Mat mescRef2 = cenario.submat(new Rect(new Point(200, 15),new Point(300, 15)));
+                            
+                        //Só mostra os blobs se já se passou um tempo de referência
+                        //if(Calendar.getInstance().getTimeInMillis()>(gerarRodada.getTimeInMillis()+tempoExposicaoReferencia)){
+                        //guarda o instante que os blobs sao mostrados na tela
+                        if ( ( (((60*minutos) + segundos) - ((60*minutosAux) + segundosAux)) > partida.getNivel().getTEO() && primeiroToque == true ) || ( (((60*minutos) + segundos) - ((60*minutosAux) + segundosAux)) > partida.getNivel().getTEO()/2 && primeiroToque == false ) ){
+                            //System.out.println("passou");
+                            //topoFeedback = Imgcodecs.imread("Resources/images/topoFeedback.png",1);
+                            mostrarEstrelas = false;
+                            mostrarReferencias = false;
+                            jogando = true;
+                            if(gerouBlobs==false){
+                                mostrarBlobs = Calendar.getInstance();
+                                gerouBlobs=true;
+                            }       
+
+                            //mostra a barrinha de tempo
+                            //criando a barrinha de tempo que vai decrescendo
+                            diferenca = ((mostrarBlobs.getTimeInMillis()+tempoExposicao) - Calendar.getInstance().getTimeInMillis());
+                            diferenca = (diferenca/1000 < 0)? 0 : diferenca/1000;
+                            float te = tempoExposicao/1000;
+                            ocultaReferencia(partida.getNivel());
+
+                            Imgproc.line(cenario, new Point(221, 68), new Point(225+(diferenca/te)*200, 68), new Scalar(0, 0, 255, 255),5);
+                            //fim da barrinha de tempo
+                            // mostra rodada (blobs na tela)
                             switch (partida.getNivel().getLAD()) {
                                 case 1:
-                                    // 1=esquerda, 2=direita, 3=ambos
-                                    //System.out.println("chamou o 1o gerarImagens2");
-                                    gerarImagens2(gradeEsq, partida, numSimbolosParaGerar, true, true);
-                                    gerarRodada = Calendar.getInstance();
+                                    gradeEsq.showImagens(cenario);
                                     break;
                                 case 2:
-                                    //System.out.println("chamou o 2o gerarImagens2");
-                                    gerarImagens2(gradeDir, partida, numSimbolosParaGerar, true, true);
-                                    gerarRodada = Calendar.getInstance();
+                                    gradeDir.showImagens(cenario);
                                     break;
                                 case 3:
-                                    // sorteia um lado para conter o elemento igual ao da referencia
-                                    MTRandom number = new MTRandom();
-                                    int escolha = number.nextInt(2);
-                                    System.out.println("escolha: " + escolha);
-                                    numSimbolosParaGerar = (numSimbolosParaGerar/2);
-                                    if(escolha == 0){
-                                        partida.geraFilaAleatoria();
-                                        //System.out.println("chamou o 3o gerarImagens2 (esquerda)");
-                                        gerarImagens2(gradeEsq, partida, numSimbolosParaGerar, true, true);
-                                        //System.out.println("chamou o 4o gerarImagens2 (direita)");
-                                        gerarImagens2(gradeDir, partida, numSimbolosParaGerar, false,false);
-
-                                    }else if(escolha == 1){
-                                        partida.geraFilaAleatoria();
-                                        //System.out.println("chamou o 5o gerarImagens2 (direita)");
-                                        gerarImagens2(gradeDir, partida, numSimbolosParaGerar, true, true);
-                                        // System.out.println("chamou o 6o gerarImagens2 (esquerda)");
-                                        gerarImagens2(gradeEsq, partida, numSimbolosParaGerar, false, false);
-
-                                    }
-                                    gerarRodada = Calendar.getInstance();
+                                    gradeEsq.showImagens(cenario);
+                                    gradeDir.showImagens(cenario);
                                     break;
                                 default:
                                     break;
                             }
-
-                                gerouImagens = true;
-                            //}//fimteste
-                        }else{
-
-                            // -+-+-+-+-+-+ mostra imagem e/ou som de REFERENCIA
-                            if( partida.getFase().getEST() != 0) {
-                                // background
-                                //dst = new Mat();
-                                //Mat backRef = cenario.submat(new Rect(new Point(referencia.getX(), referencia.getY()),new Point(referencia.getX() + referencia.getWidth()-2, referencia.getY() + referencia.getHeight()-2)));
-
-                                //Core.addWeighted(ref_background,1.0,backRef , 0.5, 0.0, dst);
-                                //dst.copyTo(cenario.colRange(referencia.getX(),referencia.getX() + referencia.getWidth()-2).rowRange(referencia.getY(),referencia.getY() + referencia.getHeight()-2));
-
-                                //imagem
-    //                            Nivel nivel = new Nivel();
-    //                            nivel.getQIO();
-    //                            nivel.getAIO();
-    //                                                          180                             0                           78                                  78
-                                //System.out.println("REF" + "X:"+referencia.getX() + "" + "Y:"+referencia.getY() + "" + "L:"+referencia.getWidth()+ "" + "A:"+referencia.getHeight());
-
-                                //mostra quantidade de imagens do objetivo aaqui
-                                //System.out.println("numAcertosNaRodada: " + numAcertosNaRodada);
-                                int deslocamento=0;
-                                if (partida.getNivel().getQIO() == 3){
-                                    deslocamento = 50;
-                                }else if(partida.getNivel().getQIO() == 4){
-                                    deslocamento = 25;
-                                }
-                                referencia.setX(referencia.getX() + deslocamento);
-
-                                if(mostrarReferencias && numAcertosNaRodada < partida.getNivel().getQIO()){ //No lugar do '3' seria partida.getNivel().getQIO() ????
-                                    //mostrarReferencias é uma variável booleana que é desabilitada quando a função ocultaReferencia é chamada
-                                    for (int i = 0;i<partida.getNivel().getQIO();i++){
-                                        dst = new Mat();
-                                        Mat mescRef = cenario.submat(new Rect(new Point(referencia.getX(), referencia.getY()),new Point(referencia.getX() + referencia.getWidth(), referencia.getY() + referencia.getHeight())));
-                                        //Imgcodecs.imwrite("hue1.png",referencia.getImagem());
-                                        //Imgcodecs.imwrite("hue2.png",mescRef);
-                                        Core.addWeighted(referencia.getImagem(),1.0,mescRef , 0.3, 0.0, dst);
-                                        dst.copyTo(cenario.colRange(referencia.getX(),referencia.getX() + referencia.getWidth()).rowRange(referencia.getY(),referencia.getY() + referencia.getHeight()));
-
-                                        //dst = new Mat();
-                                        referencia.setX(referencia.getX() + referencia.getWidth());
-                                        //Mat mescRef2 = cenario.submat(new Rect(new Point(referencia.getX(), referencia.getY()),new Point(referencia.getX() + referencia.getWidth(), referencia.getY() + referencia.getHeight())));
-                                        //Core.addWeighted(referencia.getImagem(), 1.0, mescRef2, 0.3, 0.0, dst);
-                                        //dst.copyTo(cenario.colRange(referencia.getX(),referencia.getX() + referencia.getWidth()).rowRange(referencia.getY(),referencia.getY() + referencia.getHeight()));
-                                    }
-                                    //System.out.println("mostrando referencias");
-                                }
-
-                                if (jogando){ // jogando é um bool que indica que o usuário está tocando os objetos e por isso devem aparecer os acertos no lugar das referências
-                                    for (int i = 0;i<numAcertosNaRodada;i++){
-                                            dst = new Mat();
-                                            Mat mescRef = cenario.submat(new Rect(new Point(referencia.getX(), referencia.getY()),new Point(referencia.getX() + referencia.getWidth(), referencia.getY() + referencia.getHeight())));
-                                            Core.addWeighted(referencia.getImagem(),1.0,mescRef , 0.3, 0.0, dst);
-                                            dst.copyTo(cenario.colRange(referencia.getX(),referencia.getX() + referencia.getWidth()).rowRange(referencia.getY(),referencia.getY() + referencia.getHeight()));
-                                            referencia.setX(referencia.getX() + referencia.getWidth());  
-                                    }
-                                    if (!mostrarEstrelas){ //talvez tirar esse if
-                                        for (int i=numAcertosNaRodada; i<partida.getNivel().getQIO(); i++){
-                                            //System.out.println("i: " + i);
-                                            Imgproc.resize(sombraObjetivo, sombraObjetivo, new Size(50.0, 50.0));
-                                            dst = new Mat();
-                                            Mat roiSombraObjetivo = cenario.submat(new Rect(new Point(referencia.getX(), referencia.getY()),new Point(referencia.getX() + referencia.getWidth(), referencia.getY() + referencia.getHeight())));
-                                            Core.addWeighted(roiSombraObjetivo,0.0,sombraObjetivo,1.0,0.0,dst);
-                                            dst.copyTo(cenario.colRange(referencia.getX(),referencia.getX() + referencia.getWidth()).rowRange(referencia.getY(),referencia.getY() + referencia.getHeight()));
-                                            referencia.setX(referencia.getX() + referencia.getWidth());
-                                        } 
-                                    }
-                                }
-
-                                if (Move4Math.indiceJogoAtual == 0){
-                                    referencia.setX(195);
-                                    /*
-                                    if (partida.getNivel().getQIS() == 5){
-                                        referencia.setX(195);
-                                    }else if(partida.getNivel().getQIS() == 4){
-                                        referencia.setX(220);
-                                    }else if (partida.getNivel().getQIS() == 3){
-                                        referencia.setX(245);
-                                    }
-                                    */
-                                }else{
-                                    if (Move4Math.indiceJogoAtual == 1 || Move4Math.indiceJogoAtual == 2){
-                                        referencia.setX(250);
-                                    }else{
-                                        referencia.setX(280);
-                                    }
-                                }
-                                //cenario.notifyAll();
-                                //cenario.wait(partida.getNivel().getTEO()*1000);
-                                //int tempoExposicao = partida.getNivel().getTEI()*1000;
+                            /*
+                            * Copia o cenário anterior. 'cenarioAnterior' só é usado na função de colisão.
+                            * Antes de copiar, espera um tempo para não copiar a mesma imagem, ja que a webcam gera em torno de 20~30 FPS
+                            * Imagens muito parecidas farão com qua a função de colisao nao funcione direito
+                            */
+                            if(Calendar.getInstance().getTimeInMillis()>tempoCenario.getTimeInMillis()+100){ //a cada 100 milisegundos copia o cenario
+                                cenario.copyTo(cenarioAnterior);
+                                tempoCenario = Calendar.getInstance();
                             }
-        
-                            //Thread.sleep(partida.getNivel().getTEO()*1000);
 
-                            dst2 = new Mat();
-                            Mat mescRef2 = cenario.submat(new Rect(new Point(200, 15),new Point(300, 15)));
-                            //Core.addWeighted(referencia.getImagem(),1.0,mescRef2 , 0.3, 0.0, dst2);
-                            //dst2.copyTo(cenario.colRange(200,255).rowRange(15,70));
-
-                            //Só mostra os blobs se já se passou um tempo de referência
-                  //          if(Calendar.getInstance().getTimeInMillis()>(gerarRodada.getTimeInMillis()+tempoExposicaoReferencia)){
-                                //guarda o instante que os blobs sao mostrados na tela
-
-                                //System.out.println("partida.getNivel().getTEO(): " + partida.getNivel().getTEO());
-                                //System.out.println("(60*minutos) + segundos) - ((60*minutosAux) + segundosAux): " + (((60*minutos) + segundos) - ((60*minutosAux) + segundosAux)));
-                                if ( ( (((60*minutos) + segundos) - ((60*minutosAux) + segundosAux)) > partida.getNivel().getTEO() && primeiroToque == true ) || ( (((60*minutos) + segundos) - ((60*minutosAux) + segundosAux)) > partida.getNivel().getTEO()/2 && primeiroToque == false ) ){
-                                //System.out.println("passou");
-                                //topoFeedback = Imgcodecs.imread("Resources/images/topoFeedback.png",1);
-                                mostrarEstrelas = false;
-                                mostrarReferencias = false;
-                                jogando = true;
-                                if(gerouBlobs==false){
-                                    mostrarBlobs = Calendar.getInstance();
-                                    gerouBlobs=true;
-                                }       
-
-                                //mostra a barrinha de tempo
-                                //criando a barrinha de tempo que vai decrescendo
-                                diferenca = ((mostrarBlobs.getTimeInMillis()+tempoExposicao) - Calendar.getInstance().getTimeInMillis());
-                                diferenca = (diferenca/1000 < 0)? 0 : diferenca/1000;
-                                float te = tempoExposicao/1000;
-
-                                ocultaReferencia(partida.getNivel());
-
-                                Imgproc.line(cenario, new Point(221, 68), new Point(225+(diferenca/te)*200, 68), new Scalar(0, 0, 255, 255),5);
-                                //fim da barrinha de tempo
-                                // mostra rodada (blobs na tela)
-                                switch (partida.getNivel().getLAD()) {
+                            //espera 200 milisegundos desde o inicio da rodada para checar a colisao
+                            //isso garante que o cenario tenha sido copiado para o cenarioAnterior
+                            if(Calendar.getInstance().getTimeInMillis()>mostrarBlobs.getTimeInMillis()+200){
+                                // -+-+-+-+-+-+ verificar colisão (se houve colisão zera as grades)
+                                switch (partida.getNivel().getLAD()) {// 1=esquerda, 2=direita, 3=ambos
                                     case 1:
-                                        gradeEsq.showImagens(cenario);
+                                        houveColisao = checarColisao(cenario, cenarioAnterior, gradeEsq, partida);
                                         break;
                                     case 2:
-                                        gradeDir.showImagens(cenario);
+                                        houveColisao = checarColisao(cenario, cenarioAnterior, gradeDir, partida);
                                         break;
                                     case 3:
-                                        gradeEsq.showImagens(cenario);
-                                        gradeDir.showImagens(cenario);
+                                        houveColisao = checarColisao(cenario, cenarioAnterior, gradeEsq, partida);
+                                        if (houveColisao==0){
+                                            houveColisao = checarColisao(cenario, cenarioAnterior, gradeDir, partida);
+                                        }   
                                         break;
                                     default:
                                         break;
                                 }
-                                /*
-                                * Copia o cenário anterior. 'cenarioAnterior' só é usado na função de colisão.
-                                * Antes de copiar, espera um tempo para não copiar a mesma imagem, ja que a webcam gera em torno de 20~30 FPS
-                                * Imagens muito parecidas farão com qua a função de colisao nao funcione direito
-                                */
-                                if(Calendar.getInstance().getTimeInMillis()>tempoCenario.getTimeInMillis()+100){ //a cada 100 milisegundos copia o cenario
-                                    cenario.copyTo(cenarioAnterior);
-                                    tempoCenario = Calendar.getInstance();
-                                }
+                                //System.out.println("contNST: " + contNST);
+                                if(houveColisao==1){
+                                    mostrarEstrelas = true;
+                                    primeiroToque = false;
+                                    iPontosAux = iPontosAtual;
+                                    iPontosAtual = partida.getPontuacao();
+                                    iPontosAnt = iPontosAux;
+                                    iDiferenca = iPontosAtual - iPontosAnt;
 
-                                //espera 200 milisegundos desde o inicio da rodada para checar a colisao
-                                //isso garante que o cenario tenha sido copiado para o cenarioAnterior
-                                if(Calendar.getInstance().getTimeInMillis()>mostrarBlobs.getTimeInMillis()+200){
-                                    // -+-+-+-+-+-+ verificar colisão (se houve colisão zera as grades)
-                                    switch (partida.getNivel().getLAD()) {// 1=esquerda, 2=direita, 3=ambos
+                                    segundosAux = segundos;
+                                    minutosAux = minutos;
+                                    System.out.println("TIPO COLISAO: " + tipoColisao + "; Pontos Motor: " + iPontosMotor + "; Pontos Cognitivo: " + iPontosCognitivo);
+                                    iPontosMotor = 0;
+                                    iPontosCognitivo = 0;
+                                    switch (tipoColisao) {
                                         case 1:
-                                            houveColisao = checarColisao(cenario, cenarioAnterior, gradeEsq, partida);
+                                            //acertou
+                                            piscarTopo = false;
+                                            topoFeedback = Imgcodecs.imread("Resources/images/topoFeedbackAcerto.png",1);
                                             break;
                                         case 2:
-                                            houveColisao = checarColisao(cenario, cenarioAnterior, gradeDir, partida);
+                                            //errou
+                                            piscarTopo = false;
+                                            topoFeedback = Imgcodecs.imread("Resources/images/topoFeedbackErro.png",1);
+                                            numErros++;
                                             break;
-                                        case 3:
-                                            houveColisao = checarColisao(cenario, cenarioAnterior, gradeEsq, partida);
-                                            if (houveColisao==0){
-                                                houveColisao = checarColisao(cenario, cenarioAnterior, gradeDir, partida);
-                                            }   break;
                                         default:
+                                            piscarTopo = true;
                                             break;
                                     }
-                                    //System.out.println("contNST: " + contNST);
-                                    if(houveColisao==1){
-                                        mostrarEstrelas = true;
-                                        primeiroToque = false;
-                                        iPontosAux = iPontosAtual;
-                                        iPontosAtual = partida.getPontuacao();
-                                        iPontosAnt = iPontosAux;
-                                        iDiferenca = iPontosAtual - iPontosAnt;
-
-                                        segundosAux = segundos;
-                                        minutosAux = minutos;
-                                        System.out.println("TIPO COLISAO: " + tipoColisao + "; Pontos Motor: " + iPontosMotor + "; Pontos Cognitivo: " + iPontosCognitivo);
-                                        iPontosMotor = 0;
-                                        iPontosCognitivo = 0;
-                                        switch (tipoColisao) {
-                                            case 1:
-                                                //acertou
-                                                piscarTopo = false;
-                                                topoFeedback = Imgcodecs.imread("Resources/images/topoFeedbackAcerto.png",1);
-                                                break;
-                                            case 2:
-                                                //errou
-                                                piscarTopo = false;
-                                                topoFeedback = Imgcodecs.imread("Resources/images/topoFeedbackErro.png",1);
-                                                numErros++;
-                                                break;
-                                            default:
-                                                piscarTopo = true;
-                                                break;
-                                        }
                                         atualizaVidas();
                                         
                                         mostrarReferencias = false;
@@ -987,7 +960,14 @@ public class Game extends javax.swing.JFrame {
                                         //Linha
                                         rodada.setLinhaNivel(partida.getNivel().getNumeroLinha());
                                         //Imagem Objetivo
-                                        rodada.setImgRef(referencia.getRefImgStr());
+                                        switch(Move4Math.indiceJogoAtual){
+                                            case 1:
+                                                rodada.setImgRef(referencia.elementAt(numAcertosNaRodada).getRefImgStr());
+                                                break;
+                                            default:
+                                                rodada.setImgRef(referencia.firstElement().getRefImgStr());
+                                                break;
+                                        }
                                         //Imagem Tocada
                                         rodada.setImgTocada("Nao tocou");
                                         //Tempo de toque
@@ -1045,122 +1025,122 @@ public class Game extends javax.swing.JFrame {
                             //System.out.println("grades");
                             if(isGradesVisiveis())
                                 setGradesVisiveis(false);
-                            else
-                                setGradesVisiveis(true);
-                            MainWindow.tecla = null;
-                        }
-
-                        if(MainWindow.tecla.getKeyCode() == KeyEvent.VK_LEFT){//Retorna o nivel
-
-                            posicaoJogadasDoNivel=1;
-                            irParaProximaLinha = false;
-                            geraProximaLinha = false;
-                            numAcertosNaRodada=0;
-                            mostrarReferencias = true;
-                            jogando = false;
-                            numErrosLimite = 0;
-                            feedback2 = true;
-                            primeiroToque = true;
-
-                            numRodadasGeradas = 0;
-                            tamanhoEFeedback = 350;
-
-                            retrocedeNivel(partida);
-
-                            somaTempoToque = 0;
-                            numAcertos = 0;
-                            numErros = 0;
-
-                            segundosAux = segundos;
-                            minutosAux = minutos;
-
-                            tipoFeedback = 3;
-                            MainWindow.tecla = null;
-                        }
-                        if (MainWindow.tecla.getKeyCode() == KeyEvent.VK_RIGHT){//Avanca o nivel
-                            posicaoJogadasDoNivel=1;
-                            irParaProximaLinha = false;
-                            geraProximaLinha = false;
-                            numAcertosNaRodada=0;
-
-                            jogando = false;
-                            numErrosLimite = 0;
-                            feedback2 = true;
-                            primeiroToque = true;
-
-                            numRodadasGeradas = 0;
-                            tamanhoEFeedback = 350;
-
-                            //partida.getNivel().setNumero(partida.getNivel().getNumero() + 1);
-                            avancaNivel(partida);
-                            mostrarReferencias = false;
-
-                            segundosAux2 = segundos;
-                            minutosAux2 = minutos;
-
-                            //tempoExposicao = partida.getNivel().getTEI();
-
-                            somaTempoToque = 0;
-                            numAcertos = 0;
-                            numErros = 0;
-
-
-                            segundosAux = segundos;
-                            minutosAux = minutos;
-
-                            //gerarRodada = Calendar.getInstance();
-                            //diferenca = 0;
-                            tipoFeedback = 1;
-                            MainWindow.tecla = null;
-                        }
-
-                        if (MainWindow.tecla.getKeyCode() == KeyEvent.VK_S){//Liga/Desliga o Audio
-
-                            if (reproduzirAudio){
-                                reproduzirAudio = false;
-                            }else{
-                                reproduzirAudio = true;
-                            }
-
-                            MainWindow.tecla = null;
-                        }
-
-                        if (MainWindow.tecla.getKeyCode() == KeyEvent.VK_SPACE){//Pausa o jogo
-                            pausado = true;
-
-                            pausaJogo();
-                            //diferenca = ((mostrarBlobs.getTimeInMillis()+tempoExposicao) - Calendar.getInstance().getTimeInMillis());
-                            MainWindow.tecla = null;
-                        }
-                        
-                        if(MainWindow.tecla.getKeyCode() == KeyEvent.VK_UP){//Aumenta o tempo.
-                            System.out.println("\nTempo de Exposição a: "+tempoExposicao);
-                            if(tempoExposicao < 15000){
-                                tempoExposicao += 1000;
-                            }
-                            System.out.println("\nTempo de Exposição b: "+tempoExposicao);
-                            int a = tempoExposicao / 1000;
-                            partida.getNivel().setTEI(a);
-                            
-                            MainWindow.tecla = null;
-                        }
-                        
-                        if(MainWindow.tecla.getKeyCode() == KeyEvent.VK_DOWN){//Diminui o tempo.
-                            System.out.println("\nTempo de Exposição a: "+tempoExposicao);
-                            if(tempoExposicao > 3000){
-                                tempoExposicao -= 1000;
-                            }
-                            System.out.println("\nTempo de Exposição b: "+tempoExposicao);
-                            int a = tempoExposicao / 1000;
-                            partida.getNivel().setTEI(a);
-                            
-                            MainWindow.tecla = null;
-                        }
-
-                    } //fim try
-                    catch(Exception ex){
-                        //System.out.println("erro gravando frame");
+                        else
+                            setGradesVisiveis(true);
+                        MainWindow.tecla = null;
                     }
+
+                    if(MainWindow.tecla.getKeyCode() == KeyEvent.VK_LEFT){//Retorna o nivel
+
+                        posicaoJogadasDoNivel=1;
+                        irParaProximaLinha = false;
+                        geraProximaLinha = false;
+                        numAcertosNaRodada=0;
+                        mostrarReferencias = true;
+                        jogando = false;
+                        numErrosLimite = 0;
+                        feedback2 = true;
+                        primeiroToque = true;
+
+                        numRodadasGeradas = 0;
+                        tamanhoEFeedback = 350;
+
+                        retrocedeNivel(partida);
+
+                        somaTempoToque = 0;
+                        numAcertos = 0;
+                        numErros = 0;
+
+                        segundosAux = segundos;
+                        minutosAux = minutos;
+
+                        tipoFeedback = 3;
+                        MainWindow.tecla = null;
+                    }
+                    if (MainWindow.tecla.getKeyCode() == KeyEvent.VK_RIGHT){//Avanca o nivel
+                        posicaoJogadasDoNivel=1;
+                        irParaProximaLinha = false;
+                        geraProximaLinha = false;
+                        numAcertosNaRodada=0;
+
+                        jogando = false;
+                        numErrosLimite = 0;
+                        feedback2 = true;
+                        primeiroToque = true;
+
+                        numRodadasGeradas = 0;
+                        tamanhoEFeedback = 350;
+
+                        //partida.getNivel().setNumero(partida.getNivel().getNumero() + 1);
+                        avancaNivel(partida);
+                        mostrarReferencias = false;
+
+                        segundosAux2 = segundos;
+                        minutosAux2 = minutos;
+
+                        //tempoExposicao = partida.getNivel().getTEI();
+
+                        somaTempoToque = 0;
+                        numAcertos = 0;
+                        numErros = 0;
+
+
+                        segundosAux = segundos;
+                        minutosAux = minutos;
+
+                        //gerarRodada = Calendar.getInstance();
+                        //diferenca = 0;
+                        tipoFeedback = 1;
+                        MainWindow.tecla = null;
+                    }
+
+                    if (MainWindow.tecla.getKeyCode() == KeyEvent.VK_S){//Liga/Desliga o Audio
+
+                        if (reproduzirAudio){
+                            reproduzirAudio = false;
+                        }else{
+                            reproduzirAudio = true;
+                        }
+
+                        MainWindow.tecla = null;
+                    }
+
+                    if (MainWindow.tecla.getKeyCode() == KeyEvent.VK_SPACE){//Pausa o jogo
+                        pausado = true;
+
+                        pausaJogo();
+                        //diferenca = ((mostrarBlobs.getTimeInMillis()+tempoExposicao) - Calendar.getInstance().getTimeInMillis());
+                        MainWindow.tecla = null;
+                    }
+                        
+                    if(MainWindow.tecla.getKeyCode() == KeyEvent.VK_UP){//Aumenta o tempo.
+                        System.out.println("\nTempo de Exposição a: "+tempoExposicao);
+                        if(tempoExposicao < 15000){
+                            tempoExposicao += 1000;
+                        }
+                        System.out.println("\nTempo de Exposição b: "+tempoExposicao);
+                        int a = tempoExposicao / 1000;
+                        partida.getNivel().setTEI(a);
+                            
+                        MainWindow.tecla = null;
+                    }
+                        
+                    if(MainWindow.tecla.getKeyCode() == KeyEvent.VK_DOWN){//Diminui o tempo.
+                        System.out.println("\nTempo de Exposição a: "+tempoExposicao);
+                        if(tempoExposicao > 3000){
+                            tempoExposicao -= 1000;
+                        }
+                        System.out.println("\nTempo de Exposição b: "+tempoExposicao);
+                        int a = tempoExposicao / 1000;
+                        partida.getNivel().setTEI(a);
+                            
+                        MainWindow.tecla = null;
+                    }
+
+                } //fim try
+                catch(Exception ex){
+                    //System.out.println("erro gravando frame");
+                }
             }//fim while
             try {
                 escreveCSV(sessao, partida);
@@ -1486,8 +1466,6 @@ public class Game extends javax.swing.JFrame {
                         Mat contour = contours.get(idx);
                         double contourarea = Imgproc.contourArea(contour);
                         if(contourarea > maxArea){
-                            //System.out.println(contourarea);
-                            //System.out.println("colisao!");
                             colisao = 1;
                         }
                     }
@@ -1502,14 +1480,32 @@ public class Game extends javax.swing.JFrame {
                     rodada.setIdSessao(partida.getPlayer().getSessoes().lastElement().getId());
                     rodada.setNivel(partida.getNivel().getNumero());
                     rodada.setLinhaNivel(partida.getNivel().getNumeroLinha());
-                    rodada.setImgRef(referencia.getRefImgStr());
+                    switch(Move4Math.indiceJogoAtual){
+                        case 1:
+                            rodada.setImgRef(referencia.elementAt(numAcertosNaRodada).getRefImgStr());
+                            break;
+                        default:
+                            rodada.setImgRef(referencia.firstElement().getRefImgStr());
+                            break;
+                    }
                     rodada.setImgTocada(grade.getRegioes().elementAt(i).getImg().getDescricao());
                     rodada.setTempoToque(tempoToque);
 
                     somaTempoToque += tempoToque;
-
+                    
+                    int ref;
+                    
+                    switch(Move4Math.indiceJogoAtual){
+                        case 1:
+                            ref = referencia.elementAt(numAcertosNaRodada).getId();
+                            break;
+                        default:
+                            ref = referencia.firstElement().getId();
+                            break;
+                    }
+                    
                     //o if abaixo decide se a imagem tocada está certa ou errada
-                    if(grade.getRegioes().elementAt(i).getImg().getId()==referencia.getId()){
+                    if(grade.getRegioes().elementAt(i).getImg().getId() == ref){
                         //Acho que é assim que separa os pontos...
                         tipoColisao = 1;
                         rodada.setAcao("Acertou");
@@ -1632,29 +1628,6 @@ public class Game extends javax.swing.JFrame {
         }
 
         void gerarImagens2(Grade grade, Partida partida, int numSimbolosParaGerar, boolean emitirSom,boolean isReferencia) throws LineUnavailableException, UnsupportedAudioFileException, IOException{
-            /*            
-            System.out.println("Entrou no gerarImagens2");
-
-            //MAYCO
-            int Gao = partida.getFase().getGAO();
-            System.out.println(partida.getFilaElementosReferencia().isEmpty());
-
-            if(Gao==2){
-                partida.geraFilaFixaReferencias();
-            }else
-                partida.geraNovaFilaReferencias();
-
-            if(partida.getFilaElementosReferencia().isEmpty()&&(Gao == 2)){
-                partida.geraFilaFixaReferencias();
-            }else
-                partida.geraNovaFilaReferencias();
-
-            if(partida.getFilaElementosReferencia().isEmpty()){
-                System.out.println("chamou geraNovaFilaReferencias");
-                partida.geraNovaFilaReferencias(partida.imagensDaCena(partida.getNivel()));
-            }
-            */
-
             boolean controle = false;
             
             Vector<Imagem> aux;
@@ -1663,12 +1636,12 @@ public class Game extends javax.swing.JFrame {
                 if(isReferencia)                                        //se a referencia ainda sera gerada
                     partida.atualizaFilaElementos(partida.getFilaElementosReferencia().firstElement().getGrupo());
                 else                                                    //a referencia já foi gerada e removida do vetor
-                    partida.atualizaFilaElementos(referencia.getGrupo());
+                    partida.atualizaFilaElementos(referencia.firstElement().getGrupo());
             */
             if(isReferencia){                                      //se a referencia ainda sera gerada
                 partida.atualizaFilaElementos(partida.getFilaElementosReferencia().firstElement().getGrupo());
             }else{                                                   //a referencia já foi gerada e removida do vetor
-                partida.atualizaFilaElementos(referencia.getGrupo());
+                partida.atualizaFilaElementos(referencia.firstElement().getGrupo());
             }
             int GRADE_MAX = 6;
             switch (grade.getTamanhoGrade()) {
@@ -1708,54 +1681,35 @@ public class Game extends javax.swing.JFrame {
             }
 
             if(isReferencia){ //seta a referencia que vai aparecer no topo da tela  aqui
+                /*for (int i = 0; i < partida.getFilaElementosReferencia().size(); i++) {
+                    System.out.println("partida.getFilaElementosReferencia(" + i + "): " + partida.getFilaElementosReferencia().get(i).getId() + " " + partida.getFilaElementosReferencia().get(i).getDescricao());
+                }*/
+                
                 Imagem imgRefTemp = new Imagem(partida.getFilaElementosReferencia().remove(0));
-                referencia.setWidth(partida.getNivel().getTIO());
-                referencia.setHeight(partida.getNivel().getTIO());
+                referencia.firstElement().setWidth(partida.getNivel().getTIO());
+                referencia.firstElement().setHeight(partida.getNivel().getTIO());
 
                 switch(Move4Math.indiceJogoAtual){
                     case 0:
-                        referencia.setX(195);
+                        referencia.firstElement().setX(195);
                         break;
                     case 1:
-                        referencia.setX(250);
+                        referencia.firstElement().setX(250);
                         break;
                     case 2:
-                        referencia.setX(250);
+                        referencia.firstElement().setX(250);
                         break;
                     default :
-                        referencia.setX(280);
+                        referencia.firstElement().setX(280);
                         break;
                 }
-/*                
-                if (Move4Math.indiceJogoAtual == 0){
-                    switch (partida.getNivel().getQIS()) {
-                    case 5:
-                        referencia.setX(195);
-                        break;
-                    case 4:
-                        referencia.setX(220);
-                        break;
-                    case 3:
-                        referencia.setX(245);
-                        break;
-                    default:
-                        break;
-                    }
-                    referencia.setX(195);
-                }else{
-                    if (Move4Math.indiceJogoAtual == 1 || Move4Math.indiceJogoAtual == 2){
-                        referencia.setX(250);
-                    }else{
-                        referencia.setX(280);
-                    }
-                } 
-// */               
-                referencia.setY(10);
+ 
+                referencia.firstElement().setY(10);
                 Mat tempRef = new Mat();
                 tempRef = imgRefTemp.getImg();
                 Imgproc.resize(tempRef,tempRef,new Size(partida.getNivel().getTIO(), partida.getNivel().getTIO()));
-                referencia.setImagem(tempRef);
-                referencia.setId(imgRefTemp.getId());
+                referencia.firstElement().setImagem(tempRef);
+                referencia.firstElement().setId(imgRefTemp.getId());
 
                 if (idTemp != imgRefTemp.getId()){
                     if((partida.getNivel().getNumeroLinha() - 1) != (int) jogadasDoNivel.get(0)){
@@ -1767,9 +1721,9 @@ public class Game extends javax.swing.JFrame {
                 }
                 descRef = imgRefTemp.getDescricao();
                 //coloca as descricoes
-                referencia.setRefImgStr(imgRefTemp.getDescricao());
-                referencia.setSom(imgRefTemp.getSom());
-                referencia.setGrupo(imgRefTemp.getGrupo());
+                referencia.firstElement().setRefImgStr(imgRefTemp.getDescricao());
+                referencia.firstElement().setSom(imgRefTemp.getSom());
+                referencia.firstElement().setGrupo(imgRefTemp.getGrupo());
             }
             // Primeiro deixamos todas as regiões como "livres"
             for(int i=0;i<grade.getRegioes().size();i++)
@@ -1785,7 +1739,7 @@ public class Game extends javax.swing.JFrame {
                     //nunca ta entrando aqui porque fiz controle = false (ou seja, agora pode deixar filaElementosReferencia com apenas um elemento)
                     Imagem imgRefTemp = null;
                     for(int j=0;j<partida.getFilaElementosReferencia().size();j++){
-                        if(partida.getFilaElementosReferencia().elementAt(j).getGrupo()==referencia.getGrupo()){
+                        if(partida.getFilaElementosReferencia().elementAt(j).getGrupo()==referencia.firstElement().getGrupo()){
                             imgRefTemp = new Imagem(partida.getFilaElementosReferencia().remove(j));
                             System.out.println("gerarImagens2" + j);
                             //break;
@@ -1848,8 +1802,8 @@ public class Game extends javax.swing.JFrame {
             //if(isReferencia){
             if(emitirSom){
                 if((partida.getFase().getEST()==2)||(partida.getFase().getEST()==0)){
-                    //System.out.println(referencia.getSom().getSom());
-                    File yourFile = new File(referencia.getSom().getSom());
+                    //System.out.println(referencia.firstElement().getSom().getSom());
+                    File yourFile = new File(referencia.firstElement().getSom().getSom());
                     AudioInputStream stream;
                     AudioFormat format;
                     DataLine.Info info;
@@ -2050,32 +2004,6 @@ public class Game extends javax.swing.JFrame {
                     break;
                 default:
             }
-            //*/
-            //System.out.println("Entrou no aguarda");
-    //        contAguarda++;
-    //        if (contAguarda==1){
-    //            File yourFile = new File("Resources/sounds/acertou.wav");
-    //            AudioInputStream stream;
-    //            AudioFormat format;
-    //            DataLine.Info info;
-    //            Clip clip;
-    //
-    //            stream = AudioSystem.getAudioInputStream(yourFile);
-    //            format = stream.getFormat();
-    //            info = new DataLine.Info(Clip.class, format);
-    //            clip = (Clip) AudioSystem.getLine(info);
-    //            clip.open(stream);
-    //            clip.start(); 
-    //        }
-
-
-    //         Mat silhueta = Imgcodecs.imread("Resources/images/corpo.png",1);
-    //         
-    //          // -+-+-+-+-+-+  mostra Silhueta
-    //                    dst = new Mat();
-    //                    Mat roiSilhueta = cenario.submat(new Rect(new Point(220, 230),new Point(420, 480)));
-    //                    Core.addWeighted(roiSilhueta,1.0,silhueta,0.8,0.0,dst);
-    //                    dst.copyTo(cenario.colRange(220,420).rowRange(230,480));
         }
 
         public void geraRelatorioErros (Mat cenario, Rodada rodada, Partida partida, int numErros) throws AWTException, IOException{
