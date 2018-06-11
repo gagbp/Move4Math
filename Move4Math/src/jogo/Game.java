@@ -754,7 +754,7 @@ public class Game extends javax.swing.JFrame {
                                 deslocamento = 25;
                             }
                             referencia.firstElement().setX(referencia.firstElement().getX() + deslocamento);
-
+                            
                             if(mostrarReferencias && numAcertosNaRodada < partida.getNivel().getQIO()){ //No lugar do '3' seria partida.getNivel().getQIO() ????
                                 //mostrarReferencias é uma variável booleana que é desabilitada quando a função ocultaReferencia é chamada
                                 for (int i = 0;i<partida.getNivel().getQIO();i++){
@@ -999,7 +999,7 @@ public class Game extends javax.swing.JFrame {
                                 }else if(jogando){
                                     mostrarReferencias = false;
                                 }
-                        }
+                            }
 
                         Imgcodecs.imencode(".bmp", cenario, mem);
                         Image im = ImageIO.read(new ByteArrayInputStream(mem.toArray()));
@@ -1493,7 +1493,7 @@ public class Game extends javax.swing.JFrame {
 
                     somaTempoToque += tempoToque;
                     
-                    int ref;
+                    int ref = -1;
                     
                     switch(Move4Math.indiceJogoAtual){
                         case 1:
@@ -1503,6 +1503,8 @@ public class Game extends javax.swing.JFrame {
                             ref = referencia.firstElement().getId();
                             break;
                     }
+                    
+                    System.out.println("ref: " + ref);
                     
                     //o if abaixo decide se a imagem tocada está certa ou errada
                     if(grade.getRegioes().elementAt(i).getImg().getId() == ref){
@@ -1694,8 +1696,6 @@ public class Game extends javax.swing.JFrame {
                         referencia.firstElement().setX(195);
                         break;
                     case 1:
-                        referencia.firstElement().setX(250);
-                        break;
                     case 2:
                         referencia.firstElement().setX(250);
                         break;
