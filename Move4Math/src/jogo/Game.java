@@ -1744,6 +1744,7 @@ public class Game extends javax.swing.JFrame {
                             System.out.println("gerarImagens2" + j);
                             //break;
                         }
+                        //System.out.println("J: " + j);
                     }
                     //sorteia uma posição na grade
                     //ps: refazer essa rotina para sortear com probabilidades
