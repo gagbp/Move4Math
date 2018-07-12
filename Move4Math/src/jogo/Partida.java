@@ -68,9 +68,9 @@ public class Partida implements Cloneable{
         linhaNivelSelecionado = (nivelSelecionado-1)*4;
         int aux = linhaNivelSelecionado;
         for(int i=0;i<4;i++){
-            jogadasDoNivel.add(aux);
-            aux ++;            
-        }
+                jogadasDoNivel.add(aux);
+                aux ++;            
+            }
 
         Collections.shuffle(jogadasDoNivel);
         return jogadasDoNivel;
@@ -84,6 +84,7 @@ public class Partida implements Cloneable{
     }
     
     public String [] imagensDaCena(int faseAtual, Nivel nivel){
+        
         //System.out.println("---------- " + move4math.Move4Math.indiceFaseAtual);
         
         int tamanho = nivel.getQIS();
@@ -103,38 +104,37 @@ public class Partida implements Cloneable{
                 System.out.println("Erro! Fase não existente!");
         }
 
-        /*
         for (int i=0;i<imagensCena.length;i++){
-            System.out.println(imagensCena[i]);
+            //System.out.println(imagensCena[i]);
         }
-        */
+
         //filaElementosReferencia.add(imagensCena.)
         
         return imagensCena;
                 
     }
     
-/*     public void geraTodasImagens(){
-        filaElementos.clear();
-        filaElementosReferencia.clear();
-        Vector<Imagem> im = new Vector<Imagem>();
-        String imagens[] = partida
-        System.out.println("Entrou no 'geraTodasImagens' ");
-        for (int i=0;i<nivel.getQIS();i++){
-            
-        }
-        
-        System.out.println("QTD" + im.size() + "CNDO" + im.toString());
-        
-        for(int i=0;i<im.size();i++){
-            filaElementos.add(im.elementAt(i));
-            filaElementosReferencia.add(im.elementAt(0));
-        }
-        
-        Collections.shuffle(filaElementos);
-    }
+////    public void geraTodasImagens(){
+////        filaElementos.clear();
+////        filaElementosReferencia.clear();
+////        Vector<Imagem> im = new Vector<Imagem>();
+////        //String imagens[] = partida
+////        System.out.println("Entrou no 'geraTodasImagens' ");
+////        for (int i=0;i<nivel.getQIS();i++){
+////            
+////        }
+//        
+//        System.out.println("QTD" + im.size() + "CNDO" + im.toString());
+//        
+//        for(int i=0;i<im.size();i++){
+//            filaElementos.add(im.elementAt(i));
+//            filaElementosReferencia.add(im.elementAt(0));
+//        }
+//        
+//        Collections.shuffle(filaElementos);
+//    }
     
-    public void geraNovaFilaReferencias(){
+/*    public void geraNovaFilaReferencias(){
         filaElementosReferencia.clear();
         Vector<Vector<Imagem>> imagens = new Vector<Vector<Imagem>>();
         imagens = conjuntoImagem.getImagens();
@@ -156,9 +156,8 @@ public class Partida implements Cloneable{
         Collections.shuffle(filaElementosReferencia);
         atualizaFilaElementos(filaElementosReferencia.firstElement().getGrupo());
         
-    }
-*/
-
+    }*/
+    
     // refazer, criando um vetor de imagens de 4 posições, onde cada posição é a primeira imagem contida em ICC
     public void geraNovaFilaReferencias(String[] imagensCena){
         filaElementosReferencia.clear();
@@ -184,6 +183,29 @@ public class Partida implements Cloneable{
         atualizaFilaElementos(filaElementosReferencia.firstElement().getGrupo());
         
     }
+    
+//    //não utilizado
+//        public void geraFilaFixaReferencias(){
+//            
+//        filaElementosReferencia.clear();
+//        Vector<Vector<Imagem>> imagens = new Vector<Vector<Imagem>>();
+//        //nivel.getAIO()
+//        imagens = conjuntoImagem.getImagens();
+//        int posicao = 1;
+//        int tamanho;
+//        
+//        for(int i=0;i<imagens.size();i++){
+//            //if(imagens.elementAt(i).elementAt(0).)
+//            filaElementosReferencia.add(imagens.elementAt(i).elementAt(0));
+//            tamanho = imagens.elementAt(i).size();
+//            if(tamanho>1){
+//                posicao++;
+//                filaElementosReferencia.add(imagens.elementAt(i).elementAt(posicao));
+//            }else{
+//                filaElementosReferencia.add(imagens.elementAt(i).elementAt(0));
+//            }
+//        }
+//    }
     
     public void atualizaFilaElementos(int indiceParaIgnorar){
         filaElementos.clear();
@@ -263,11 +285,13 @@ public class Partida implements Cloneable{
             default:
                 System.out.println("Não existe essa fase!");
         }
-        /*
+
+        //Collections.shuffle(filaElementos);
+        //System.out.println("filaElementos: ");
         for (int i=0; i<filaElementos.size(); i++){
-            System.out.println("filaElementos.elementAt(" + i + "): " + filaElementos.elementAt(i).getId());
+            //System.out.println("filaElementos.elementAt(" + i + "): " + filaElementos.elementAt(i).getId());
         }
-        */
+        
     }
     
     public void shuffleElements(){
@@ -299,7 +323,7 @@ public class Partida implements Cloneable{
                     for(int j=0;j<imagens.elementAt(i).size();j++){
                         for(int k=0; k<jogadasDoNivel.size(); k++){
                             if (Integer.parseInt(bufferPrimeiro[k]) == (imagens.elementAt(i).elementAt(j).getId())){
-                                filaElementos.add(imagens.elementAt(i).elementAt(j));
+                            filaElementos.add(imagens.elementAt(i).elementAt(j));
                             }
                         }
                     }
@@ -310,7 +334,7 @@ public class Partida implements Cloneable{
                     for(int j=0;j<imagens.elementAt(i).size();j++){
                         for(int k=0; k<jogadasDoNivel.size(); k++){
                             if (Integer.parseInt(bufferSegundo[k]) == (imagens.elementAt(i).elementAt(j).getId())){
-                                filaElementos.add(imagens.elementAt(i).elementAt(j));
+                            filaElementos.add(imagens.elementAt(i).elementAt(j));
                             }
                         }
                     }
@@ -321,7 +345,7 @@ public class Partida implements Cloneable{
                     for(int j=0;j<imagens.elementAt(i).size();j++){
                         for(int k=0; k<jogadasDoNivel.size(); k++){
                             if (Integer.parseInt(bufferTerceiro[k]) == (imagens.elementAt(i).elementAt(j).getId())){
-                                filaElementos.add(imagens.elementAt(i).elementAt(j));
+                            filaElementos.add(imagens.elementAt(i).elementAt(j));
                             }
                         }
                     }
@@ -331,15 +355,20 @@ public class Partida implements Cloneable{
                 System.out.println("Não existe essa fase!");
         }
 
-/*
-        System.out.println("--");
-        Collections.shuffle(filaElementos);
-        System.out.println("Fila elementos:");
+
+        
+        /*
+        //System.out.println("--");
+        
+        // Collections.shuffle(filaElementos);
+        // System.out.println("Fila elementos:");
         for(int a=0;a<filaElementos.size();a++){
-            System.out.println(filaElementos.elementAt(a).getId());
+        //     System.out.println(filaElementos.elementAt(a).getId());
         }
-*/
+        //*/
         geraFilaReferenciaAleatoria(referencia);
+        
+        
     }
 
     public void geraFilaReferenciaAleatoria(int referencia){
@@ -365,23 +394,25 @@ public class Partida implements Cloneable{
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
        
         if (iTipoJogoSelecionado == 0){ //Jogo de Classificação
-            for(int i=0; i<imagens.elementAt(referencia).size(); i++){
+            for(int i=0;i<imagens.elementAt(referencia).size();i++){
                 if (Integer.parseInt(idsDoICC[0]) == imagens.elementAt(referencia).elementAt(i).getId()){
                     filaElementosReferencia.add(imagens.elementAt(referencia).elementAt(i));
-                    System.out.println("Adicionou na filaElementosReferencia: " + imagens.elementAt(referencia).elementAt(i).getId());
                 }
             }
         } else { // Jogo de Ordenação, Contagem ou Anterior e Próximo
-            for(int i=0; i<imagens.elementAt(referencia).size(); i++){
-                if ((Integer.parseInt(idsDoICC[0]) == imagens.elementAt(referencia).elementAt(i).getId()) || (Integer.parseInt(idsDoICC[1]) == imagens.elementAt(referencia).elementAt(i).getId()) || (Integer.parseInt(idsDoICC[2]) == imagens.elementAt(referencia).elementAt(i).getId())){
-                            filaElementosReferencia.add(imagens.elementAt(referencia).elementAt(i));
-                            System.out.println("Adicionou na filaElementosReferencia: " + imagens.elementAt(referencia).elementAt(i).getId());
+            for(int i=0;i<imagens.elementAt(referencia).size();i++){
+                if ((Integer.parseInt(idsDoICC[0]) == imagens.elementAt(referencia).elementAt(i).getId()) || 
+                        (Integer.parseInt(idsDoICC[1]) == imagens.elementAt(referencia).elementAt(i).getId()) ||
+                        (Integer.parseInt(idsDoICC[2]) == imagens.elementAt(referencia).elementAt(i).getId())){
+                    filaElementosReferencia.add(imagens.elementAt(referencia).elementAt(i));
+                    //System.out.println("Adicionou na filaElementosReferencia: " + imagens.elementAt(referencia).elementAt(i).getId());
                 }
             }
         }
         
        /*
         for(int i=0;i<imagens.elementAt(referencia).size();i++){
+            
           if (Integer.parseInt(idsDoICC[0]) == imagens.elementAt(referencia).elementAt(i).getId()){
               filaElementosReferencia.add(imagens.elementAt(referencia).elementAt(i));
               //filaElementosReferencia.add(imagensAux.elementAt(referencia).elementAt(5)); // teste porque não pode haver apenas um elemento na fila
@@ -389,7 +420,7 @@ public class Partida implements Cloneable{
           
         }
        */
-       //filaElementosReferencia.add(imagens.elementAt(referencia).elementAt(0));
+        //filaElementosReferencia.add(imagens.elementAt(referencia).elementAt(0));
        // System.out.println("FilaElementosReferencia: ");
         for(int i=0;i<filaElementosReferencia.size();i++){
            // System.out.println(filaElementosReferencia.elementAt(i).getId());
@@ -406,93 +437,92 @@ public class Partida implements Cloneable{
         pontos = String.valueOf(pontuacao);
         putText( roiPontos , pontos, new Point(80,60), Core.FONT_HERSHEY_SIMPLEX,0.5,new Scalar(0,0,0),1,8,false );
     }
-
-/*    
-    public void mostrarEstrelas(Mat cenario, int pontos){
-        Mat dst;
-        Imgproc.resize(estrela, estrela, new Size(30.0, 30.0));
-        if(pontos == 1 || pontos == 2){
-            dst = new Mat();
-            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
-        }
-        if(pontos == 3 || pontos == 4){
-            dst = new Mat();
-            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
-
-            dst = new Mat();
-            Mat roiEstrela2 = cenario.submat(new Rect(new Point(485, 15), new Point(515, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela2,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(485,515).rowRange(15,45));
-        }
-        if(pontos == 5 || pontos == 6){
-            dst = new Mat();
-            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
-
-            dst = new Mat();
-            Mat roiEstrela2 = cenario.submat(new Rect(new Point(485, 15), new Point(515, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela2,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(485,515).rowRange(15,45));
-
-            dst = new Mat();
-            Mat roiEstrela3 = cenario.submat(new Rect(new Point(515, 15), new Point(545, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela3,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(515,545).rowRange(15,45));
-        }
-        if(pontos == 7 || pontos == 8){
-            dst = new Mat();
-            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
-
-            dst = new Mat();
-            Mat roiEstrela2 = cenario.submat(new Rect(new Point(485, 15), new Point(515, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela2,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(485,515).rowRange(15,45));
-
-            dst = new Mat();
-            Mat roiEstrela3 = cenario.submat(new Rect(new Point(515, 15), new Point(545, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela3,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(515,545).rowRange(15,45));
-
-            dst = new Mat();
-            Mat roiEstrela4 = cenario.submat(new Rect(new Point(545, 15), new Point(575, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela4,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(545,575).rowRange(15,45));
-        }
-        if(pontos == 9 || pontos == 10){
-            dst = new Mat();
-            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
-
-            dst = new Mat();
-            Mat roiEstrela2 = cenario.submat(new Rect(new Point(485, 15), new Point(515, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela2,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(485,515).rowRange(15,45));
-
-            dst = new Mat();
-            Mat roiEstrela3 = cenario.submat(new Rect(new Point(515, 15), new Point(545, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela3,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(515,545).rowRange(15,45));
-
-            dst = new Mat();
-            Mat roiEstrela4 = cenario.submat(new Rect(new Point(545, 15), new Point(575, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela4,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(545,575).rowRange(15,45));
-
-            dst = new Mat();
-            Mat roiEstrela5 = cenario.submat(new Rect(new Point(575, 15), new Point(605, 45)));
-            Core.addWeighted(estrela,1.0,roiEstrela5,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(575,605).rowRange(15,45));
-        }
-    } 
-*/
+    
+//    public void mostrarEstrelas(Mat cenario, int pontos){
+//        Mat dst;
+//        Imgproc.resize(estrela, estrela, new Size(30.0, 30.0));
+//        if(pontos == 1 || pontos == 2){
+//            dst = new Mat();
+//            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
+//        }
+//        if(pontos == 3 || pontos == 4){
+//            dst = new Mat();
+//            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
+//
+//            dst = new Mat();
+//            Mat roiEstrela2 = cenario.submat(new Rect(new Point(485, 15), new Point(515, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela2,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(485,515).rowRange(15,45));
+//        }
+//        if(pontos == 5 || pontos == 6){
+//            dst = new Mat();
+//            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
+//
+//            dst = new Mat();
+//            Mat roiEstrela2 = cenario.submat(new Rect(new Point(485, 15), new Point(515, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela2,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(485,515).rowRange(15,45));
+//
+//            dst = new Mat();
+//            Mat roiEstrela3 = cenario.submat(new Rect(new Point(515, 15), new Point(545, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela3,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(515,545).rowRange(15,45));
+//        }
+//        if(pontos == 7 || pontos == 8){
+//            dst = new Mat();
+//            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
+//
+//            dst = new Mat();
+//            Mat roiEstrela2 = cenario.submat(new Rect(new Point(485, 15), new Point(515, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela2,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(485,515).rowRange(15,45));
+//
+//            dst = new Mat();
+//            Mat roiEstrela3 = cenario.submat(new Rect(new Point(515, 15), new Point(545, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela3,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(515,545).rowRange(15,45));
+//
+//            dst = new Mat();
+//            Mat roiEstrela4 = cenario.submat(new Rect(new Point(545, 15), new Point(575, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela4,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(545,575).rowRange(15,45));
+//        }
+//        if(pontos == 9 || pontos == 10){
+//            dst = new Mat();
+//            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
+//
+//            dst = new Mat();
+//            Mat roiEstrela2 = cenario.submat(new Rect(new Point(485, 15), new Point(515, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela2,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(485,515).rowRange(15,45));
+//
+//            dst = new Mat();
+//            Mat roiEstrela3 = cenario.submat(new Rect(new Point(515, 15), new Point(545, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela3,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(515,545).rowRange(15,45));
+//
+//            dst = new Mat();
+//            Mat roiEstrela4 = cenario.submat(new Rect(new Point(545, 15), new Point(575, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela4,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(545,575).rowRange(15,45));
+//
+//            dst = new Mat();
+//            Mat roiEstrela5 = cenario.submat(new Rect(new Point(575, 15), new Point(605, 45)));
+//            Core.addWeighted(estrela,1.0,roiEstrela5,0.5,0.0,dst);
+//            dst.copyTo(cenario.colRange(575,605).rowRange(15,45));
+//        }
+//        
+//    }
     
     public void mostrarVidas (Mat cenario, int tipoPublico){
         Mat dst;
