@@ -193,3 +193,29 @@
 91;12/07/2018;14:43:30;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
 91;12/07/2018;14:43:38;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
 91;12/07/2018;14:43:46;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+92;12/07/2018;14:55:21;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
+92;12/07/2018;14:55:29;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+92;12/07/2018;14:55:32;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;1;Errou;4;0
+92;12/07/2018;14:55:38;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;4;Errou;1;0
+92;12/07/2018;14:55:42;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;2;Errou;3;0
+92;12/07/2018;14:55:45;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Medio-BordaFina-Preto;1;Acertou;4;5
+92;12/07/2018;14:55:52;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;2;Acertou;3;5
+93;12/07/2018;15:04:29;Ordenacao;1;1;50;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;4;Acertou;1;5
+93;12/07/2018;15:04:33;Ordenacao;1;1;50;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;2;Errou;3;0
+93;12/07/2018;15:04:37;Ordenacao;1;1;50;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Medio-BordaFina-Preto;2;Acertou;3;5
+93;12/07/2018;15:04:40;Ordenacao;1;1;50;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Grande-BordaFina-Preto;1;Acertou;4;5
+94;12/07/2018;15:12:12;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
+94;12/07/2018;15:12:16;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Medio-BordaFina-Preto;3;Acertou;2;5
+94;12/07/2018;15:12:24;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;4;Errou;1;0
+94;12/07/2018;15:12:25;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;0;Acertou;5;5
+96;12/07/2018;15:13:22;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;3;Errou;2;0
+96;12/07/2018;15:13:24;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;0;Errou;5;0
+96;12/07/2018;15:13:24;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;0;Errou;5;0
+97;12/07/2018;15:14:17;Ordenacao;1;1;50;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;2;Acertou;3;5
+97;12/07/2018;15:14:21;Ordenacao;1;1;50;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Grande-BordaFina-Preto;2;Errou;3;0
+97;12/07/2018;15:14:24;Ordenacao;1;1;50;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Medio-BordaFina-Preto;1;Acertou;4;5
+97;12/07/2018;15:14:27;Ordenacao;1;1;50;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Grande-BordaFina-Preto;1;Acertou;4;5
+98;12/07/2018;15:45:54;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
+98;12/07/2018;15:46:03;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+98;12/07/2018;15:46:08;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Medio-BordaFina-Preto;4;Acertou;1;5
+98;12/07/2018;15:46:12;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;2;Acertou;3;5

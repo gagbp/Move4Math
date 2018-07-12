@@ -113,27 +113,27 @@ public class Partida implements Cloneable{
         return imagensCena;
                 
     }
-    
-////    public void geraTodasImagens(){
-////        filaElementos.clear();
-////        filaElementosReferencia.clear();
-////        Vector<Imagem> im = new Vector<Imagem>();
-////        //String imagens[] = partida
-////        System.out.println("Entrou no 'geraTodasImagens' ");
-////        for (int i=0;i<nivel.getQIS();i++){
-////            
-////        }
-//        
-//        System.out.println("QTD" + im.size() + "CNDO" + im.toString());
-//        
-//        for(int i=0;i<im.size();i++){
-//            filaElementos.add(im.elementAt(i));
-//            filaElementosReferencia.add(im.elementAt(0));
-//        }
-//        
-//        Collections.shuffle(filaElementos);
-//    }
-    
+/*    
+    public void geraTodasImagens(){
+        filaElementos.clear();
+        filaElementosReferencia.clear();
+        Vector<Imagem> im = new Vector<Imagem>();
+        //String imagens[] = partida
+        System.out.println("Entrou no 'geraTodasImagens' ");
+        for (int i=0;i<nivel.getQIS();i++){
+            
+        }
+        
+        System.out.println("QTD" + im.size() + "CNDO" + im.toString());
+        
+        for(int i=0;i<im.size();i++){
+            filaElementos.add(im.elementAt(i));
+            filaElementosReferencia.add(im.elementAt(0));
+        }
+        
+        Collections.shuffle(filaElementos);
+    }
+// */
 /*    public void geraNovaFilaReferencias(){
         filaElementosReferencia.clear();
         Vector<Vector<Imagem>> imagens = new Vector<Vector<Imagem>>();
