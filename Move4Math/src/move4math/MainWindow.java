@@ -16,7 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import jogo.Game;
+import jogo.Game_Classificacao;
+import jogo.Game_Ordenacao;
 import org.opencv.videoio.VideoCapture;
 
 /**
@@ -27,7 +28,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     public static KeyEvent tecla;
 
-    Game gameWindow = new Game();
+    Game_Classificacao gameWindow = new Game_Classificacao();
+    Game_Ordenacao gameWindow2 = new Game_Ordenacao();
 
     /**
      * Creates new form MainWindow
@@ -329,66 +331,131 @@ public class MainWindow extends javax.swing.JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int) screenSize.getWidth();
         int height = (int) screenSize.getHeight();
-       
-        gameWindow.setSize(width, height);
-        gameWindow.dispose();
-        gameWindow.setUndecorated(true);
-        gameWindow.setVisible(true);
-        gameWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        gameWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        gameWindow.addKeyListener(new KeyListener() {
+        System.out.println("Move4Math.indiceJogoAtual: " + Move4Math.indiceJogoAtual);
+        switch(Move4Math.indiceJogoAtual){
+            case 1:
+                gameWindow2.setSize(width, height);
+                gameWindow2.dispose();
+                gameWindow2.setUndecorated(true);
+                gameWindow2.setVisible(true);
+                gameWindow2.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                gameWindow2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                gameWindow2.addKeyListener(new KeyListener() {
 
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                    }
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                tecla = e;
-            }
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        tecla = e;
+                    }
 
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
 
-        VideoCapture webSource = new VideoCapture(0);
-        if (!webSource.isOpened()) {
-            JOptionPane.showMessageDialog(null, "Webcam não encontrada!");
-            gameWindow.dispose();
-        } else {
-            webSource.release();
+                VideoCapture webSource2 = new VideoCapture(0);
+                if (!webSource2.isOpened()) {
+                    JOptionPane.showMessageDialog(null, "Webcam não encontrada!");
+                    gameWindow2.dispose();
+                } else {
+                    webSource2.release();
 
-            System.out.println("Player: " + indexPlayer);
+                    System.out.println("Player: " + indexPlayer);
 
-            if (indexPlayer == -1) {
-                JOptionPane.showMessageDialog(null, "Jogador não selecionado!");
-                gameWindow.dispose();
-            } else {
+                    if (indexPlayer == -1) {
+                        JOptionPane.showMessageDialog(null, "Jogador não selecionado!");
+                        gameWindow2.dispose();
+                    } else {
 
-                try {
-                    /*
-                    System.out.println(indexJogo+" "+ indexPublico+" "+ indexPlayer+" "+ indexFase+" "+ indexNivel);
-                    System.out.println("GAME" + gameWindow);
-                    System.out.println("JOGO"+ "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getId() + "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getNome());
-                    System.out.println("PUBLICO"+Move4Math.getPublicoId(Move4Math.indicePublicoAtual).getNome());
-                    System.out.println("PLAYER"+Move4Math.players.elementAt(Move4Math.indicePlayerAtual).getNome());
-                    System.out.println("OUTROS"+Move4Math.conjuntosDeTrabalho +","+ indexFase +","+ indexNivel);
-                    gameWindow.Iniciar(gameWindow,"Classificacao",1, 1, Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                    gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getId(),Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbTipoJogo.getSelectedIndex()).getId(), Move4Math.players.elementAt(cmbNome.getSelectedIndex()).getId(), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                    */
-                    //NOVO 
-                    System.out.println("mainwindow: " + Move4Math.indiceNivelAtual + "     " + Move4Math.indiceJogoAtual);
-                    gameWindow.Iniciar(gameWindow, Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual), Move4Math.getPublicoId(Move4Math.indicePublicoAtual), Move4Math.players.elementAt(Move4Math.indicePlayerAtual), Move4Math.conjuntosDeTrabalho, Move4Math.indiceFaseAtual, Move4Math.indiceNivelAtual);
-                    //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(indexJogo),Move4Math.getPublicoId(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                    //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(Move4Math.jogos.get(cmbTipoJogo.getSelectedIndex()).getId()),Move4Math.publicos.elementAt(Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().get(cmbPublico.getSelectedIndex()).getId()), Move4Math.players.elementAt(cmbNome.getSelectedIndex()), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                    //ANTIGO
-                    //gameWindow.Iniciar(gameWindow,Move4Math.publicos.elementAt(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel, tempo);
-                } catch (IOException | InterruptedException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                    System.out.println(ex.getStackTrace());
+                        try {
+                            /*
+                            System.out.println(indexJogo+" "+ indexPublico+" "+ indexPlayer+" "+ indexFase+" "+ indexNivel);
+                            System.out.println("GAME" + gameWindow);
+                            System.out.println("JOGO"+ "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getId() + "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getNome());
+                            System.out.println("PUBLICO"+Move4Math.getPublicoId(Move4Math.indicePublicoAtual).getNome());
+                            System.out.println("PLAYER"+Move4Math.players.elementAt(Move4Math.indicePlayerAtual).getNome());
+                            System.out.println("OUTROS"+Move4Math.conjuntosDeTrabalho +","+ indexFase +","+ indexNivel);
+                            gameWindow.Iniciar(gameWindow,"Classificacao",1, 1, Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
+                            gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getId(),Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbTipoJogo.getSelectedIndex()).getId(), Move4Math.players.elementAt(cmbNome.getSelectedIndex()).getId(), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
+                            */
+                            //NOVO 
+                            System.out.println("mainwindow: " + Move4Math.indiceNivelAtual + "     " + Move4Math.indiceJogoAtual);
+                            gameWindow2.Iniciar(gameWindow2, Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual), Move4Math.getPublicoId(Move4Math.indicePublicoAtual), Move4Math.players.elementAt(Move4Math.indicePlayerAtual), Move4Math.conjuntosDeTrabalho, Move4Math.indiceFaseAtual, Move4Math.indiceNivelAtual);
+                            //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(indexJogo),Move4Math.getPublicoId(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
+                            //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(Move4Math.jogos.get(cmbTipoJogo.getSelectedIndex()).getId()),Move4Math.publicos.elementAt(Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().get(cmbPublico.getSelectedIndex()).getId()), Move4Math.players.elementAt(cmbNome.getSelectedIndex()), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
+                            //ANTIGO
+                            //gameWindow.Iniciar(gameWindow,Move4Math.publicos.elementAt(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel, tempo);
+                        } catch (IOException | InterruptedException ex) {
+                            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                            System.out.println(ex.getStackTrace());
+                        }
+                    }
                 }
-            }
+                break;
+            default:
+                gameWindow.setSize(width, height);
+                gameWindow.dispose();
+                gameWindow.setUndecorated(true);
+                gameWindow.setVisible(true);
+                gameWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                gameWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                gameWindow.addKeyListener(new KeyListener() {
+
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                        tecla = e;
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+                VideoCapture webSource = new VideoCapture(0);
+                if (!webSource.isOpened()) {
+                    JOptionPane.showMessageDialog(null, "Webcam não encontrada!");
+                    gameWindow.dispose();
+                } else {
+                    webSource.release();
+
+                    System.out.println("Player: " + indexPlayer);
+
+                    if (indexPlayer == -1) {
+                        JOptionPane.showMessageDialog(null, "Jogador não selecionado!");
+                        gameWindow.dispose();
+                    } else {
+
+                        try {
+                            /*
+                            System.out.println(indexJogo+" "+ indexPublico+" "+ indexPlayer+" "+ indexFase+" "+ indexNivel);
+                            System.out.println("GAME" + gameWindow);
+                            System.out.println("JOGO"+ "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getId() + "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getNome());
+                            System.out.println("PUBLICO"+Move4Math.getPublicoId(Move4Math.indicePublicoAtual).getNome());
+                            System.out.println("PLAYER"+Move4Math.players.elementAt(Move4Math.indicePlayerAtual).getNome());
+                            System.out.println("OUTROS"+Move4Math.conjuntosDeTrabalho +","+ indexFase +","+ indexNivel);
+                            gameWindow.Iniciar(gameWindow,"Classificacao",1, 1, Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
+                            gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getId(),Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbTipoJogo.getSelectedIndex()).getId(), Move4Math.players.elementAt(cmbNome.getSelectedIndex()).getId(), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
+                            */
+                            //NOVO 
+                            System.out.println("mainwindow: " + Move4Math.indiceNivelAtual + "     " + Move4Math.indiceJogoAtual);
+                            gameWindow.Iniciar(gameWindow, Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual), Move4Math.getPublicoId(Move4Math.indicePublicoAtual), Move4Math.players.elementAt(Move4Math.indicePlayerAtual), Move4Math.conjuntosDeTrabalho, Move4Math.indiceFaseAtual, Move4Math.indiceNivelAtual);
+                            //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(indexJogo),Move4Math.getPublicoId(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
+                            //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(Move4Math.jogos.get(cmbTipoJogo.getSelectedIndex()).getId()),Move4Math.publicos.elementAt(Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().get(cmbPublico.getSelectedIndex()).getId()), Move4Math.players.elementAt(cmbNome.getSelectedIndex()), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
+                            //ANTIGO
+                            //gameWindow.Iniciar(gameWindow,Move4Math.publicos.elementAt(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel, tempo);
+                        } catch (IOException | InterruptedException ex) {
+                            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                            System.out.println(ex.getStackTrace());
+                        }
+                    }
+                }
         }
     }//GEN-LAST:event_btnComecarActionPerformed
 
