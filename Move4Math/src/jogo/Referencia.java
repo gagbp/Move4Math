@@ -24,6 +24,17 @@ public class Referencia {
     private String refImgStr;
     private int tempoExposicao;
 
+    public void printReferencia(){
+        System.out.println("id: " + this.id);
+        System.out.println("grupo: " + this.grupo);
+        System.out.println("x: " + this.x);
+        System.out.println("y: " + this.y);
+        System.out.println("width: " + this.width);
+        System.out.println("height: " + this.height);
+        System.out.println("refImgStr: " + this.refImgStr);
+        System.out.println("tempoExposicao: " + this.tempoExposicao);
+    }
+    
     /**
      * @return the imagem
      */

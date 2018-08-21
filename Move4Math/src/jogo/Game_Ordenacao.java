@@ -768,23 +768,19 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                 }else if(partida.getNivel().getQIO() == 4){
                                     deslocamento = 25;
                                 }
+                                
                                 referencia.firstElement().setX(referencia.firstElement().getX() + deslocamento);
-
-                                if(mostrarReferencias && numAcertosNaRodada < partida.getNivel().getQIO()){ //No lugar do '3' seria partida.getNivel().getQIO() ????
-                                    //mostrarReferencias é uma variável booleana que é desabilitada quando a função ocultaReferencia é chamada
+                                
+                                
+                                if(mostrarReferencias && numAcertosNaRodada < partida.getNivel().getQIO()){//mostrarReferencias é uma variável booleana que é desabilitada quando a função ocultaReferencia é chamada
                                     for (int i = 0;i<partida.getNivel().getQIO();i++){
-                                        dst = new Mat();
-                                        Mat mescRef = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
-                                        //Imgcodecs.imwrite("hue1.png",referencia.firstElement().getImagem());
-                                        //Imgcodecs.imwrite("hue2.png",mescRef);
-                                        Core.addWeighted(referencia.firstElement().getImagem(),1.0,mescRef , 0.3, 0.0, dst);
-                                        dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
-
-                                        //dst = new Mat();
+                                        if(i == 1){
+                                            dst = new Mat();
+                                            Mat mescRef = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
+                                            Core.addWeighted(referencia.firstElement().getImagem(),1.0,mescRef , 0.3, 0.0, dst);
+                                            dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
+                                        }
                                         referencia.firstElement().setX(referencia.firstElement().getX() + referencia.firstElement().getWidth());
-                                        //Mat mescRef2 = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
-                                        //Core.addWeighted(referencia.firstElement().getImagem(), 1.0, mescRef2, 0.3, 0.0, dst);
-                                        //dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
                                     }
                                     //System.out.println("mostrando referencias");
                                 }
@@ -1764,7 +1760,7 @@ public class Game_Ordenacao extends javax.swing.JFrame {
             System.out.println("numSimbolosParaGerar " + numSimbolosParaGerar);
                             
             for(int i=0; i<numSimbolosParaGerar;i++){
-                if(isReferencia){ //seta a imagem equivalente à referencia em uma das posições da grade
+                if(isReferencia && controle){ //seta a imagem equivalente à referencia em uma das posições da grade
                     //nunca ta entrando aqui porque fiz controle = false (ou seja, agora pode deixar filaElementosReferencia com apenas um elemento)
                     Imagem imgRefTemp = null;
                     for(int j=0;j<partida.getFilaElementosReferencia().size();j++){
