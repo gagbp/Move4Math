@@ -332,3 +332,46 @@
 152;21/08/2018;07:35:00;Ordenacao;3;1;50;GeometricosCL-Quadrado-Pequeno-BordaFina-Azul;Nao tocou;7;Omitiu;0;0
 152;21/08/2018;07:35:10;Ordenacao;3;1;50;GeometricosCL-Quadrado-Pequeno-BordaFina-Azul;Nao tocou;7;Omitiu;0;0
 153;21/08/2018;07:35:28;Ordenacao;3;2;54;GeometricosCL-Quadrado-Pequeno-BordaGrossa-Vermelho;Nao tocou;7;Omitiu;0;0
+154;23/08/2018;07:13:59;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+154;23/08/2018;07:14:06;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;3;Acertou;2;5
+154;23/08/2018;07:14:12;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;3;Errou;2;0
+154;23/08/2018;07:14:17;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Medio-BordaFina-Preto;3;Acertou;2;5
+154;23/08/2018;07:14:20;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Grande-BordaFina-Preto;1;Acertou;4;5
+155;23/08/2018;07:35:45;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+156;23/08/2018;07:36:18;Ordenacao;3;1;1;GeometricosCL-Circulo-Pequeno-BordaFina-Amarelo;Nao tocou;7;Omitiu;0;0
+156;23/08/2018;07:36:24;Ordenacao;3;1;1;GeometricosCL-Circulo-Pequeno-BordaFina-Amarelo;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;3;Errou;2;0
+156;23/08/2018;07:36:26;Ordenacao;3;1;1;GeometricosCL-Circulo-Pequeno-BordaFina-Amarelo;GeometricosCL-Circulo-Medio-BordaFina-Azul;0;Errou;5;0
+156;23/08/2018;07:36:35;Ordenacao;3;1;1;GeometricosCL-Circulo-Pequeno-BordaFina-Amarelo;Nao tocou;7;Omitiu;0;0
+156;23/08/2018;07:36:43;Ordenacao;3;1;1;GeometricosCL-Circulo-Pequeno-BordaFina-Amarelo;GeometricosCL-Circulo-Pequeno-BordaFina-Amarelo;6;Acertou;1;5
+156;23/08/2018;07:36:51;Ordenacao;3;1;1;GeometricosCL-Circulo-Pequeno-BordaFina-Amarelo;GeometricosCL-Circulo-Medio-BordaFina-Azul;5;Acertou;1;5
+156;23/08/2018;07:36:59;Ordenacao;3;1;1;GeometricosCL-Circulo-Pequeno-BordaFina-Amarelo;Nao tocou;7;Omitiu;0;0
+158;23/08/2018;07:48:18;Ordenacao;1;1;3;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+159;23/08/2018;08:14:36;Ordenacao;1;1;3;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;Nao tocou;0;Omitiu;0;0
+159;23/08/2018;08:14:37;Ordenacao;1;1;3;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;Nao tocou;0;Omitiu;0;0
+159;23/08/2018;08:14:38;Ordenacao;1;1;3;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;Nao tocou;0;Omitiu;0;0
+159;23/08/2018;08:14:39;Ordenacao;1;1;3;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;Nao tocou;0;Omitiu;0;0
+159;23/08/2018;08:14:41;Ordenacao;1;1;3;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;Nao tocou;0;Omitiu;0;0
+159;23/08/2018;08:14:41;Ordenacao;1;1;3;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;Nao tocou;0;Omitiu;0;0
+159;23/08/2018;08:14:42;Ordenacao;1;1;3;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;Nao tocou;0;Omitiu;0;0
+160;23/08/2018;08:15:09;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;3;Acertou;2;5
+160;23/08/2018;08:15:16;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;2;Acertou;3;5
+160;23/08/2018;08:15:23;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;3;Acertou;2;5
+161;23/08/2018;08:15:32;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;Nao tocou;0;Omitiu;0;0
+161;23/08/2018;08:15:33;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;Nao tocou;0;Omitiu;0;0
+162;23/08/2018;08:26:06;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Grande-BordaFina-Preto;2;Errou;3;0
+162;23/08/2018;08:26:10;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;1;Acertou;4;5
+162;23/08/2018;08:26:13;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;2;Errou;3;0
+162;23/08/2018;08:26:22;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+162;23/08/2018;08:26:27;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Medio-BordaFina-Preto;4;Acertou;1;5
+162;23/08/2018;08:26:32;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Grande-BordaFina-Preto;3;Acertou;2;5
+163;23/08/2018;08:28:42;Ordenacao;1;1;4;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
+163;23/08/2018;08:28:46;Ordenacao;1;1;4;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Medio-BordaFina-Preto;2;Acertou;3;5
+163;23/08/2018;08:28:50;Ordenacao;1;1;4;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;1;Acertou;4;5
+164;23/08/2018;08:31:54;Ordenacao;1;1;3;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;4;Acertou;1;5
+164;23/08/2018;08:31:58;Ordenacao;1;1;3;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;GeometricosPB-Triangulo-Medio-BordaFina-Preto;2;Acertou;3;5
+164;23/08/2018;08:37:36;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
+164;23/08/2018;08:37:41;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Medio-BordaFina-Preto;3;Acertou;2;5
+164;23/08/2018;08:39:25;Ordenacao;1;1;4;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
+164;23/08/2018;08:39:30;Ordenacao;1;1;4;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Medio-BordaFina-Preto;3;Acertou;2;5
+164;23/08/2018;08:42:57;Ordenacao;1;1;4;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;3;Acertou;2;5
+164;23/08/2018;08:43:04;Ordenacao;1;1;4;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Medio-BordaFina-Preto;5;Acertou;1;5

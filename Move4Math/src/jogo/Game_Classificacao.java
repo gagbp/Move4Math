@@ -57,7 +57,6 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.videoio.VideoCapture;
 import org.opencv.videoio.Videoio;
 import static org.opencv.imgproc.Imgproc.putText;
-import static org.opencv.imgproc.Imgproc.putText;
 
 
 /**

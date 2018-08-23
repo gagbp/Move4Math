@@ -788,10 +788,14 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                 if (jogando){ // jogando é um bool que indica que o usuário está tocando os objetos e por isso devem aparecer os acertos no lugar das referências
                                     for (int i = 0;i<numAcertosNaRodada;i++){
                                             dst = new Mat();
-                                            Mat mescRef = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
-                                            Core.addWeighted(referencia.firstElement().getImagem(),1.0,mescRef , 0.3, 0.0, dst);
-                                            dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
-                                            referencia.firstElement().setX(referencia.firstElement().getX() + referencia.firstElement().getWidth());  
+                                            System.out.println("\n1\n" + i);
+                                            Mat mescRef = cenario.submat(new Rect(new Point(referencia.get(i).getX(), referencia.get(i).getY()),new Point(referencia.get(i).getX() + referencia.get(i).getWidth(), referencia.get(i).getY() + referencia.get(i).getHeight())));
+                                            System.out.println("\n2\n");
+                                            Core.addWeighted(referencia.get(i).getImagem(),1.0,mescRef,0.3,0.0, dst);
+                                            System.out.println("\n3\n");
+                                            dst.copyTo(cenario.colRange(referencia.get(i).getX(),referencia.get(i).getX() + referencia.get(i).getWidth()).rowRange(referencia.get(i).getY(),referencia.get(i).getY() + referencia.get(i).getHeight()));
+                                            System.out.println("\n4\n");
+                                            referencia.get(i+1).setX(referencia.get(i).getX() + referencia.get(i).getWidth());  
                                     }
                                     if (!mostrarEstrelas){ //talvez tirar esse if
                                         for (int i=numAcertosNaRodada; i<partida.getNivel().getQIO(); i++){
@@ -1772,7 +1776,7 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                         }
                     }
                     System.out.println("imgRefTemp " + imgRefTemp.getDescricao());
-                            
+                    
                     //sorteia uma posição na grade
                     //ps: refazer essa rotina para sortear com probabilidades
                     int posicao = number.nextInt(grade.getRegioes().size());
