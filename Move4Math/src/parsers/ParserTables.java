@@ -43,7 +43,7 @@ public class ParserTables {
         //conjSom = parserConjSom(vetConjSons, sons);
         
         Vector<Imagem> imagens;
-        imagens = parserImagem(vetImagens, sons);
+        imagens = parserImage(vetImagens, sons);
         
         Vector<ConjuntoImagem> conjImagens;
         conjImagens = parserConjuntoImagem(vetConjImagens, imagens);
@@ -86,7 +86,7 @@ public class ParserTables {
         return sons;
     }
 
-    private static Vector<Imagem> parserImagem(Vector<Vector<String>> vet, Vector<Som> sons) {
+    private static Vector<Imagem> parserImage(Vector<Vector<String>> vet, Vector<Som> sons) {
         Imagem objImagem;
         Vector<Imagem> imagens = new Vector<Imagem>();
         

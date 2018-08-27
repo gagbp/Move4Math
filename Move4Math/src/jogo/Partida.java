@@ -706,17 +706,21 @@ public class Partida implements Cloneable{
         
         int iSentido = nivel.getOTI();
         
-        if (iSentido == 1){
-            dst = new Mat();            
-            Mat subindo = cenario.submat(new Rect(new Point(200, 15),new Point(250, 65)));
-            Core.addWeighted(escadaSubindo,1.0,subindo,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(200,250).rowRange(15,65));            
-        }else{
-            dst = new Mat();            
-            Mat descendo = cenario.submat(new Rect(new Point(200, 15),new Point(250, 65)));
-            Core.addWeighted(escadaDescendo,1.0,descendo,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(200,250).rowRange(15,65));            
+        switch(iSentido){
+            case 1:
+                dst = new Mat();            
+                Mat subindo = cenario.submat(new Rect(new Point(200, 15),new Point(250, 65)));
+                Core.addWeighted(escadaSubindo,1.0,subindo,0.5,0.0,dst);
+                dst.copyTo(cenario.colRange(200,250).rowRange(15,65)); 
+                break;
+            case 2:
+                dst = new Mat();            
+                Mat descendo = cenario.submat(new Rect(new Point(200, 15),new Point(250, 65)));
+                Core.addWeighted(escadaDescendo,1.0,descendo,0.5,0.0,dst);
+                dst.copyTo(cenario.colRange(200,250).rowRange(15,65)); 
+                break;
         }
+        System.out.println("\nPassou mostra escada\n");
     }
     
      void removeElementoDaFila (Vector<Imagem> filaElementos){
