@@ -1874,7 +1874,7 @@ System.out.println("fim run");
             } else {
                 if (move4math.Move4Math.indiceJogoAtual == 1 || move4math.Move4Math.indiceJogoAtual == 2){
                     //Jogo de Ordenação ou Contagem
-                    //mostrarReferencias = false;
+                    mostrarReferencias = false;
                     //Criar uma imagem para ocupar o espaço da segunda imagem da sequencia
                     //de imagens do objetivo da linha
                     //As coordenadas estão corretas
