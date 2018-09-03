@@ -230,14 +230,9 @@ public class Game_Ordenacao extends javax.swing.JFrame {
     public void Iniciar(Game_Ordenacao gameWindow, Jogos jogo, Publico publico, Player player, Vector<ConjuntoImagem> conjuntosDeTrabalho,int indexFase, int indexNivel) throws IOException, InterruptedException{
         try{
             jPanel1.setSize(screenWidth, screenHeight);
-            //System.out.println(gameWindow.getClass() + " \n" + jogo.getClass() + " \n" + player.getClass());
-            //System.out.println("Nivel em 01: " + indexNivel); 
             System.out.println("01J: " + jogo.getNome() + " Pu: " + publico.getNome() + " Pl: " + player.getNome() + " CIT:" + conjuntosDeTrabalho.size() + " F:" + indexFase + " N:" + indexNivel);
             Thread t = new Thread(new WebcamFeed(gameWindow, jogo, publico,  player, conjuntosDeTrabalho, indexFase,  indexNivel));
             t.start();            
-            //t.join();
-            //gameWindow.dispose();
-            //System.out.println("FOI!");
         }catch (Exception e){
             System.out.println(e.getClass() + e.getMessage() + e.getStackTrace());
        }
@@ -465,16 +460,14 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                     if(buff!=null){
                         g.drawImage(buff, 0, 0, jPanel1.getWidth(), jPanel1.getHeight() , 0, 0, buff.getWidth(), buff.getHeight(), null);
                     }
-
                     //teclas de atalho ESC, enter ou space pra começar
-                    //System.out.println("Tecla inicial: " + MainWindow.tecla.getKeyCode());
                     if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_ENTER)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_SPACE)){
                         MainWindow.tecla = null;
                         break;
                     }
                 } //fim try
                 catch(Exception ex){
-                    //System.out.println("erro gravando frame");
+                    System.out.println("erro gravando frame" + ex);
                 }
             }//fim while
 
@@ -605,7 +598,6 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                 " | tempoAux = " + minutosAux + ":" + segundosAux + 
                                 " | tempoAux2 = " + minutosAux2 + ":" + segundosAux2);
                    // */
-                        
                     if (irParaProximaLinha == false){
                         if ((60*minutos + segundos) - (60*minutosAux2 + segundosAux2) < 2){
                             //System.out.println("aguardando...");
@@ -641,7 +633,6 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                 feedback2 = false;
                             }
                         }
-
                         if((partida.getNivel().getNumeroLinha() - 1) == (int) jogadasDoNivel.get(0) && mostrarReferencias){
                                 //System.out.println("Chamou mostrarTopoFeedback da primeira linha");
                                 mostrarTopoFeedback(piscarTopo, partida);
@@ -739,7 +730,6 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                 default:
                                     break;
                             }
-
                                 gerouImagens = true;
                             //}//fimteste
                         }else{
@@ -768,21 +758,25 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                 }else if(partida.getNivel().getQIO() == 4){
                                     deslocamento = 25;
                                 }
-                                
                                 referencia.firstElement().setX(referencia.firstElement().getX() + deslocamento);
-                                
-                                if(mostrarReferencias && numAcertosNaRodada < partida.getNivel().getQIO()){//mostrarReferencias é uma variável booleana que é desabilitada quando a função ocultaReferencia é chamada
+                                System.out.println("GetX: "+ referencia.firstElement().getX());
+                                if(mostrarReferencias && numAcertosNaRodada < partida.getNivel().getQIO()){//mostrarReferencias é uma variável booleana que é desabilitada quando a função ocultaReferencia é chamada              
+System.out.println("772");
                                     for (int i = 0;i<partida.getNivel().getQIO();i++){
                                         if(i == 1){
                                             dst = new Mat();
                                             Mat mescRef = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
+System.out.println("0");
+                                            referencia.firstElement().printReferencia();
                                             Core.addWeighted(referencia.firstElement().getImagem(),1.0,mescRef , 0.3, 0.0, dst);
+System.out.println("1");
                                             dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
                                         }
                                         referencia.firstElement().setX(referencia.firstElement().getX() + referencia.firstElement().getWidth());
                                     }
                                     //System.out.println("mostrando referencias");
                                 }
+System.out.println("782");
                                 
                                 referencia.firstElement().printReferencia();
 
@@ -1029,7 +1023,7 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                             //System.out.println(jPanel1.getHeight());
                             //System.out.println(buff.getWidth());
                             //System.out.println(buff.getHeight());
-                        }                    
+                        }           
 
                         //capturar teclas atalho
                         if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)){//Fecha o jogo
@@ -1044,7 +1038,7 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                 setGradesVisiveis(true);
                             MainWindow.tecla = null;
                         }
-
+                        
                         if(MainWindow.tecla.getKeyCode() == KeyEvent.VK_LEFT){//Retorna o nivel
 
                             posicaoJogadasDoNivel=1;
@@ -1169,6 +1163,7 @@ public class Game_Ordenacao extends javax.swing.JFrame {
 
             webSource.release();
             gamewindow.dispose();
+System.out.println("fim run");
 
         }//fim run
 
@@ -1504,7 +1499,34 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                     somaTempoToque += tempoToque;
 
                     //o if abaixo decide se a imagem tocada está certa ou errada
-                    if(grade.getRegioes().elementAt(i).getImg().getId()==referencia.elementAt(numAcertosNaRodada).getId()){
+                    int idref=0;
+                    switch(partida.getNivel().getOTI()){
+                        case 1:
+                            idref = referencia.elementAt(numAcertosNaRodada).getId();
+                            break;
+                        case 2:
+                            switch(numAcertosNaRodada){
+                                case 0:
+                                    idref = referencia.elementAt(2).getId();
+                                    break;
+                                case 1:
+                                    idref = referencia.elementAt(1).getId();
+                                    break;
+                                case 2:
+                                    idref = referencia.elementAt(0).getId();
+                                    break;
+                                default:
+                                    
+                            }
+                            break;
+                        default:
+                            idref = 0;
+                    }
+                    
+                    System.out.println("idref: " + idref);
+                    System.out.println("getId: " + referencia.elementAt(numAcertosNaRodada).getId());
+                    
+                    if(grade.getRegioes().elementAt(i).getImg().getId() == idref){
                         //Acho que é assim que separa os pontos...
                         tipoColisao = 1;
                         rodada.setAcao("Acertou");

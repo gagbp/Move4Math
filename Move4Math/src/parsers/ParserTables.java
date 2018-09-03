@@ -144,24 +144,7 @@ public class ParserTables {
             // Precisamos quebrar essas strings em um vector
             Vector<Vector<String>> idsImagensMatrix = new Vector<Vector<String>>();
             Vector<String> aux;
-            
-//            //tentando não usar matriz
-//            Vector<String> idsDasImagens = new Vector<String>();
-//            
-//            String[] partes = vet.elementAt(i).elementAt(2).split(" ");
-//            //aux = new Vector<String>(Arrays.asList(partes));
-//                for(int h=0;h<partes.length();h++){
-//                    objConjuntoImagem.setImagens(vet.elementAt(i).elementAt(partes(h)));
-//                    if(aux.elementAt(h)==""){
-//                        aux.removeElementAt(h);
-//                        h=0;
-//                    }
-//                    
-//                }
-//                idsDasImagens.add(aux);
-//            }
-//            objConjuntoImagem.setImagens(vet.elementAt(i).elementAt(2));
-            
+                        
             for(int j=2;j<vet.elementAt(i).size();j++){
                 String[] partes = vet.elementAt(i).elementAt(j).split(" ");
                 aux = new Vector<String>(Arrays.asList(partes));
@@ -176,16 +159,7 @@ public class ParserTables {
 
             // Agora que temos o vetor de inteiros
             // Precisamos associar cada inteiro com o id da imagem
-            // Depois montamos um vetor de imagens
-            /*
-            for(int a=0;a<idsImagensMatrix.size();a++){
-                for(int b=0;b<idsImagensMatrix.elementAt(a).size();b++){
-                    System.out.print("!"+idsImagensMatrix.elementAt(a).elementAt(b)+"!");
-                }
-                System.out.println("");
-            }
-            */
-            
+            // Depois montamos um vetor de imagens            
             Vector<Imagem> aux1;
             Vector<Vector<Imagem>> aux2 = new Vector<Vector<Imagem>>();
             

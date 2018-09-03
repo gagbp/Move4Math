@@ -41,32 +41,13 @@ public class Move4Math {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-
         String jogo;
-        
         MainWindow janelaPrincipal = new MainWindow();
         janelaPrincipal.setLocationRelativeTo(null);
-        //janelaPrincipal.dispose();
         janelaPrincipal.setVisible(true);
-
         jogos = ParserJogos.loadJogos();
-
         conjuntosDeTrabalho = ParserTables.parserTabelas();
-
         players = ParserUsers.parserUsuarios();
-        
-        /*
-        janelaPrincipal.atualizaComboJogos();
-        janelaPrincipal.atualizaComboPublico();
-        System.out.println(conjuntosDeTrabalho.size());
-        System.out.println(conjuntosDeTrabalho.elementAt(0).getImagens().size());
-        System.out.println(conjuntosDeTrabalho.elementAt(0).getImagens().elementAt(0).size());
-        for(int i=0; i<conjuntosDeTrabalho.elementAt(0).getImagens().size();i++){
-            for(int j=0;j<conjuntosDeTrabalho.elementAt(0).getImagens().get(i).size();j++)
-                System.out.print(" "+ conjuntosDeTrabalho.elementAt(0).getImagens().get(i).get(j).getId()+ " ");
-            System.out.println("");
-        }
-         */
     }
 
     public static Publico getPublicoId(int id) {
@@ -85,7 +66,6 @@ public class Move4Math {
                 return jogo;
             }
         }
-
         return null;
     }
 }
