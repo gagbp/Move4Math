@@ -1482,7 +1482,7 @@ System.out.println("fim run");
                         }
                     }
                 }
-
+System.out.println("1485");
                 if(colisao==1){
                     Rodada rodada = new Rodada();
                     int tempoToque = (int) (Calendar.getInstance().getTimeInMillis()-mostrarBlobs.getTimeInMillis());
@@ -1578,7 +1578,9 @@ System.out.println("fim run");
                             clip.open(stream);
                             clip.start();
                         }
+System.out.println("1581");
                     }else{
+System.out.println("1583");
                         tipoColisao = 2;
                         rodada.setAcao("Errou");
 
@@ -1605,6 +1607,7 @@ System.out.println("fim run");
                                 }
                             }
                         }
+System.out.println("1610");
 
                         //som de erro
                         if (reproduzirAudio){
@@ -1622,6 +1625,7 @@ System.out.println("fim run");
                             clip.start();
                         }
 
+System.out.println("1628");
                         //setar a vida menos 1;
                         //partida.getPlayer().setVidas(partida.getPlayer().getVidas() -1 );
                         System.out.println("vidas : " + partida.getPlayer().getVidas());
@@ -1633,6 +1637,7 @@ System.out.println("fim run");
                         }
                     }
                     
+System.out.println("1640");
                     rodada.setPontosCognitivo(iPontosCognitivo);
                     rodada.setPontosMotor(iPontosMotor);
 
@@ -1644,7 +1649,7 @@ System.out.println("fim run");
                         break; //nao precisa verificar o resto das imagens já que houve colisao
                 }
             }
-            //System.out.println(colisao);
+            System.out.println(colisao);
             return colisao;
         }
 
