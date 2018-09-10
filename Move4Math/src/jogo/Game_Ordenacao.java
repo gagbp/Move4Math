@@ -760,22 +760,25 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                 }
                                 referencia.firstElement().setX(referencia.firstElement().getX() + deslocamento);
                                 System.out.println("GetX: "+ referencia.firstElement().getX());
-                                if(mostrarReferencias && numAcertosNaRodada < partida.getNivel().getQIO()){//mostrarReferencias é uma variável booleana que é desabilitada quando a função ocultaReferencia é chamada              
-System.out.println("772");
+                                if(mostrarReferencias && numAcertosNaRodada < partida.getNivel().getQIO()){ //No lugar do '3' seria partida.getNivel().getQIO() ????
+                                    //mostrarReferencias é uma variável booleana que é desabilitada quando a função ocultaReferencia é chamada
                                     for (int i = 0;i<partida.getNivel().getQIO();i++){
-                                        if(i == 1){
-                                            dst = new Mat();
-                                            Mat mescRef = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
-System.out.println("0");
-                                            referencia.firstElement().printReferencia();
-                                            Core.addWeighted(referencia.firstElement().getImagem(),1.0,mescRef , 0.3, 0.0, dst);
-System.out.println("1");
-                                            dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
-                                        }
+                                        dst = new Mat();
+                                        Mat mescRef = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
+                                        //Imgcodecs.imwrite("hue1.png",referencia.getImagem());
+                                        //Imgcodecs.imwrite("hue2.png",mescRef);
+                                        Core.addWeighted(referencia.firstElement().getImagem(),1.0,mescRef , 0.3, 0.0, dst);
+                                        dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
+
+                                        //dst = new Mat();
                                         referencia.firstElement().setX(referencia.firstElement().getX() + referencia.firstElement().getWidth());
+                                        //Mat mescRef2 = cenario.submat(new Rect(new Point(referencia.getX(), referencia.getY()),new Point(referencia.getX() + referencia.getWidth(), referencia.getY() + referencia.getHeight())));
+                                        //Core.addWeighted(referencia.getImagem(), 1.0, mescRef2, 0.3, 0.0, dst);
+                                        //dst.copyTo(cenario.colRange(referencia.getX(),referencia.getX() + referencia.getWidth()).rowRange(referencia.getY(),referencia.getY() + referencia.getHeight()));
                                     }
                                     //System.out.println("mostrando referencias");
                                 }
+
 System.out.println("782");
                                 
                                 referencia.firstElement().printReferencia();
