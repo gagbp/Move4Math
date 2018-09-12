@@ -84,9 +84,6 @@ public class Partida implements Cloneable{
     }
     
     public String [] imagensDaCena(int faseAtual, Nivel nivel){
-        
-        //System.out.println("---------- " + move4math.Move4Math.indiceFaseAtual);
-        
         int tamanho = nivel.getQIS();
         
         String imagensCena[] = new String[tamanho];
@@ -107,56 +104,9 @@ public class Partida implements Cloneable{
         for (int i=0;i<imagensCena.length;i++){
             //System.out.println(imagensCena[i]);
         }
-
         //filaElementosReferencia.add(imagensCena.)
-        
         return imagensCena;
-                
     }
-/*    
-    public void geraTodasImagens(){
-        filaElementos.clear();
-        filaElementosReferencia.clear();
-        Vector<Imagem> im = new Vector<Imagem>();
-        //String imagens[] = partida
-        System.out.println("Entrou no 'geraTodasImagens' ");
-        for (int i=0;i<nivel.getQIS();i++){
-            
-        }
-        
-        System.out.println("QTD" + im.size() + "CNDO" + im.toString());
-        
-        for(int i=0;i<im.size();i++){
-            filaElementos.add(im.elementAt(i));
-            filaElementosReferencia.add(im.elementAt(0));
-        }
-        
-        Collections.shuffle(filaElementos);
-    }
-// */
-/*    public void geraNovaFilaReferencias(){
-        filaElementosReferencia.clear();
-        Vector<Vector<Imagem>> imagens = new Vector<Vector<Imagem>>();
-        imagens = conjuntoImagem.getImagens();
-        MTRandom random = new MTRandom();
-        int posicao;
-        int tamanho;
-        
-        for(int i=0;i<imagens.size();i++){
-            filaElementosReferencia.add(imagens.elementAt(i).elementAt(0));
-            tamanho = imagens.elementAt(i).size();
-            if(tamanho>1){
-                posicao = 1+(random.nextInt((tamanho-1)));
-                filaElementosReferencia.add(imagens.elementAt(i).elementAt(posicao));
-            }else{
-                filaElementosReferencia.add(imagens.elementAt(i).elementAt(0));
-            }
-        }
-        
-        Collections.shuffle(filaElementosReferencia);
-        atualizaFilaElementos(filaElementosReferencia.firstElement().getGrupo());
-        
-    }*/
     
     // refazer, criando um vetor de imagens de 4 posições, onde cada posição é a primeira imagem contida em ICC
     public void geraNovaFilaReferencias(String[] imagensCena){
@@ -183,29 +133,6 @@ public class Partida implements Cloneable{
         atualizaFilaElementos(filaElementosReferencia.firstElement().getGrupo());
         
     }
-    
-//    //não utilizado
-//        public void geraFilaFixaReferencias(){
-//            
-//        filaElementosReferencia.clear();
-//        Vector<Vector<Imagem>> imagens = new Vector<Vector<Imagem>>();
-//        //nivel.getAIO()
-//        imagens = conjuntoImagem.getImagens();
-//        int posicao = 1;
-//        int tamanho;
-//        
-//        for(int i=0;i<imagens.size();i++){
-//            //if(imagens.elementAt(i).elementAt(0).)
-//            filaElementosReferencia.add(imagens.elementAt(i).elementAt(0));
-//            tamanho = imagens.elementAt(i).size();
-//            if(tamanho>1){
-//                posicao++;
-//                filaElementosReferencia.add(imagens.elementAt(i).elementAt(posicao));
-//            }else{
-//                filaElementosReferencia.add(imagens.elementAt(i).elementAt(0));
-//            }
-//        }
-//    }
     
     public void atualizaFilaElementos(int indiceParaIgnorar){
         filaElementos.clear();
@@ -303,19 +230,14 @@ public class Partida implements Cloneable{
         Vector<Vector<Imagem>> imagens = new Vector<Vector<Imagem>>();
         imagens = conjuntoImagem.getImagens();
         
-       MTRandom number = new MTRandom();
-       int referencia = number.nextInt(imagens.size());
-       //System.out.println("Entrou no geraFilaAleatoria");
+        MTRandom number = new MTRandom();
+        int referencia = number.nextInt(imagens.size());
+        //System.out.println("Entrou no geraFilaAleatoria");
        
-       String bufferPrimeiro[] = nivel.getPrimeiroICC().split(" ");
-       String bufferSegundo[] = nivel.getSegundoICC().split(" ");
-       String bufferTerceiro[] = nivel.getTerceiroICC().split(" ");
+        String bufferPrimeiro[] = nivel.getPrimeiroICC().split(" ");
+        String bufferSegundo[] = nivel.getSegundoICC().split(" ");
+        String bufferTerceiro[] = nivel.getTerceiroICC().split(" ");
 
-
-//       for (int a=0; a< buffer.length; a++){
-//            System.out.println(buffer[a]);
-//       }
-        
         System.out.println("Fase Atual: " + move4math.Move4Math.indiceFaseAtual);
         switch (move4math.Move4Math.indiceFaseAtual) {
             case 1:
@@ -355,20 +277,7 @@ public class Partida implements Cloneable{
                 System.out.println("Não existe essa fase!");
         }
 
-
-        
-        /*
-        //System.out.println("--");
-        
-        // Collections.shuffle(filaElementos);
-        // System.out.println("Fila elementos:");
-        for(int a=0;a<filaElementos.size();a++){
-        //     System.out.println(filaElementos.elementAt(a).getId());
-        }
-        //*/
         geraFilaReferenciaAleatoria(referencia);
-        
-        
     }
 
     public void geraFilaReferenciaAleatoria(int referencia){
@@ -410,23 +319,12 @@ public class Partida implements Cloneable{
             }
         }
         
-       /*
-        for(int i=0;i<imagens.elementAt(referencia).size();i++){
-            
-          if (Integer.parseInt(idsDoICC[0]) == imagens.elementAt(referencia).elementAt(i).getId()){
-              filaElementosReferencia.add(imagens.elementAt(referencia).elementAt(i));
-              //filaElementosReferencia.add(imagensAux.elementAt(referencia).elementAt(5)); // teste porque não pode haver apenas um elemento na fila
-          }
-          
-        }
-       */
         //filaElementosReferencia.add(imagens.elementAt(referencia).elementAt(0));
-       // System.out.println("FilaElementosReferencia: ");
+        // System.out.println("FilaElementosReferencia: ");
         for(int i=0;i<filaElementosReferencia.size();i++){
            // System.out.println(filaElementosReferencia.elementAt(i).getId());
         }
         //Collections.shuffle(filaElementosReferencia);
-        
     }
 
     public void mostrarPontuacao(Mat cenario){
@@ -437,92 +335,6 @@ public class Partida implements Cloneable{
         pontos = String.valueOf(pontuacao);
         putText( roiPontos , pontos, new Point(80,60), Core.FONT_HERSHEY_SIMPLEX,0.5,new Scalar(0,0,0),1,8,false );
     }
-    
-//    public void mostrarEstrelas(Mat cenario, int pontos){
-//        Mat dst;
-//        Imgproc.resize(estrela, estrela, new Size(30.0, 30.0));
-//        if(pontos == 1 || pontos == 2){
-//            dst = new Mat();
-//            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
-//        }
-//        if(pontos == 3 || pontos == 4){
-//            dst = new Mat();
-//            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
-//
-//            dst = new Mat();
-//            Mat roiEstrela2 = cenario.submat(new Rect(new Point(485, 15), new Point(515, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela2,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(485,515).rowRange(15,45));
-//        }
-//        if(pontos == 5 || pontos == 6){
-//            dst = new Mat();
-//            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
-//
-//            dst = new Mat();
-//            Mat roiEstrela2 = cenario.submat(new Rect(new Point(485, 15), new Point(515, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela2,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(485,515).rowRange(15,45));
-//
-//            dst = new Mat();
-//            Mat roiEstrela3 = cenario.submat(new Rect(new Point(515, 15), new Point(545, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela3,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(515,545).rowRange(15,45));
-//        }
-//        if(pontos == 7 || pontos == 8){
-//            dst = new Mat();
-//            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
-//
-//            dst = new Mat();
-//            Mat roiEstrela2 = cenario.submat(new Rect(new Point(485, 15), new Point(515, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela2,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(485,515).rowRange(15,45));
-//
-//            dst = new Mat();
-//            Mat roiEstrela3 = cenario.submat(new Rect(new Point(515, 15), new Point(545, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela3,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(515,545).rowRange(15,45));
-//
-//            dst = new Mat();
-//            Mat roiEstrela4 = cenario.submat(new Rect(new Point(545, 15), new Point(575, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela4,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(545,575).rowRange(15,45));
-//        }
-//        if(pontos == 9 || pontos == 10){
-//            dst = new Mat();
-//            Mat roiEstrela1 = cenario.submat(new Rect(new Point(455, 15), new Point(485, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela1,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(455,485).rowRange(15,45));
-//
-//            dst = new Mat();
-//            Mat roiEstrela2 = cenario.submat(new Rect(new Point(485, 15), new Point(515, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela2,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(485,515).rowRange(15,45));
-//
-//            dst = new Mat();
-//            Mat roiEstrela3 = cenario.submat(new Rect(new Point(515, 15), new Point(545, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela3,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(515,545).rowRange(15,45));
-//
-//            dst = new Mat();
-//            Mat roiEstrela4 = cenario.submat(new Rect(new Point(545, 15), new Point(575, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela4,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(545,575).rowRange(15,45));
-//
-//            dst = new Mat();
-//            Mat roiEstrela5 = cenario.submat(new Rect(new Point(575, 15), new Point(605, 45)));
-//            Core.addWeighted(estrela,1.0,roiEstrela5,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(575,605).rowRange(15,45));
-//        }
-//        
-//    }
     
     public void mostrarVidas (Mat cenario, int tipoPublico){
         Mat dst;
@@ -574,95 +386,10 @@ public class Partida implements Cloneable{
                 x4 -= 30;
             }
         }
-//            
-//            
-//            dst = new Mat();            
-//            Mat vida2 = cenario.submat(new Rect(new Point(55, 15),new Point(85, 45)));
-//            Core.addWeighted(vidasAtivas,1.5,vida2,-0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(55,85).rowRange(15,45));
-//            
-//            dst = new Mat();            
-//            Mat vida3 = cenario.submat(new Rect(new Point(85, 15),new Point(115, 45)));
-//            Core.addWeighted(vidasAtivas,1.5,vida3,-0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(85,115).rowRange(15,45));
-//            
-//            dst = new Mat();            
-//            Mat vida4 = cenario.submat(new Rect(new Point(115, 15),new Point(145, 45)));
-//            Core.addWeighted(vidasAtivas,1.0,vida4,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(115,145).rowRange(15,45));
-//
-//            dst = new Mat();            
-//            Mat vida5 = cenario.submat(new Rect(new Point(145, 15),new Point(175, 45)));
-//            Core.addWeighted(vidasAtivas,1.0,vida5,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(145,175).rowRange(15,45));
-//        }else{
-//            dst = new Mat();            
-//            Mat vida1 = cenario.submat(new Rect(new Point(25, 15),new Point(55, 45)));
-//            Core.addWeighted(vidasAtivas,1.0,vida1,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(25,55).rowRange(15,45));
-//            
-//            dst = new Mat();            
-//            Mat vida2 = cenario.submat(new Rect(new Point(55, 15),new Point(85, 45)));
-//            Core.addWeighted(vidasAtivas,1.0,vida2,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(55,85).rowRange(15,45));
-//            
-//            dst = new Mat();            
-//            Mat vida3 = cenario.submat(new Rect(new Point(85, 15),new Point(115, 45)));
-//            Core.addWeighted(vidasAtivas,1.0,vida3,0.5,0.0,dst);
-//            dst.copyTo(cenario.colRange(85,115).rowRange(15,45));
-//        }
     }
 
     public void mostrarSombras (Mat cenario, int tipoPublico){
         Mat dst;
-/*
-        Vidas - Começo
-        Imgproc.resize(vidasPerdidas, vidasPerdidas, new Size(30.0, 30.0));
-
-        if(tipoPublico == 0 || tipoPublico == 2){
-            dst = new Mat();            
-            Mat vida1 = cenario.submat(new Rect(new Point(25, 15),new Point(55, 45)));
-            Core.addWeighted(vidasPerdidas,1.0,vida1,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(25,55).rowRange(15,45));
-            
-            dst = new Mat();            
-            Mat vida2 = cenario.submat(new Rect(new Point(55, 15),new Point(85, 45)));
-            Core.addWeighted(vidasPerdidas,1.0,vida2,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(55,85).rowRange(15,45));
-            
-            dst = new Mat();            
-            Mat vida3 = cenario.submat(new Rect(new Point(85, 15),new Point(115, 45)));
-            Core.addWeighted(vidasPerdidas,1.0,vida3,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(85,115).rowRange(15,45));
-            
-            dst = new Mat();            
-            Mat vida4 = cenario.submat(new Rect(new Point(115, 15),new Point(145, 45)));
-            Core.addWeighted(vidasPerdidas,1.0,vida4,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(115,145).rowRange(15,45));
-
-            dst = new Mat();            
-            Mat vida5 = cenario.submat(new Rect(new Point(145, 15),new Point(175, 45)));
-            Core.addWeighted(vidasPerdidas,1.0,vida5,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(145,175).rowRange(15,45));
-
-        }else{
-            dst = new Mat();            
-            Mat vida1 = cenario.submat(new Rect(new Point(25, 15),new Point(55, 45)));
-            Core.addWeighted(vidasPerdidas,1.0,vida1,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(25,55).rowRange(15,45));
-            
-            dst = new Mat();            
-            Mat vida2 = cenario.submat(new Rect(new Point(55, 15),new Point(85, 45)));
-            Core.addWeighted(vidasPerdidas,1.0,vida2,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(55,85).rowRange(15,45));
-            
-            dst = new Mat();            
-            Mat vida3 = cenario.submat(new Rect(new Point(85, 15),new Point(115, 45)));
-            Core.addWeighted(vidasPerdidas,1.0,vida3,0.5,0.0,dst);
-            dst.copyTo(cenario.colRange(85,115).rowRange(15,45));
-        }
-        //Vidas - Término 
-// */
 
         //Tempo - Começo
         Imgproc.resize(barraBordas, barraBordas, new Size(206.0, 7.0));

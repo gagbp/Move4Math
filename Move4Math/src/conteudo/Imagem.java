@@ -31,6 +31,12 @@ public class Imagem implements Cloneable{
         
     }
     
+    public void printImagem(){
+        System.out.println("id: " + this.id);
+        System.out.println("grupo: " + this.grupo);
+        System.out.println("x: " + this.descricao);
+        System.out.println("y: " + this.imgStr);    }
+    
     @Override
     public Imagem clone() throws CloneNotSupportedException {
         Imagem clone = (Imagem) super.clone(); //Clona os tipos primitivos (no caso, binId)

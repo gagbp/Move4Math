@@ -160,6 +160,21 @@ public class Game_Ordenacao extends javax.swing.JFrame {
         
     }
     
+    public String caminhoImagem(Referencia ref, ConjuntoImagem conj){
+        String ret = " ";
+        
+        for (int i = 0; i < conj.getImagens().size(); i++) {
+            for (int j = 0; j < conj.getImagens().get(i).size(); j++) {
+                System.out.println( i + " " + j + "\n" + conj.getImagens().get(i).get(j).getDescricao() + " == " + ref.getRefImgStr());
+                if(conj.getImagens().get(i).get(j).getDescricao().equals(ref.getRefImgStr()))
+                    System.out.println("Caminho: "+conj.getImagens().get(i).get(j).getImgStr());
+                    return conj.getImagens().get(i).get(j).getImgStr();
+            }
+        }
+        
+        return ret;
+    }
+    
     public Game_Ordenacao(){
         this.referencia = new Vector<Referencia>();
         this.referencia.add(new Referencia());
@@ -290,7 +305,6 @@ public class Game_Ordenacao extends javax.swing.JFrame {
             }
             
             this.gamewindow = gameWindowParametro;
-            this.gameWindow = gameWindow;
             this.jogo = jogo;
             this.publico = publico;
             this.player = player;
@@ -321,9 +335,8 @@ public class Game_Ordenacao extends javax.swing.JFrame {
             int o = Integer.parseInt(jogadasDoNivel.get(0).toString());//aqui dava problema, pois eu setava o próximo nivel a partir do cálculo da primeira linha; mas este deve ser setado com a primeira posição do jogadasDoNivel
             partida.setNivel(publico.getNiveis().elementAt(o)); //aqui é setado o "nivel" pelo JOGADASDONIVEL na primeira posição. O avanço depois é dado pela transiçãoDeLinha
             partida.setPlayer(player); //acho que não precisa, pois podemos alterar o player que foi passado por parametro na funcao
-            //int CIT2 = partida.getJogo().getCIT();
-            //int CIT = publico.getFases().elementAt(indexFase - 1).getCIT();
-            System.out.println("AQUI: " + partida.getJogo().getNome() + " " + partida.getPublico().getNome() + " " + partida.getFase().getNumeroFase()+" "+partida.getNivel().getNumero());
+            System.out.println("AQUI: " + partida.getJogo().getNome() + " " + partida.getPublico().getNome() + " " + partida.getFase().getNumeroFase()
+                    + " " + partida.getNivel().getNumero());
             partida.imagensDaCena(move4math.Move4Math.indiceFaseAtual,partida.getNivel());
             partida.setPontuacao(0);
             partida.setFilaElementos(new Vector<Imagem>());
@@ -336,7 +349,6 @@ public class Game_Ordenacao extends javax.swing.JFrame {
             for(int i=0;i<conjuntosDeTrabalho.size();i++){
                 if(conjuntosDeTrabalho.elementAt(i).getId()==CIT){
                     partida.setConjuntoImagem(conjuntosDeTrabalho.elementAt(i));
-                    //partida.getConjuntoImagem().setImagens(conjuntosDeTrabalho.elementAt(i).getImagens());
                     break;
                 }
             }
@@ -392,9 +404,6 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                 default:
                     break;
             }
-            //if(partida.getPlayer().getSessoes().size()>0){
-            // se a primeira sessao do player a fase estiver em branco, significa que nao tinha sessao
-            // ou que a sessao estava em branco
             //ID da sessão    
             sessao.setId(partida.getPlayer().getSessoes().size()+1);
             //Data de Uso
@@ -412,13 +421,11 @@ public class Game_Ordenacao extends javax.swing.JFrame {
             sessao.setFase(Integer.toString(partida.getFase().getNumeroFase()));
             //Nível
             sessao.setNivel(Integer.toString(partida.getNivel().getNumero()));
-            //sessao.setTempoTotal(partida.getTempo());
             sessao.setRodadas(rodadas);
             player.getSessoes().add(sessao);
             frame = new Mat();
             cenario = new Mat();
             mem = new MatOfByte();
-            //cenarioAnterior = new Mat();
             cenarioAnterior = new Mat().zeros((int)webSource.get(Videoio.CV_CAP_PROP_FRAME_WIDTH),(int)webSource.get(Videoio.CV_CAP_PROP_FRAME_HEIGHT), CvType.CV_8UC3);
 
             boolean gerouImagens = false;
@@ -434,13 +441,15 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                     jPanel1.setSize(screenWidth, screenHeight);
                     webSource.retrieve(frame);
                     Core.flip(frame,cenario,1);
-                    // -+-+-+-+-+-+ grava o topo-background
+                    
+// -+-+-+-+-+-+ grava o topo-background
                     Imgproc.resize(topo, topo, new Size(640.0, 77.0));
                     dst = new Mat();
                     Mat roiTopo = cenario.submat(new Rect(new Point(0, 0),new Point(640, 77)));
                     Core.addWeighted(roiTopo,1.5,topo,2.0,0.0,dst);
                     dst.copyTo(cenario.colRange(0,640).rowRange(0,77));
-                    // -+-+-+-+-+-+  mostra Silhueta
+                    
+// -+-+-+-+-+-+  mostra Silhueta
                     dst = new Mat();
                     Mat roiSilhueta = cenario.submat(new Rect(new Point(220, 230),new Point(420, 480)));
                     Core.addWeighted(roiSilhueta,1.0,silhueta,0.8,0.0,dst);
@@ -454,13 +463,15 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                     Imgcodecs.imencode(".bmp", cenario, mem);
                     Image im = ImageIO.read(new ByteArrayInputStream(mem.toArray()));
                     BufferedImage buff = (BufferedImage) im;
-                    //desenha o cenario no jpanel
+                    
+//desenha o cenario no jpanel
                     Graphics g=jPanel1.getGraphics();
 
                     if(buff!=null){
                         g.drawImage(buff, 0, 0, jPanel1.getWidth(), jPanel1.getHeight() , 0, 0, buff.getWidth(), buff.getHeight(), null);
                     }
-                    //teclas de atalho ESC, enter ou space pra começar
+                    
+//teclas de atalho ESC, enter ou space pra começar
                     if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_ENTER)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_SPACE)){
                         MainWindow.tecla = null;
                         break;
@@ -523,22 +534,11 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                     dst.copyTo(cenario.colRange(615,640).rowRange(0,27));
 
                     */
-                    //tentando acrescentar a imagem do coração
+                    // -+-+-+-+-+-+  acrescenta a imagem do coração
 
                     partida.mostrarVidas(cenario,Move4Math.indicePublicoAtual);
                     partida.mostrarSombras(cenario,Move4Math.indicePublicoAtual);
                     
-                    /*
-                    for(int i =0; i< partida.getPlayer().getVidas(); i++){
-                        dst = new Mat();
-                        Mat roiImgVidas = cenario.submat(new Rect(new Point(32+(i*25), 15),new Point(82+(i*25), 65)));
-                        Core.addWeighted(imgVida,1.0,roiImgVidas,0.3,0.0,dst);
-                        dst.copyTo(cenario.colRange(32+(i*25),82+(i*25)).rowRange(15,65));
-                    }
-                    */
-                    
-                    //fim tentando incluir imagem do coração
-
                     // -+-+-+-+-+-+  mostra Fase e Nivel
                     int qtdFases = publico.getFases().lastElement().getNumeroFase();
                     Mat roiFase = cenario.submat(new Rect(new Point(20, 40),new Point(150, 100)));
@@ -564,13 +564,10 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                         //System.out.println("dif: " + iDiferenca + " | ptsAtual: " + iPontosAtual + " | ptsAnt: " + iPontosAnt);
                         mostrarEstrelas(cenario, iDiferenca);
                         if (numAcertosNaRodada < partida.getNivel().getQIO()){
-                            //System.out.println("Chamou o mostrarTopoFeedback junto com o mostrarEstrelas");
                             mostrarTopoFeedback(piscarTopo, partida); 
                         }else{
-                            //topoFeedback = Imgcodecs.imread("Resources/images/topoFeedback.png",1);
                             mostrarTopoFeedback(piscarTopo, partida);
                         }
-                            //iDiferenca = 0;
                     }
 
                     // -+-+-+-+-+-+ mostra pontuação
@@ -580,32 +577,13 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                     if (Move4Math.indiceJogoAtual == 1){
                         partida.mostraEscada(cenario);
                     }
-                    /*
-                        partida.mostrarTrofeus(cenario,partida.getNivel().getNumero()*3);
-                        // -+-+-+-+-+-+ gerar rodada
-                        if ((segundos == 0 || segundos == 1)){
-                            if (60 - segundosAux2 < 3){    
-                                segundosAux2 = 57;
-                            }
-                            if (60 - segundosAux < partida.getNivel().getTEO()){
-                                System.out.println("segundosAux = 60 - partida.getNivel().getTEO();");
-                                segundosAux = 60 - partida.getNivel().getTEO();
-                            }
-                        }
-
-                        System.out.println("minutos: " + minutos);
-                        System.out.println("tempoAtual = " + minutos + ":" + segundos + 
-                                " | tempoAux = " + minutosAux + ":" + segundosAux + 
-                                " | tempoAux2 = " + minutosAux2 + ":" + segundosAux2);
-                   // */
+                    
                     if (irParaProximaLinha == false){
                         if ((60*minutos + segundos) - (60*minutosAux2 + segundosAux2) < 2){
-                            //System.out.println("aguardando...");
                             geraProximaLinha = false;
                             piscarTopo = false;
                             topoFeedback = Imgcodecs.imread("Resources/images/topoFeedbackAcerto.png",1);
                             if (feedback2Aux){ //pra nao sobrepor imagens de feedback
-                                //aguarda(0);
                                 aguarda(tipoFeedback);
                             }else{
                                 aguarda(0); //imagem de transicao de linha
@@ -613,10 +591,6 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                             segundosAux = segundos;
                             minutosAux = minutos;
                         }else{
-                                //if((partida.getNivel().getNumeroLinha() - 1) != (int) jogadasDoNivel.get(0) && mostrarReferencias){
-                                //    System.out.println("Chamou o mostrarTopoFeedback que NAO EH da primeira linha");
-                                //    mostrarTopoFeedback(true, tempoAtual.getTimeInMillis());
-                                //}
                                 if (feedback2){
                                     irParaProximaLinha = false;
                                     segundosAux2 = segundos;
@@ -634,17 +608,15 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                             }
                         }
                         if((partida.getNivel().getNumeroLinha() - 1) == (int) jogadasDoNivel.get(0) && mostrarReferencias){
-                                //System.out.println("Chamou mostrarTopoFeedback da primeira linha");
                                 mostrarTopoFeedback(piscarTopo, partida);
                         }
 
                         if ((partida.getNivel().getNumeroLinha() - 1) == (int) jogadasDoNivel.get(3) && (numAcertosNaRodada == NST || numErrosLimite == 16)){
-                            //System.out.println("chegou na ultima posicao do jogadas do nivel, que eh: " + (int) jogadasDoNivel.get(3));
                             segundosAux2 = segundos;
                             minutosAux2 = minutos;
                             verificaTransicaoDeNivel(partida);
                         }
-                        //System.out.println("geraProximaLinha = " +geraProximaLinha + " | grades = " + ((gradeEsq.getNumImagens()==0)&&(gradeDir.getNumImagens()==0)));
+                        
                         if((gradeEsq.getNumImagens()==0)&&(gradeDir.getNumImagens()==0) && geraProximaLinha){
                             /*
                             * Antes de gerar, espera um tempo com o contador SLEEP_B
@@ -654,25 +626,21 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                 piscarTopo = true;
                                 topoFeedback = Imgcodecs.imread("Resources/images/topoReferencia.png",1);
                             }
-/*
-                            if(Calendar.getInstance().getTimeInMillis()>(gerarRodada.getTimeInMillis()+SLEEP_BEFORE_GENERATE_BLOB)){
-                            System.out.println("gerando a proxima linha");
-                            if(Calendar.getInstance().getTimeInMillis()>(gerarRodada.getTimeInMillis()+SLEEP_BEFORE_GENERATE_BLOB)){
-                                System.out.println("mostrarReferencias = false");
-                            }else{//teste, este bloco de código ficava no if, não no else
-*/    
-                                float tempoJogada = ((mostrarBlobs.getTimeInMillis()+tempoExposicao) - Calendar.getInstance().getTimeInMillis());
-                                tempoJogada = (tempoJogada/1000 < 0)? 0 : tempoJogada/1000;
-                                float tempoExposicaoObjetivo = partida.getNivel().getTEO();
-                                //System.out.println("tempoJogada: " + tempoJogada);
-                                    auxTopoFeedback = 0; //auxTopoFeedback é a variavel que faz piscar o topo amarelo
-                                    //incrementa NST
-                                    contNST++;
-                                    if(numRodadasGeradas != NST*4){
-                                        //verificaTransicaoDeNivel(partida);
-                                        numRodadasGeradas++;
-                                    } //Matheus
-                                    //System.out.println("numRodadasGeradas : " + numRodadasGeradas);
+                            
+                            float tempoJogada = ((mostrarBlobs.getTimeInMillis()+tempoExposicao) - Calendar.getInstance().getTimeInMillis());
+                            tempoJogada = (tempoJogada/1000 < 0)? 0 : tempoJogada/1000;
+                            float tempoExposicaoObjetivo = partida.getNivel().getTEO();
+                            //System.out.println("tempoJogada: " + tempoJogada);
+                            auxTopoFeedback = 0; //auxTopoFeedback é a variavel que faz piscar o topo amarelo
+                            //incrementa NST
+                            contNST++;
+                            
+                            if(numRodadasGeradas != NST*4){
+                                //verificaTransicaoDeNivel(partida);
+                                numRodadasGeradas++;
+                            }
+                            
+                            //System.out.println("numRodadasGeradas : " + numRodadasGeradas);
                             switch (partida.getNivel().getTAI()) {
                                 case 3:
                                     numSimbolosParaGerar=2;
@@ -687,6 +655,7 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                     numSimbolosParaGerar=8;
                                     break;
                             }
+                            
                             /*
                             System.out.println("partida.getNivel().getQIS(): " + partida.getNivel().getQIS());
                             numSimbolosParaGerar = partida.getNivel().getQIS();
@@ -731,26 +700,11 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                     break;
                             }
                                 gerouImagens = true;
-                            //}//fimteste
                         }else{
 
                             // -+-+-+-+-+-+ mostra imagem e/ou som de REFERENCIA
                             if( partida.getFase().getEST() != 0) {
-                                // background
-                                //dst = new Mat();
-                                //Mat backRef = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth()-2, referencia.firstElement().getY() + referencia.firstElement().getHeight()-2)));
-
-                                //Core.addWeighted(ref_background,1.0,backRef , 0.5, 0.0, dst);
-                                //dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()-2).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()-2));
-
-                                //imagem
-    //                            Nivel nivel = new Nivel();
-    //                            nivel.getQIO();
-    //                            nivel.getAIO();
-    //                                                          180                             0                           78                                  78
-                                //System.out.println("REF" + "X:"+referencia.firstElement().getX() + "" + "Y:"+referencia.firstElement().getY() + "" + "L:"+referencia.firstElement().getWidth()+ "" + "A:"+referencia.firstElement().getHeight());
-
-                                //mostra quantidade de imagens do objetivo aaqui
+                                //mostra quantidade de imagens do objetivo
                                 //System.out.println("numAcertosNaRodada: " + numAcertosNaRodada);
                                 int deslocamento=0;
                                 if (partida.getNivel().getQIO() == 3){
@@ -760,28 +714,32 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                 }
                                 referencia.firstElement().setX(referencia.firstElement().getX() + deslocamento);
                                 System.out.println("GetX: "+ referencia.firstElement().getX());
-                                if(mostrarReferencias && numAcertosNaRodada < partida.getNivel().getQIO()){ //No lugar do '3' seria partida.getNivel().getQIO() ????
+                                if(mostrarReferencias && numAcertosNaRodada < partida.getNivel().getQIO()){
                                     //mostrarReferencias é uma variável booleana que é desabilitada quando a função ocultaReferencia é chamada
                                     for (int i = 0;i<partida.getNivel().getQIO();i++){
-                                        dst = new Mat();
-                                        Mat mescRef = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
-                                        //Imgcodecs.imwrite("hue1.png",referencia.getImagem());
-                                        //Imgcodecs.imwrite("hue2.png",mescRef);
-                                        Core.addWeighted(referencia.firstElement().getImagem(),1.0,mescRef , 0.3, 0.0, dst);
-                                        dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
+                                        if(i==1){//No jogo de ordenção apenas a referencia do meio é mostrada
+                                            dst = new Mat();
+                                            Mat aux = new Mat();
+                                            System.out.println("1");
+                                            for (int j = 0; j < conjuntosDeTrabalho.size(); j++) {
+                                                if(!caminhoImagem(referencia.get(i), conjuntosDeTrabalho.get(j)).equals(" ")){
+                                                    aux = Imgcodecs.imread(caminhoImagem(referencia.get(i), conjuntosDeTrabalho.get(j)));
+                                                    break;
+                                                }
+                                            }
+                                            System.out.println("2");
+                                            Mat mescRef = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
+                                            Core.addWeighted(aux,1.0,mescRef , 0.3, 0.0, dst);
+                                            dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
 
-                                        //dst = new Mat();
-                                        referencia.firstElement().setX(referencia.firstElement().getX() + referencia.firstElement().getWidth());
-                                        //Mat mescRef2 = cenario.submat(new Rect(new Point(referencia.getX(), referencia.getY()),new Point(referencia.getX() + referencia.getWidth(), referencia.getY() + referencia.getHeight())));
-                                        //Core.addWeighted(referencia.getImagem(), 1.0, mescRef2, 0.3, 0.0, dst);
-                                        //dst.copyTo(cenario.colRange(referencia.getX(),referencia.getX() + referencia.getWidth()).rowRange(referencia.getY(),referencia.getY() + referencia.getHeight()));
+                                            referencia.firstElement().setX(referencia.firstElement().getX() + referencia.firstElement().getWidth());
+                                        }
                                     }
-                                    //System.out.println("mostrando referencias");
                                 }
 
 System.out.println("782");
                                 
-                                referencia.firstElement().printReferencia();
+                                //referencia.firstElement().printReferencia();
 
                                 if (jogando){ // jogando é um bool que indica que o usuário está tocando os objetos e por isso devem aparecer os acertos no lugar das referências
                                     for (int i = 0;i<numAcertosNaRodada;i++){

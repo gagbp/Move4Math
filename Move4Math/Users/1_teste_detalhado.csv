@@ -60,3 +60,21 @@
 8;10/09/2018;15:28:59;Ordenacao;1;4;9;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
 8;10/09/2018;15:29:05;Ordenacao;1;4;10;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;1;Errou;4;0
 8;10/09/2018;15:29:09;Ordenacao;1;4;10;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;1;Errou;4;0
+9;12/09/2018;19:22:36;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+9;12/09/2018;19:22:40;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;1;Acertou;4;5
+9;12/09/2018;19:22:44;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Medio-BordaFina-Preto;1;Acertou;4;5
+9;12/09/2018;19:22:46;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;0;Errou;5;0
+9;12/09/2018;19:22:48;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Medio-BordaFina-Preto;0;Errou;5;0
+9;12/09/2018;19:22:51;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;1;Acertou;4;5
+9;12/09/2018;19:23:02;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+9;12/09/2018;19:23:07;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Medio-BordaFina-Preto;1;Errou;4;0
+9;12/09/2018;19:23:10;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;1;Errou;4;0
+9;12/09/2018;19:23:14;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
+9;12/09/2018;19:23:17;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;1;Errou;4;0
+9;12/09/2018;19:23:20;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Medio-BordaFina-Preto;1;Acertou;4;5
+9;12/09/2018;19:23:23;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;1;Acertou;4;5
+10;12/09/2018;19:25:56;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;1;Errou;4;0
+10;12/09/2018;19:25:59;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;1;Acertou;4;5
+10;12/09/2018;19:26:02;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;1;Errou;4;0
+10;12/09/2018;19:26:05;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Medio-BordaFina-Preto;1;Acertou;4;5
+10;12/09/2018;19:26:08;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;1;Acertou;4;5
