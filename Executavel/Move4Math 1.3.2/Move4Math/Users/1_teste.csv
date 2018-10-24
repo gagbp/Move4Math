@@ -1,15 +1,16 @@
-Data Cadastro:;12/09/2018
-Nome:;teste
+Data Cadastro:;17/10/2018
+Nome:;Teste
 Data Nascimento:;01/01/0001
 Sexo:;Masculino
-Publico:;Crianca
-Vidas:;3
-Justificativa Público:;teste
+Publico:;Crianca com Deficiencia
+Vidas:;5
+Justificativa Público:;Teste
 Fase Alfabetização Matemática:;Não Desenvolvido
 Justificativa Fase Alfabetização Matemática:;teste
 # Sessao;Data de Uso;Hora Inicio;Jogo;Fase;Nivel;Pontuacao Geral da Tela;Tempo Total (min)
-1;12/09/2018;18:39:49;Ordenacao;1;1;26;0
-2;12/09/2018;18:43:33;Ordenacao;1;1;30;0
-3;12/09/2018;18:45:33;Ordenacao;1;1;28;0
-4;12/09/2018;18:55:00;Ordenacao;1;1;23;0
-5;12/09/2018;18:55:26;Ordenacao;1;1;26;0
+1;17/10/2018;17:49:03;Classificacao;1;1;39;0
+2;17/10/2018;17:51:40;Ordenacao;1;1;49;0
+3;17/10/2018;19:28:55;Ordenacao;1;1;37;0
+4;17/10/2018;19:32:24;Classificacao;1;1;73;0
+5;17/10/2018;19:34:39;Classificacao;1;11;16;0
+6;17/10/2018;19:36:13;Classificacao;2;11;32;0

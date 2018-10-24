@@ -97,6 +97,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
     boolean feedback2 = false;
     boolean feedback2Aux = false;
     boolean reproduzirAudio = false;
+    boolean gameOver = false;
      
     int tipoFeedback; //0 - Avança linha;1 - Avança nivel; 2 - Permanece nível; 3 - Retrocede nivel;
                       //4 - Avança fase; 5 - Retrocede fase; 6 - Perde vida;
@@ -229,7 +230,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
         try{
             jPanel1.setSize(screenWidth, screenHeight);
             //System.out.println(gameWindow.getClass() + " \n" + jogo.getClass() + " \n" + player.getClass());
-            //System.out.println("Nivel em 01: " + indexNivel); 
+            
             System.out.println("01J: " + jogo.getNome() + " Pu: " + publico.getNome() + " Pl: " + player.getNome() + " CIT:" + conjuntosDeTrabalho.size() + " F:" + indexFase + " N:" + indexNivel);
             Thread t = new Thread(new WebcamFeed(gameWindow, jogo, publico,  player, conjuntosDeTrabalho, indexFase,  indexNivel));
             t.start();            
@@ -268,6 +269,8 @@ public class Game_Classificacao extends javax.swing.JFrame {
         private int linhaNivelSelecionado;
         
         Mat topo = Imgcodecs.imread("Resources/images/topo.png",1);
+        Mat topoErro = Imgcodecs.imread("Resources/images/topoErro.png",1);
+        Mat gameO = Imgcodecs.imread("Resources/images/GameOver.png",1);
         Mat topoFeedback = Imgcodecs.imread("Resources/images/topoFeedback.png",1);
         Mat estrela = Imgcodecs.imread("Resources/images/star_.png",1);
         Mat sombraObjetivo = Imgcodecs.imread("Resources/images/sombraObjetivo.png",1);
@@ -446,7 +449,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
             segundosAux2 = segundosAux = segundos;
             //tela de calibração
             while(webSource.grab()){
-                 try{
+                try{
                     jPanel1.setSize(screenWidth, screenHeight);
                     webSource.retrieve(frame);
                     Core.flip(frame,cenario,1);
@@ -1181,7 +1184,46 @@ public class Game_Classificacao extends javax.swing.JFrame {
                 Logger.getLogger(Game_Classificacao.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+            if(gameOver){
+                while(webSource.grab()){
+                    try{
+                        jPanel1.setSize(screenWidth, screenHeight);
+                        webSource.retrieve(frame);
+                        Core.flip(frame,cenario,1);
+                        // -+-+-+-+-+-+ grava o topo-background
+                        Imgproc.resize(topo, topo, new Size(640.0, 77.0));
+                        dst = new Mat();
+                        Mat roiTopo = cenario.submat(new Rect(new Point(0, 0),new Point(640, 77)));
+                        Core.addWeighted(roiTopo,1.5,topoErro,2.0,0.0,dst);
+                        dst.copyTo(cenario.colRange(0,640).rowRange(0,77));
+                        // -+-+-+-+-+-+  mostra Silhueta
+                        dst = new Mat();
+                        Mat roiGameOver = cenario.submat(new Rect(new Point(160, 120),new Point(480, 360)));
+                        Core.addWeighted(roiGameOver,1.0,gameO,0.8,0.0,dst);
+                        dst.copyTo(cenario.colRange(160,480).rowRange(120,360));
 
+                        Imgcodecs.imencode(".bmp", cenario, mem);
+                        Image im = ImageIO.read(new ByteArrayInputStream(mem.toArray()));
+                        BufferedImage buff = (BufferedImage) im;
+                        //desenha o cenario no jpanel
+                        Graphics g=jPanel1.getGraphics();
+
+                        if(buff!=null){
+                            g.drawImage(buff, 0, 0, jPanel1.getWidth(), jPanel1.getHeight() , 0, 0, buff.getWidth(), buff.getHeight(), null);
+                        }
+
+                        //teclas de atalho ESC, enter ou space pra começar
+                        //System.out.println("Tecla inicial: " + MainWindow.tecla.getKeyCode());
+                        if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_ENTER)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_SPACE)){
+                            MainWindow.tecla = null;
+                            break;
+                        }
+                    } //fim try
+                    catch(Exception ex){
+                        //System.out.println("erro gravando frame");
+                    }
+                }//fim while
+            }
 
             fimDeJogo = true;
 
@@ -1461,7 +1503,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
         int checarColisao(Mat cenario,Mat cenarioAnterior, Grade grade,Partida partida) throws UnsupportedAudioFileException, IOException, LineUnavailableException, AWTException{
             int colisao = 0;
             int threshold = 10;
-
+           System.out.println("W: " + grade.getScreenWidth() + " H: " + grade.getScreenHeight()); 
             for(int i=0;i<grade.getRegioes().size();i++){
                 if(grade.getRegioes().elementAt(i).isOcupado()){
                     int x1 = (int)grade.getRegioes().elementAt(i).getpInicial().x;
@@ -1623,9 +1665,15 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         System.out.println("vidas : " + partida.getPlayer().getVidas());
                         //Se zerou as vidas, Game Over
                         if(partida.getPlayer().getVidas()<=0){
-                            System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER");
+                            gameOver = true;
+                            int goverW = (int)(grade.getScreenWidth())/2;
+                            int goverH = (int)(grade.getScreenHeight())/2;
+                            int goverX = (int)(grade.getScreenWidth() - goverW)/2;
+                            int goverY = (int)(grade.getScreenHeight() - goverH)/2;
+                            System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER\n" + goverW + " " + goverH + " " + goverX + " " + goverY);
                             MainWindow.tecla = null;
-                            break;  
+                            break; 
+                            
                         }
                     }
                     
