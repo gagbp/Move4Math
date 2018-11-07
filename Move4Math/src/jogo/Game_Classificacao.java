@@ -1183,19 +1183,33 @@ public class Game_Classificacao extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(Game_Classificacao.class.getName()).log(Level.SEVERE, null, ex);
             }
+            fimDeJogo = true;
 
-            if(gameOver){
-                while(webSource.grab()){
+            webSource.release();
+            gamewindow.dispose();
+
+        }//fim run
+
+        void GameOver(){
+            VideoCapture webSource= new VideoCapture(0);
+            webSource.set(Videoio.CV_CAP_PROP_FRAME_WIDTH,Move4Math.webcamWidth);
+            webSource.set(Videoio.CV_CAP_PROP_FRAME_HEIGHT,Move4Math.webcamHeight);
+            while(webSource.grab()){
                     try{
                         jPanel1.setSize(screenWidth, screenHeight);
                         webSource.retrieve(frame);
                         Core.flip(frame,cenario,1);
                         // -+-+-+-+-+-+ grava o topo-background
-                        Imgproc.resize(topo, topo, new Size(640.0, 77.0));
+                        Imgproc.resize(topoErro, topoErro, new Size(640.0, 90.0));
+        System.out.println("4");
                         dst = new Mat();
-                        Mat roiTopo = cenario.submat(new Rect(new Point(0, 0),new Point(640, 77)));
-                        Core.addWeighted(roiTopo,1.5,topoErro,2.0,0.0,dst);
-                        dst.copyTo(cenario.colRange(0,640).rowRange(0,77));
+        System.out.println("5");
+                        Mat roiTopo = cenario.submat(new Rect(new Point(0,0),new Point(640, 90)));
+        System.out.println("6");
+                        Core.addWeighted(roiTopo,1.0,topoErro,1.0,0.0,dst);
+        System.out.println("7");
+                        dst.copyTo(cenario.colRange(0,640).rowRange(0,90));
+        System.out.println("8");
                         // -+-+-+-+-+-+  mostra Silhueta
                         dst = new Mat();
                         Mat roiGameOver = cenario.submat(new Rect(new Point(160, 120),new Point(480, 360)));
@@ -1211,27 +1225,21 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         if(buff!=null){
                             g.drawImage(buff, 0, 0, jPanel1.getWidth(), jPanel1.getHeight() , 0, 0, buff.getWidth(), buff.getHeight(), null);
                         }
-
+        
                         //teclas de atalho ESC, enter ou space pra começar
                         //System.out.println("Tecla inicial: " + MainWindow.tecla.getKeyCode());
                         if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_ENTER)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_SPACE)){
                             MainWindow.tecla = null;
                             break;
                         }
+        System.out.println("8");
                     } //fim try
                     catch(Exception ex){
                         //System.out.println("erro gravando frame");
                     }
                 }//fim while
-            }
-
-            fimDeJogo = true;
-
-            webSource.release();
-            gamewindow.dispose();
-
-            }//fim run
-
+        }
+        
         //------------------------------------------------------------------------------------------------------------------------------------------
 
         void verificaTransicaoDeLinha (Partida partida){
@@ -1671,6 +1679,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                             int goverX = (int)(grade.getScreenWidth() - goverW)/2;
                             int goverY = (int)(grade.getScreenHeight() - goverH)/2;
                             System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER\n" + goverW + " " + goverH + " " + goverX + " " + goverY);
+                            GameOver();
                             MainWindow.tecla = null;
                             break; 
                             
