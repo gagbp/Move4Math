@@ -91,6 +91,9 @@ public class MainWindow extends javax.swing.JFrame {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
         });
 
         lblMovi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -554,6 +557,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void cmbFaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFaseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbFaseActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        System.exit(0);//Finaliza o processo.
+    }//GEN-LAST:event_formWindowClosing
 
     public String getTipoJogo() {
         return cmbTipoJogo.getSelectedItem().toString();

@@ -13,6 +13,7 @@ import controle.Nivel;
 import controle.Publico;
 import java.awt.AWTException;
 import java.awt.Dimension;
+import static java.awt.Frame.ICONIFIED;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -20,6 +21,7 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import static java.awt.image.ImageObserver.ERROR;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -41,6 +43,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JOptionPane;
 import move4math.MainWindow;
 import move4math.Move4Math;
 import org.opencv.core.Core;
@@ -1634,8 +1637,22 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
                         //partida.getPlayer().setVidas(partida.getPlayer().getVidas() -1 );
                         //Se zerou as vidas, Game Over
                         if(partida.getPlayer().getVidas()<=0){
-                            MainWindow.tecla = null;
-                            break;  
+                            //System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER\n");
+                            String[] options = {"Sair", "Resetar vidas"};
+                            int fin = JOptionPane.showOptionDialog(null, "Game Over!","Click a button",
+                                JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+                            //System.out.println(fin + " " + player.getPublico());
+                            if(fin==1){
+                                if ("Crianca".equals(player.getPublico())){
+                                    player.setVidas(3);
+                                }else{
+                                    player.setVidas(5);
+                                }
+                            }else{
+                                KeyEvent e = new KeyEvent(rootPane, fin, fin, ICONIFIED, ERROR);
+                                fimDeJogo = true;
+                                formKeyPressed(e);
+                            } 
                         }
                     }
                     

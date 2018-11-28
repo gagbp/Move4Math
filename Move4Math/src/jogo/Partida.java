@@ -98,11 +98,11 @@ public class Partida implements Cloneable{
                 imagensCena = nivel.getTerceiroICC().split(" ");
                 break;
             default:
-                System.out.println("Erro! Fase não existente!");
+                //System.out.println("Erro! Fase não existente!");
         }
 
         for (int i=0;i<imagensCena.length;i++){
-            //System.out.println(imagensCena[i]);
+            ////System.out.println(imagensCena[i]);
         }
         //filaElementosReferencia.add(imagensCena.)
         return imagensCena;
@@ -112,24 +112,23 @@ public class Partida implements Cloneable{
         if ("Masculino".equals(player.getSexo())) {
             estrelaNegra = Imgcodecs.imread("Resources/images/bola_sombra.png",1);
         }
-        System.out.println("P 115");
+        //System.out.println("P 115");
         int tamanho = nivel.getQIS();
         
         String imagensCena[] = new String[tamanho];
         
-        System.out.println("P 115: " + faseAtual);
         switch (faseAtual) {
             case 1:
-                System.out.println("getSeqICC: " + nivel.getSequenciacaoICC());
+                //System.out.println("getSeqICC: " + nivel.getSequenciacaoICC());
                 imagensCena = nivel.getSequenciacaoICC().split(" ");
                 break;
             default:
-                System.out.println("Erro! Fase não existente!");
+                //System.out.println("Erro! Fase não existente!");
         }
 
-        System.out.println("\n\nIMAGENS DA CENA: ");
+        //System.out.println("\n\nIMAGENS DA CENA: ");
         for (int i=0;i<imagensCena.length;i++){
-            System.out.println(imagensCena[i]);
+            //System.out.println(imagensCena[i]);
         }
         return imagensCena;
     }
@@ -175,9 +174,9 @@ public class Partida implements Cloneable{
         if (move4math.Move4Math.indiceJogoAtual == 2) {
             String bufferSequenciacao[] = nivel.getSequenciacaoICC().split(" ");
             
-            System.out.println("\nBUFFER SEQUENCIACAO");
+            //System.out.println("\nBUFFER SEQUENCIACAO");
             for (int i=0; i<bufferSequenciacao.length; i++) {
-                System.out.println(" " + bufferSequenciacao[i]);
+                //System.out.println(" " + bufferSequenciacao[i]);
             }
             
             for(int k=0; k<bufferSequenciacao.length; k++){
@@ -196,9 +195,9 @@ public class Partida implements Cloneable{
                 }
             }
             
-//            System.out.println("\fila elementossssssssss");
+//            //System.out.println("\fila elementossssssssss");
 //            for (int i=0; i<filaElementos.size(); i++) {
-//                System.out.println(" " + filaElementos.get(i).getId());
+//                //System.out.println(" " + filaElementos.get(i).getId());
 //            }
         } else {
             switch (move4math.Move4Math.indiceFaseAtual) {
@@ -265,14 +264,14 @@ public class Partida implements Cloneable{
                     }
                     break;
                 default:
-                    System.out.println("Não existe essa fase!");
+                    //System.out.println("Não existe essa fase!");
             }
         }
 
         //Collections.shuffle(filaElementos);
-        //System.out.println("filaElementos: ");
+        ////System.out.println("filaElementos: ");
         for (int i=0; i<filaElementos.size(); i++){
-            //System.out.println("filaElementos.elementAt(" + i + "): " + filaElementos.elementAt(i).getId());
+            ////System.out.println("filaElementos.elementAt(" + i + "): " + filaElementos.elementAt(i).getId());
         }
         
     }
@@ -288,7 +287,7 @@ public class Partida implements Cloneable{
         
         MTRandom number = new MTRandom();
         int referencia = number.nextInt(imagens.size());
-        //System.out.println("Entrou no geraFilaAleatoria");
+        ////System.out.println("Entrou no geraFilaAleatoria");
        
         String bufferPrimeiro[] = nivel.getPrimeiroICC().split(" ");
         String bufferSegundo[] = nivel.getSegundoICC().split(" ");
@@ -341,28 +340,28 @@ public class Partida implements Cloneable{
                     }
                     break;
                 default:
-                    System.out.println("Não existe essa fase!");
+                    //System.out.println("Não existe essa fase!");
             }
         }
-        System.out.println("Passou geraFilaAleatoria");
+        //System.out.println("Passou geraFilaAleatoria");
         geraFilaReferenciaAleatoria(referencia);
     }
     
     public void geraFilaReferenciaAleatoria(int referencia){
-        System.out.println("P 351");
+        //System.out.println("P 351");
         filaElementosReferencia.clear();
         Vector<Vector<Imagem>> imagens = new Vector<Vector<Imagem>>();
         imagens = conjuntoImagem.getImagens();
         
-        System.out.println("P 356");
+        //System.out.println("P 356");
         Vector<Vector<Imagem>> imagensAux = new Vector<Vector<Imagem>>();
         imagensAux = conjuntoImagem.getImagens();
         
-        System.out.println("P 360");
-        //System.out.println("Entrou no geraFilaReferenciaAleatoria");
+        //System.out.println("P 360");
+        ////System.out.println("Entrou no geraFilaReferenciaAleatoria");
         String idsDoICC[] = imagensDaCena(move4math.Move4Math.indiceFaseAtual,nivel);
-        System.out.println("P 363");
-        //System.out.println(" id da referencia desejada: " + idsDoICC[0]);
+        //System.out.println("P 363");
+        ////System.out.println(" id da referencia desejada: " + idsDoICC[0]);
 
         //Tipo de Jogo
         int iTipoJogoSelecionado = move4math.Move4Math.indiceJogoAtual;
@@ -372,7 +371,7 @@ public class Partida implements Cloneable{
         // Se for o jogo de ordenação, contagem ou anterior e proximo, os primeiros 3 IDs do
         // ICC serão posicionados como objetivo da linha
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        System.out.println("tipoJogoSelecionado: " + iTipoJogoSelecionado);
+        //System.out.println("tipoJogoSelecionado: " + iTipoJogoSelecionado);
         switch (iTipoJogoSelecionado) {
             case 0:
                 //Jogo de Classificação
@@ -400,11 +399,11 @@ public class Partida implements Cloneable{
                             (Integer.parseInt(idsDoICC[1]) == imagens.elementAt(referencia).elementAt(i).getId()) ||
                             (Integer.parseInt(idsDoICC[2]) == imagens.elementAt(referencia).elementAt(i).getId())){
                         filaElementosReferencia.add(imagens.elementAt(referencia).elementAt(i));
-                        //System.out.println("Adicionou na filaElementosReferencia: " + imagens.elementAt(referencia).elementAt(i).getId());
+                        ////System.out.println("Adicionou na filaElementosReferencia: " + imagens.elementAt(referencia).elementAt(i).getId());
                     }
                 }   break;
         }
-        System.out.println("Passou geraFilaReferenciaAleatoria");
+        //System.out.println("Passou geraFilaReferenciaAleatoria");
     }
     
     public void geraFilaAleatoriaSequenciacao(int quantidadeImagens){
@@ -414,7 +413,7 @@ public class Partida implements Cloneable{
         
         MTRandom number = new MTRandom();
         int referencia = number.nextInt(imagens.size());
-        //System.out.println("Entrou no geraFilaAleatoria");
+        ////System.out.println("Entrou no geraFilaAleatoria");
        
         String bufferPrimeiro[] = nivel.getPrimeiroICC().split(" ");
         String bufferSegundo[] = nivel.getSegundoICC().split(" ");
@@ -467,7 +466,7 @@ public class Partida implements Cloneable{
                     }
                     break;
                 default:
-                    System.out.println("Não existe essa fase!");
+                    //System.out.println("Não existe essa fase!");
             }
         }
         
@@ -484,9 +483,9 @@ public class Partida implements Cloneable{
         Vector<Vector<Imagem>> imagensAux = new Vector<Vector<Imagem>>();
         imagensAux = conjuntoImagem.getImagens();
         
-        //System.out.println("Entrou no geraFilaReferenciaAleatoria");
+        ////System.out.println("Entrou no geraFilaReferenciaAleatoria");
         String idsDoICC[] = imagensDaCena(move4math.Move4Math.indiceFaseAtual,nivel);
-        //System.out.println(" id da referencia desejada: " + idsDoICC[0]);
+        ////System.out.println(" id da referencia desejada: " + idsDoICC[0]);
 
         //Tipo de Jogo
         int iTipoJogoSelecionado = move4math.Move4Math.indiceJogoAtual;
@@ -507,9 +506,9 @@ public class Partida implements Cloneable{
                 }
             }
             
-            System.out.println("\nFILA ELEMENTOS REFERENCIA:\n");
+            //System.out.println("\nFILA ELEMENTOS REFERENCIA:\n");
             for(int i=0; i<filaElementosReferencia.size(); i++) {
-                System.out.println(filaElementosReferencia.get(i).getId() + " ");
+                //System.out.println(filaElementosReferencia.get(i).getId() + " ");
             }
         }
     }
@@ -531,7 +530,7 @@ public class Partida implements Cloneable{
         if(tipoPublico == 1){ //caso o publico seja Crianca Especial, o jogador tem 5 vidas
             int x1 = 25, x2 = 55;
             int x3 = 145, x4 = 175;
-            //System.out.println("player.getVidas(): " + player.getVidas());
+            ////System.out.println("player.getVidas(): " + player.getVidas());
             //player.setVidas(2);
             for (int i=0; i<player.getVidas(); i++){ //desenha as vidas 
                 dst = new Mat();            
@@ -552,7 +551,7 @@ public class Partida implements Cloneable{
         }else{ // caso contrário (crianca), o jogador possui 3 vidas
             int x1 = 25, x2 = 55;
             int x3 = 85, x4 = 115;
-            //System.out.println("player.getVidas(): " + player.getVidas());
+            ////System.out.println("player.getVidas(): " + player.getVidas());
             //player.setVidas(1);
             //vidas
             for (int i=0; i<player.getVidas(); i++){
@@ -634,7 +633,7 @@ public class Partida implements Cloneable{
                 dst.copyTo(cenario.colRange(200,250).rowRange(15,65)); 
                 break;
         }
-        System.out.println("\nPassou mostra escada\n");
+        //System.out.println("\nPassou mostra escada\n");
     }
     
      void removeElementoDaFila (Vector<Imagem> filaElementos){
