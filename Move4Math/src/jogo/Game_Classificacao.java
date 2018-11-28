@@ -13,6 +13,7 @@ import controle.Nivel;
 import controle.Publico;
 import java.awt.AWTException;
 import java.awt.Dimension;
+import static java.awt.Frame.ICONIFIED;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -20,6 +21,7 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import static java.awt.image.ImageObserver.ERROR;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -41,6 +43,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import move4math.MainWindow;
 import move4math.Move4Math;
@@ -1006,7 +1009,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         }                    
 
                         //capturar teclas atalho
-                        if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE) || gameOver){//Fecha o jogo
+                        if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)){//Fecha o jogo
                             MainWindow.tecla = null;
                             break;
                         }
@@ -1142,56 +1145,6 @@ public class Game_Classificacao extends javax.swing.JFrame {
             gamewindow.dispose();
 
         }//fim run
-
-        void GameOver(){
-            VideoCapture webSource= new VideoCapture(0);
-            webSource.set(Videoio.CV_CAP_PROP_FRAME_WIDTH,Move4Math.webcamWidth);
-            webSource.set(Videoio.CV_CAP_PROP_FRAME_HEIGHT,Move4Math.webcamHeight);
-            while(webSource.grab()){
-                    try{
-                        jPanel1.setSize(screenWidth, screenHeight);
-                        webSource.retrieve(frame);
-                        Core.flip(frame,cenario,1);
-                        // -+-+-+-+-+-+ grava o topo-background
-                        Imgproc.resize(topoErro, topoErro, new Size(640.0, 90.0));
-        //System.out.println("4");
-                        dst = new Mat();
-        //System.out.println("5");
-                        Mat roiTopo = cenario.submat(new Rect(new Point(0,0),new Point(640, 90)));
-        //System.out.println("6");
-                        Core.addWeighted(roiTopo,1.0,topoErro,1.0,0.0,dst);
-        //System.out.println("7");
-                        dst.copyTo(cenario.colRange(0,640).rowRange(0,90));
-        //System.out.println("8");
-                        // -+-+-+-+-+-+  mostra Silhueta
-                        dst = new Mat();
-                        Mat roiGameOver = cenario.submat(new Rect(new Point(160, 120),new Point(480, 360)));
-                        Core.addWeighted(roiGameOver,1.0,gameO,0.8,0.0,dst);
-                        dst.copyTo(cenario.colRange(160,480).rowRange(120,360));
-
-                        Imgcodecs.imencode(".bmp", cenario, mem);
-                        Image im = ImageIO.read(new ByteArrayInputStream(mem.toArray()));
-                        BufferedImage buff = (BufferedImage) im;
-                        //desenha o cenario no jpanel
-                        Graphics g=jPanel1.getGraphics();
-
-                        if(buff!=null){
-                            g.drawImage(buff, 0, 0, jPanel1.getWidth(), jPanel1.getHeight() , 0, 0, buff.getWidth(), buff.getHeight(), null);
-                        }
-        
-                        //teclas de atalho ESC, enter ou space pra começar
-                        ////System.out.println("Tecla inicial: " + MainWindow.tecla.getKeyCode());
-                        if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_ENTER)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_SPACE)){
-                            MainWindow.tecla = null;
-                            break;
-                        }
-        //System.out.println("8");
-                    } //fim try
-                    catch(Exception ex){
-                        ////System.out.println("erro gravando frame");
-                    }
-                }//fim while
-        }
         
         //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1464,19 +1417,17 @@ public class Game_Classificacao extends javax.swing.JFrame {
             //System.out.println("vidas : " + player.getVidas());
             //Se zerou as vidas, Game Over
             if(player.getVidas()<=0){
-                gameOver = true;
-                //System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER\n");
+                System.out.println("vidas : " + player.getVidas());
+                ImageIcon icon = new ImageIcon("Resources/images/GameOver.png");
                 String[] options = {"Sair", "Resetar vidas"};
-                int fin = JOptionPane.showOptionDialog(null, "Game Over!","Click a button",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
-                //System.out.println(fin + " " + player.getPublico());
-                if(fin==1){
-                    if ("Crianca".equals(player.getPublico())){
-                        player.setVidas(3);
-                    }else{
-                        player.setVidas(5);
-                    }
+                int fin = JOptionPane.showOptionDialog(null, "","Game Over!",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+                if ("Crianca".equals(player.getPublico())){
+                    player.setVidas(3);
                 }else{
+                    player.setVidas(5);
+                }
+                if(fin==0){
                     KeyEvent e = new KeyEvent(rootPane, fin, fin, ICONIFIED, ERROR);
                     fimDeJogo = true;
                     formKeyPressed(e);

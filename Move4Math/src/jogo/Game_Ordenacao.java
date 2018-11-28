@@ -43,6 +43,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import move4math.MainWindow;
 import move4math.Move4Math;
@@ -103,7 +104,7 @@ public class Game_Ordenacao extends javax.swing.JFrame {
      
     int tipoFeedback; //0 - Avança linha;1 - Avança nivel; 2 - Permanece nível; 3 - Retrocede nivel;
                       //4 - Avança fase; 5 - Retrocede fase; 6 - Perde vida;
-    Vector<Referencia> referencia;
+    Vector<Referencia> vreferencia;
     int tempoExposicao;
 
     boolean primeiroToque = true;
@@ -164,10 +165,10 @@ public class Game_Ordenacao extends javax.swing.JFrame {
     }
     
     public Game_Ordenacao(){
-        this.referencia = new Vector<Referencia>();
-        this.referencia.add(new Referencia());
-        this.referencia.add(new Referencia());
-        this.referencia.add(new Referencia());
+        this.vreferencia = new Vector<Referencia>();
+        this.vreferencia.add(new Referencia());
+        this.vreferencia.add(new Referencia());
+        this.vreferencia.add(new Referencia());
         initComponents();
                 
         fimDeJogo = false;
@@ -708,7 +709,7 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                     gerarRodada = Calendar.getInstance();
                                     break;
                                 case 3:
-                                    // sorteia um lado para conter o elemento igual ao da referencia
+                                    // sorteia um lado para conter o elemento igual ao da vreferencia
                                     MTRandom number = new MTRandom();
                                     int escolha = number.nextInt(2);
                                     //System.out.println("escolha: " + escolha);
@@ -739,93 +740,67 @@ public class Game_Ordenacao extends javax.swing.JFrame {
 
                             // -+-+-+-+-+-+ mostra imagem e/ou som de REFERENCIA
                             if( partida.getFase().getEST() != 0) {
-                                // background
-                                //dst = new Mat();
-                                //Mat backRef = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth()-2, referencia.firstElement().getY() + referencia.firstElement().getHeight()-2)));
-
-                                //Core.addWeighted(ref_background,1.0,backRef , 0.5, 0.0, dst);
-                                //dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()-2).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()-2));
-
-                                //imagem
-    //                            Nivel nivel = new Nivel();
-    //                            nivel.getQIO();
-    //                            nivel.getAIO();
-    //                                                          180                             0                           78                                  78
-                                ////System.out.println("REF" + "X:"+referencia.firstElement().getX() + "" + "Y:"+referencia.firstElement().getY() + "" + "L:"+referencia.firstElement().getWidth()+ "" + "A:"+referencia.firstElement().getHeight());
-
-                                //mostra quantidade de imagens do objetivo aaqui
-                                ////System.out.println("numAcertosNaRodada: " + numAcertosNaRodada);
                                 int deslocamento=0;
                                 if (partida.getNivel().getQIO() == 3){
                                     deslocamento = 50;
                                 }else if(partida.getNivel().getQIO() == 4){
                                     deslocamento = 25;
                                 }
-                                referencia.firstElement().setX(referencia.firstElement().getX() + deslocamento);
-                                //System.out.println("GetX: "+ referencia.firstElement().getX());
+                                vreferencia.firstElement().setX(vreferencia.firstElement().getX() + deslocamento);
+                                //System.out.println("GetX: "+ vreferencia.firstElement().getX());
                                 if(mostrarReferencias && numAcertosNaRodada < partida.getNivel().getQIO()){ //No lugar do '3' seria partida.getNivel().getQIO() ????
                                     //mostrarReferencias é uma variável booleana que é desabilitada quando a função ocultaReferencia é chamada
                                     for (int i = 0;i<partida.getNivel().getQIO();i++){
                                         dst = new Mat();
-                                        Mat mescRef = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
-                                        //Imgcodecs.imwrite("hue1.png",referencia.getImagem());
-                                        //Imgcodecs.imwrite("hue2.png",mescRef);
-                                        Core.addWeighted(referencia.firstElement().getImagem(),1.0,mescRef , 0.3, 0.0, dst);
-                                        dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
-
-                                        //dst = new Mat();
-                                        referencia.firstElement().setX(referencia.firstElement().getX() + referencia.firstElement().getWidth());
-                                        //Mat mescRef2 = cenario.submat(new Rect(new Point(referencia.getX(), referencia.getY()),new Point(referencia.getX() + referencia.getWidth(), referencia.getY() + referencia.getHeight())));
-                                        //Core.addWeighted(referencia.getImagem(), 1.0, mescRef2, 0.3, 0.0, dst);
-                                        //dst.copyTo(cenario.colRange(referencia.getX(),referencia.getX() + referencia.getWidth()).rowRange(referencia.getY(),referencia.getY() + referencia.getHeight()));
+                                        Mat mescRef = cenario.submat(new Rect(new Point(vreferencia.firstElement().getX(), vreferencia.firstElement().getY()),new Point(vreferencia.firstElement().getX() + vreferencia.firstElement().getWidth(), vreferencia.firstElement().getY() + vreferencia.firstElement().getHeight())));
+                                        Core.addWeighted(vreferencia.firstElement().getImagem(),1.0,mescRef , 0.3, 0.0, dst);
+                                        dst.copyTo(cenario.colRange(vreferencia.firstElement().getX(),vreferencia.firstElement().getX() + vreferencia.firstElement().getWidth()).rowRange(vreferencia.firstElement().getY(),vreferencia.firstElement().getY() + vreferencia.firstElement().getHeight()));
+                                        vreferencia.firstElement().setX(vreferencia.firstElement().getX() + vreferencia.firstElement().getWidth());
                                     }
-                                    ////System.out.println("mostrando referencias");
                                 }
 
-//System.out.println("782");
-                                
-                                referencia.firstElement().printReferencia();
+                                vreferencia.firstElement().printReferencia();
 
                                 if (jogando){ // jogando é um bool que indica que o usuário está tocando os objetos e por isso devem aparecer os acertos no lugar das referências
                                     for (int i = 0;i<numAcertosNaRodada;i++){
                                             dst = new Mat();
                                             ////System.out.println("\n1\n" + i);
-                                            Mat mescRef = cenario.submat(new Rect(new Point(referencia.get(i).getX(), referencia.get(i).getY()),new Point(referencia.get(i).getX() + referencia.get(i).getWidth(), referencia.get(i).getY() + referencia.get(i).getHeight())));
-                                            Core.addWeighted(referencia.firstElement().getImagem(),1.0,mescRef,0.3,0.0, dst);
-                                            dst.copyTo(cenario.colRange(referencia.get(i).getX(),referencia.get(i).getX() + referencia.get(i).getWidth()).rowRange(referencia.get(i).getY(),referencia.get(i).getY() + referencia.get(i).getHeight()));
-                                            referencia.get(i+1).setX(referencia.get(i).getX() + referencia.get(i).getWidth());  
+                                            Mat mescRef = cenario.submat(new Rect(new Point(vreferencia.get(i).getX(), vreferencia.get(i).getY()),new Point(vreferencia.get(i).getX() + vreferencia.get(i).getWidth(), vreferencia.get(i).getY() + vreferencia.get(i).getHeight())));
+                                            Core.addWeighted(vreferencia.firstElement().getImagem(),1.0,mescRef,0.3,0.0, dst);
+                                            dst.copyTo(cenario.colRange(vreferencia.get(i).getX(),vreferencia.get(i).getX() + vreferencia.get(i).getWidth()).rowRange(vreferencia.get(i).getY(),vreferencia.get(i).getY() + vreferencia.get(i).getHeight()));
+                                            vreferencia.get(i+1).setX(vreferencia.get(i).getX() + vreferencia.get(i).getWidth());  
                                     }
                                     if (!mostrarEstrelas){ //talvez tirar esse if
                                         for (int i=numAcertosNaRodada; i<partida.getNivel().getQIO(); i++){
                                             Imgproc.resize(sombraObjetivo, sombraObjetivo, new Size(50.0, 50.0));
                                             dst = new Mat();
-                                            Mat roiSombraObjetivo = cenario.submat(new Rect(new Point(referencia.firstElement().getX(), referencia.firstElement().getY()),new Point(referencia.firstElement().getX() + referencia.firstElement().getWidth(), referencia.firstElement().getY() + referencia.firstElement().getHeight())));
+                                            Mat roiSombraObjetivo = cenario.submat(new Rect(new Point(vreferencia.firstElement().getX(), vreferencia.firstElement().getY()),new Point(vreferencia.firstElement().getX() + vreferencia.firstElement().getWidth(), vreferencia.firstElement().getY() + vreferencia.firstElement().getHeight())));
                                             Core.addWeighted(roiSombraObjetivo,0.0,sombraObjetivo,1.0,0.0,dst);
-                                            dst.copyTo(cenario.colRange(referencia.firstElement().getX(),referencia.firstElement().getX() + referencia.firstElement().getWidth()).rowRange(referencia.firstElement().getY(),referencia.firstElement().getY() + referencia.firstElement().getHeight()));
-                                            referencia.firstElement().setX(referencia.firstElement().getX() + referencia.firstElement().getWidth());
+                                            dst.copyTo(cenario.colRange(vreferencia.firstElement().getX(),vreferencia.firstElement().getX() + vreferencia.firstElement().getWidth()).rowRange(vreferencia.firstElement().getY(),vreferencia.firstElement().getY() + vreferencia.firstElement().getHeight()));
+                                            vreferencia.firstElement().setX(vreferencia.firstElement().getX() + vreferencia.firstElement().getWidth());
                                         } 
                                     }
                                 }
 
                                 if (Move4Math.indiceJogoAtual == 0){
-                                    referencia.firstElement().setX(195);
+                                    vreferencia.firstElement().setX(195);
                                     /*
                                     if (partida.getNivel().getQIS() == 5){
-                                        referencia.firstElement().setX(195);
+                                        vreferencia.firstElement().setX(195);
                                     }else if(partida.getNivel().getQIS() == 4){
-                                        referencia.firstElement().setX(220);
+                                        vreferencia.firstElement().setX(220);
                                     }else if (partida.getNivel().getQIS() == 3){
-                                        referencia.firstElement().setX(245);
+                                        vreferencia.firstElement().setX(245);
                                     }
                                     */
                                 }else{
                                     if (Move4Math.indiceJogoAtual == 1 || Move4Math.indiceJogoAtual == 2){
-                                        referencia.firstElement().setX(250);
-                                        for (int i = 1; i < referencia.size(); i++) {
-                                            referencia.elementAt(i).setX(referencia.elementAt(i-1).getX() + referencia.elementAt(i-1).getWidth());                                            
+                                        vreferencia.firstElement().setX(250);
+                                        for (int i = 1; i < vreferencia.size(); i++) {
+                                            vreferencia.elementAt(i).setX(vreferencia.elementAt(i-1).getX() + vreferencia.elementAt(i-1).getWidth());                                            
                                         }
                                     }else{
-                                        referencia.firstElement().setX(280);
+                                        vreferencia.firstElement().setX(280);
                                     }
                                 }
                             }
@@ -982,7 +957,7 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                                         //Linha
                                         rodada.setLinhaNivel(partida.getNivel().getNumeroLinha());
                                         //Imagem Objetivo
-                                        rodada.setImgRef(referencia.firstElement().getRefImgStr());
+                                        rodada.setImgRef(vreferencia.firstElement().getRefImgStr());
                                         //Imagem Tocada
                                         rodada.setImgTocada("Nao tocou");
                                         //Tempo de toque
@@ -1498,7 +1473,7 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                     rodada.setIdSessao(partida.getPlayer().getSessoes().lastElement().getId());
                     rodada.setNivel(partida.getNivel().getNumero());
                     rodada.setLinhaNivel(partida.getNivel().getNumeroLinha());
-                    rodada.setImgRef(referencia.firstElement().getRefImgStr());
+                    rodada.setImgRef(vreferencia.firstElement().getRefImgStr());
                     rodada.setImgTocada(grade.getRegioes().elementAt(i).getImg().getDescricao());
                     rodada.setTempoToque(tempoToque);
 
@@ -1508,18 +1483,18 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                     int idref=0;
                     switch(partida.getNivel().getOTI()){
                         case 1:
-                            idref = referencia.elementAt(numAcertosNaRodada).getId();
+                            idref = vreferencia.elementAt(numAcertosNaRodada).getId();
                             break;
                         case 2:
                             switch(numAcertosNaRodada){
                                 case 0:
-                                    idref = referencia.elementAt(2).getId();
+                                    idref = vreferencia.elementAt(2).getId();
                                     break;
                                 case 1:
-                                    idref = referencia.elementAt(1).getId();
+                                    idref = vreferencia.elementAt(1).getId();
                                     break;
                                 case 2:
-                                    idref = referencia.elementAt(0).getId();
+                                    idref = vreferencia.elementAt(0).getId();
                                     break;
                                 default:
                                     
@@ -1530,7 +1505,7 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                     }
                     
                     //System.out.println("idref: " + idref);
-                    //System.out.println("getId: " + referencia.elementAt(numAcertosNaRodada).getId());
+                    //System.out.println("getId: " + vreferencia.elementAt(numAcertosNaRodada).getId());
                     
                     if(grade.getRegioes().elementAt(i).getImg().getId() == idref){
                         //Acho que é assim que separa os pontos...
@@ -1636,18 +1611,17 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                         //System.out.println("vidas : " + partida.getPlayer().getVidas());
                         //Se zerou as vidas, Game_Ordenacao Over
                         if(partida.getPlayer().getVidas()<=0){
-                            ////System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER\n");
+                            System.out.println("vidas : " + player.getVidas());
+                            ImageIcon icon = new ImageIcon("Resources/images/GameOver.png");
                             String[] options = {"Sair", "Resetar vidas"};
-                            int fin = JOptionPane.showOptionDialog(null, "Game Over!","Click a button",
-                                JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
-                            ////System.out.println(fin + " " + player.getPublico());
-                            if(fin==1){
-                                if ("Crianca".equals(player.getPublico())){
-                                    player.setVidas(3);
-                                }else{
-                                    player.setVidas(5);
-                                }
+                            int fin = JOptionPane.showOptionDialog(null, "","Game Over!",
+                                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+                            if ("Crianca".equals(player.getPublico())){
+                                player.setVidas(3);
                             }else{
+                                player.setVidas(5);
+                            }
+                            if(fin==0){
                                 KeyEvent e = new KeyEvent(rootPane, fin, fin, ICONIFIED, ERROR);
                                 fimDeJogo = true;
                                 formKeyPressed(e);
@@ -1698,10 +1672,10 @@ public class Game_Ordenacao extends javax.swing.JFrame {
             
             Vector<Imagem> aux;
             
-            if(isReferencia){                                      //se a referencia ainda sera gerada
+            if(isReferencia){                                      //se a vreferencia ainda sera gerada
                 partida.atualizaFilaElementos(partida.getFilaElementosReferencia().firstElement().getGrupo());
-            }else{                                                   //a referencia já foi gerada e removida do vetor
-                partida.atualizaFilaElementos(referencia.firstElement().getGrupo());
+            }else{                                                   //a vreferencia já foi gerada e removida do vetor
+                partida.atualizaFilaElementos(vreferencia.firstElement().getGrupo());
             }
             int GRADE_MAX = 6;
             switch (grade.getTamanhoGrade()) {
@@ -1740,42 +1714,42 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                     break;
             }
 
-            if(isReferencia){ //seta a referencia que vai aparecer no topo da tela  aqui
+            if(isReferencia){ //seta a Referencia que vai aparecer no topo da tela  aqui
                 for (int i = 0; i < partida.getFilaElementosReferencia().size(); i++) {
                     ////System.out.println("partida.getFilaElementosReferencia(" + i + "): " + partida.getFilaElementosReferencia().get(i).getId() + " " + partida.getFilaElementosReferencia().get(i).getDescricao());
                     Imagem imgRefTemp = new Imagem(partida.getFilaElementosReferencia().elementAt(i));
                     //System.out.println("imgRefTemp.getDescricao(): " + imgRefTemp.getDescricao());
-                    referencia.elementAt(i).setWidth(partida.getNivel().getTIO());
-                    referencia.elementAt(i).setHeight(partida.getNivel().getTIO());
+                    vreferencia.elementAt(i).setWidth(partida.getNivel().getTIO());
+                    vreferencia.elementAt(i).setHeight(partida.getNivel().getTIO());
                     
                     switch(Move4Math.indiceJogoAtual){
                         case 0:
                             if(i==0)
-                                referencia.firstElement().setX(195);
+                                vreferencia.firstElement().setX(195);
                             else
-                                referencia.elementAt(i).setX(referencia.elementAt(i-1).getX() + referencia.elementAt(i-1).getWidth());
+                                vreferencia.elementAt(i).setX(vreferencia.elementAt(i-1).getX() + vreferencia.elementAt(i-1).getWidth());
                             break;
                         case 1:
                         case 2:
                             if(i==0)
-                                referencia.firstElement().setX(250);
+                                vreferencia.firstElement().setX(250);
                             else
-                                referencia.elementAt(i).setX(referencia.elementAt(i-1).getX() + referencia.elementAt(i-1).getWidth());
+                                vreferencia.elementAt(i).setX(vreferencia.elementAt(i-1).getX() + vreferencia.elementAt(i-1).getWidth());
                             break;
                         default :
                             if(i==0)
-                                referencia.firstElement().setX(280);
+                                vreferencia.firstElement().setX(280);
                             else
-                                referencia.elementAt(i).setX(referencia.elementAt(i-1).getX() + referencia.elementAt(i-1).getWidth());
+                                vreferencia.elementAt(i).setX(vreferencia.elementAt(i-1).getX() + vreferencia.elementAt(i-1).getWidth());
                             break;
                     }
 
-                    referencia.elementAt(i).setY(10);
+                    vreferencia.elementAt(i).setY(10);
                     Mat tempRef = new Mat();
                     tempRef = imgRefTemp.getImg();
                     Imgproc.resize(tempRef,tempRef,new Size(partida.getNivel().getTIO(), partida.getNivel().getTIO()));
-                    referencia.elementAt(i).setImagem(tempRef);
-                    referencia.elementAt(i).setId(imgRefTemp.getId());
+                    vreferencia.elementAt(i).setImagem(tempRef);
+                    vreferencia.elementAt(i).setId(imgRefTemp.getId());
 
                     if (idTemp != imgRefTemp.getId()){
                         if((partida.getNivel().getNumeroLinha() - 1) != (int) jogadasDoNivel.get(0)){
@@ -1787,9 +1761,9 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                     }
                     descRef = imgRefTemp.getDescricao();
                     //coloca as descricoes
-                    referencia.elementAt(i).setRefImgStr(imgRefTemp.getDescricao());
-                    referencia.elementAt(i).setSom(imgRefTemp.getSom());
-                    referencia.elementAt(i).setGrupo(imgRefTemp.getGrupo());
+                    vreferencia.elementAt(i).setRefImgStr(imgRefTemp.getDescricao());
+                    vreferencia.elementAt(i).setSom(imgRefTemp.getSom());
+                    vreferencia.elementAt(i).setGrupo(imgRefTemp.getGrupo());
                 }
             }
             // Primeiro deixamos todas as regiões como "livres"
@@ -1805,11 +1779,11 @@ public class Game_Ordenacao extends javax.swing.JFrame {
             //System.out.println("numSimbolosParaGerar " + numSimbolosParaGerar);
                             
             for(int i=0; i<numSimbolosParaGerar;i++){
-                if(isReferencia && controle){ //seta a imagem equivalente à referencia em uma das posições da grade
+                if(isReferencia && controle){ //seta a imagem equivalente à Referencia em uma das posições da grade
                     //nunca ta entrando aqui porque fiz controle = false (ou seja, agora pode deixar filaElementosReferencia com apenas um elemento)
                     Imagem imgRefTemp = null;
                     for(int j=0;j<partida.getFilaElementosReferencia().size();j++){
-                        if(partida.getFilaElementosReferencia().elementAt(j).getGrupo() == referencia.firstElement().getGrupo()){
+                        if(partida.getFilaElementosReferencia().elementAt(j).getGrupo() == vreferencia.firstElement().getGrupo()){
                             imgRefTemp = new Imagem(partida.getFilaElementosReferencia().elementAt(j));
                             //System.out.println("imgRefTemp " + imgRefTemp.getDescricao());
                             //System.out.println("gerarImagens2 " + j);
@@ -1870,11 +1844,11 @@ public class Game_Ordenacao extends javax.swing.JFrame {
                 }    
             }
             
-            //emite o som de referencia
+            //emite o som de Referencia
             if(emitirSom){
                 if((partida.getFase().getEST()==2)||(partida.getFase().getEST()==0)){
-                    ////System.out.println(referencia.firstElement().getSom().getSom());
-                    File yourFile = new File(referencia.firstElement().getSom().getSom());
+                    ////System.out.println(vreferencia.firstElement().getSom().getSom());
+                    File yourFile = new File(vreferencia.firstElement().getSom().getSom());
                     AudioInputStream stream;
                     AudioFormat format;
                     DataLine.Info info;

@@ -1,0 +1,71 @@
+# Sessao;Data de Uso;Hora Inicio;Jogo;Fase;Nivel;Linha Escolhida;Imagem Objetivo;Imagem Tocada;Tempo de Toque;Acao;Pontos Motor;Pontos Cognitivo
+1;17/10/2018;17:50:49;Classificacao;1;1;3;GeometricosPB-Triangulo-Grande-BordaFina-Preto;GeometricosPB-Triangulo-Grande-BordaFina-Preto;4;Acertou;1;5
+1;17/10/2018;17:50:54;Classificacao;1;1;3;GeometricosPB-Triangulo-Grande-BordaFina-Preto;GeometricosPB-Triangulo-Grande-BordaFina-Preto;1;Acertou;4;5
+1;17/10/2018;17:50:59;Classificacao;1;1;3;GeometricosPB-Triangulo-Grande-BordaFina-Preto;GeometricosPB-Triangulo-Grande-BordaFina-Preto;1;Acertou;4;5
+1;17/10/2018;17:51:11;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;3;Errou;2;0
+1;17/10/2018;17:51:15;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;0;Errou;5;0
+1;17/10/2018;17:51:25;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+1;17/10/2018;17:51:31;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;2;Acertou;3;5
+2;17/10/2018;17:51:49;Ordenacao;1;1;51;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
+2;17/10/2018;17:51:53;Ordenacao;1;1;51;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;GeometricosPB-Triangulo-Medio-BordaFina-Preto;2;Acertou;3;5
+2;17/10/2018;17:51:57;Ordenacao;1;1;51;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;GeometricosPB-Triangulo-Grande-BordaFina-Preto;2;Acertou;3;5
+2;17/10/2018;17:52:04;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
+2;17/10/2018;17:52:07;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;1;Errou;4;0
+2;17/10/2018;17:52:11;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;2;Errou;3;0
+2;17/10/2018;17:52:16;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;3;Errou;2;0
+2;17/10/2018;17:52:20;Ordenacao;1;1;49;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Medio-BordaFina-Preto;2;Acertou;3;5
+3;17/10/2018;19:31:08;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+3;17/10/2018;19:31:13;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;1;Errou;4;0
+3;17/10/2018;19:31:15;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;1;Errou;4;0
+3;17/10/2018;19:31:24;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+3;17/10/2018;19:31:32;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;6;Acertou;1;5
+3;17/10/2018;19:31:37;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;3;Errou;2;0
+3;17/10/2018;19:31:42;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;3;Errou;2;0
+3;17/10/2018;19:31:48;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;4;Errou;1;0
+3;17/10/2018;19:31:52;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;1;Errou;4;0
+3;17/10/2018;19:31:59;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Medio-BordaFina-Preto;6;Acertou;1;5
+3;17/10/2018;19:32:08;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;6;Errou;1;0
+3;17/10/2018;19:32:12;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;3;Acertou;2;5
+4;17/10/2018;19:32:38;Classificacao;1;1;3;GeometricosPB-Triangulo-Grande-BordaFina-Preto;GeometricosPB-Triangulo-Grande-BordaFina-Preto;4;Acertou;1;5
+4;17/10/2018;19:32:45;Classificacao;1;1;3;GeometricosPB-Triangulo-Grande-BordaFina-Preto;GeometricosPB-Triangulo-Grande-BordaFina-Preto;2;Acertou;3;5
+4;17/10/2018;19:32:51;Classificacao;1;1;3;GeometricosPB-Triangulo-Grande-BordaFina-Preto;GeometricosPB-Triangulo-Grande-BordaFina-Preto;2;Acertou;3;5
+4;17/10/2018;19:33:13;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;GeometricosPB-Quadrado-Grande-BordaFina-Preto;3;Errou;2;0
+4;17/10/2018;19:33:19;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;2;Acertou;3;5
+4;17/10/2018;19:33:24;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;GeometricosPB-Triangulo-Grande-BordaFina-Preto;1;Errou;4;0
+4;17/10/2018;19:33:30;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;2;Acertou;3;5
+4;17/10/2018;19:33:36;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;2;Acertou;3;5
+4;17/10/2018;19:33:51;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;6;Acertou;1;5
+4;17/10/2018;19:33:58;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;4;Acertou;1;5
+4;17/10/2018;19:34:04;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;1;Acertou;4;5
+5;17/10/2018;19:34:54;Classificacao;1;11;42;GeometricosPB-Quadrado-Medio-BordaGrossa-Preto;GeometricosPB-Retangulo-Medio-BordaGrossa-Preto;2;Errou;3;0
+5;17/10/2018;19:35:00;Classificacao;1;11;42;GeometricosPB-Quadrado-Medio-BordaGrossa-Preto;GeometricosPB-Retangulo-Medio-BordaGrossa-Preto;3;Errou;2;0
+5;17/10/2018;19:35:07;Classificacao;1;11;42;GeometricosPB-Quadrado-Medio-BordaGrossa-Preto;GeometricosPB-Quadrado-Medio-BordaGrossa-Preto;3;Acertou;2;5
+5;17/10/2018;19:35:14;Classificacao;1;11;42;GeometricosPB-Quadrado-Medio-BordaGrossa-Preto;GeometricosPB-Quadrado-Medio-BordaFina-Preto;2;Errou;3;0
+5;17/10/2018;19:35:23;Classificacao;1;11;42;GeometricosPB-Quadrado-Medio-BordaGrossa-Preto;GeometricosPB-Quadrado-Medio-BordaFina-Preto;5;Errou;1;0
+5;17/10/2018;19:35:34;Classificacao;1;11;42;GeometricosPB-Quadrado-Medio-BordaGrossa-Preto;Nao tocou;7;Omitiu;0;0
+5;17/10/2018;19:35:44;Classificacao;1;11;42;GeometricosPB-Quadrado-Medio-BordaGrossa-Preto;Nao tocou;7;Omitiu;0;0
+5;17/10/2018;19:35:54;Classificacao;1;11;42;GeometricosPB-Quadrado-Medio-BordaGrossa-Preto;Nao tocou;7;Omitiu;0;0
+5;17/10/2018;19:36:04;Classificacao;1;11;42;GeometricosPB-Quadrado-Medio-BordaGrossa-Preto;Nao tocou;7;Omitiu;0;0
+6;17/10/2018;19:36:31;Classificacao;2;11;42;GeometricosCL-Quadrado-Medio-BordaGrossa-Vermelho;Nao tocou;7;Omitiu;0;0
+6;17/10/2018;19:36:39;Classificacao;2;11;42;GeometricosCL-Quadrado-Medio-BordaGrossa-Vermelho;GeometricosCL-Quadrado-Medio-BordaGrossa-Vermelho;1;Acertou;4;5
+6;17/10/2018;19:36:46;Classificacao;2;11;42;GeometricosCL-Quadrado-Medio-BordaGrossa-Vermelho;GeometricosCL-Quadrado-Medio-BordaGrossa-Vermelho;3;Acertou;2;5
+6;17/10/2018;19:36:52;Classificacao;2;11;42;GeometricosCL-Quadrado-Medio-BordaGrossa-Vermelho;GeometricosCL-Quadrado-Medio-BordaGrossa-Vermelho;2;Acertou;3;5
+6;17/10/2018;19:36:58;Classificacao;2;11;42;GeometricosCL-Quadrado-Medio-BordaGrossa-Vermelho;GeometricosCL-Quadrado-Medio-BordaGrossa-Vermelho;2;Acertou;3;5
+6;17/10/2018;19:37:10;Classificacao;2;11;42;GeometricosCL-Quadrado-Medio-BordaGrossa-Vermelho;Nao tocou;7;Omitiu;0;0
+7;28/11/2018;18:57:50;Classificacao;1;11;43;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;GeometricosPB-Triangulo-Medio-BordaFina-Preto;3;Errou;2;0
+7;28/11/2018;18:57:55;Classificacao;1;11;43;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;1;Acertou;4;5
+7;28/11/2018;18:58:00;Classificacao;1;11;43;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;1;Acertou;4;5
+7;28/11/2018;18:58:05;Classificacao;1;11;43;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;1;Acertou;4;5
+7;28/11/2018;18:58:11;Classificacao;1;11;43;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;1;Acertou;4;5
+7;28/11/2018;18:58:26;Classificacao;1;11;41;GeometricosPB-Circulo-Medio-BordaGrossa-Preto;Nao tocou;7;Omitiu;0;0
+7;28/11/2018;18:58:33;Classificacao;1;11;41;GeometricosPB-Circulo-Medio-BordaGrossa-Preto;GeometricosPB-Quadrado-Medio-BordaGrossa-Preto;0;Errou;5;0
+7;28/11/2018;18:58:39;Classificacao;1;11;41;GeometricosPB-Circulo-Medio-BordaGrossa-Preto;GeometricosPB-Circulo-Medio-BordaGrossa-Preto;2;Acertou;3;5
+7;28/11/2018;18:58:46;Classificacao;1;11;41;GeometricosPB-Circulo-Medio-BordaGrossa-Preto;GeometricosPB-Retangulo-Medio-BordaGrossa-Preto;3;Errou;2;0
+7;28/11/2018;18:58:51;Classificacao;1;11;41;GeometricosPB-Circulo-Medio-BordaGrossa-Preto;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;1;Errou;4;0
+7;28/11/2018;18:58:57;Classificacao;1;11;41;GeometricosPB-Circulo-Medio-BordaGrossa-Preto;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;1;Errou;4;0
+7;28/11/2018;18:59:02;Classificacao;1;11;41;GeometricosPB-Circulo-Medio-BordaGrossa-Preto;GeometricosPB-Quadrado-Medio-BordaGrossa-Preto;1;Errou;4;0
+8;28/11/2018;19:00:29;Classificacao;1;11;43;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;GeometricosPB-Quadrado-Medio-BordaGrossa-Preto;1;Errou;4;0
+8;28/11/2018;19:00:35;Classificacao;1;11;43;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;GeometricosPB-Triangulo-Medio-BordaFina-Preto;2;Errou;3;0
+8;28/11/2018;19:00:43;Classificacao;1;11;43;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;GeometricosPB-Triangulo-Medio-BordaPreenchida-Preto;3;Errou;2;0
+8;28/11/2018;19:00:49;Classificacao;1;11;43;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;GeometricosPB-Circulo-Medio-BordaGrossa-Preto;2;Errou;3;0
+8;28/11/2018;19:00:55;Classificacao;1;11;43;GeometricosPB-Triangulo-Medio-BordaGrossa-Preto;GeometricosPB-Circulo-Medio-BordaGrossa-Preto;1;Errou;4;0
