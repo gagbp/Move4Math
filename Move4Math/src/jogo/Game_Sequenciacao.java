@@ -340,9 +340,6 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
             partida.setNivel(publico.getNiveis().elementAt(o)); // é setado o "nivel" pelo JOGADASDONIVEL na primeira posição. O avanço depois é dado pela transiçãoDeLinha
 
             partida.setPlayer(player); //acho que não precisa, pois podemos alterar o player que foi passado por parametro na funcao
-            //int CIT2 = partida.getJogo().getCIT();
-            //int CIT = publico.getFases().elementAt(indexFase - 1).getCIT();
-//            System.out.println("AQUI: " + partida.getJogo().getNome() + " " + partida.getPublico().getNome() + " " + partida.getFase().getNumeroFase()+" "+partida.getNivel().getNumero());
 
             partida.imagensDaCena(move4math.Move4Math.indiceFaseAtual,partida.getNivel());
 
@@ -1315,9 +1312,6 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
 
             atualizaVidas();
             NST = partida.getNivel().getQIO();
-//            if(true){
-//                avançaNivel(partida);
-//            }
 
             tempoExposicao = partida.getNivel().getTEI();
             numRodadasGeradas = 0;
