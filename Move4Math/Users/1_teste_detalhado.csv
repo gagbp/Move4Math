@@ -79,3 +79,14 @@
 10;12/09/2018;19:26:05;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Medio-BordaFina-Preto;1;Acertou;4;5
 10;12/09/2018;19:26:08;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;1;Acertou;4;5
 11;24/10/2018;21:10:51;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;1;Errou;4;0
+12;07/03/2019;19:29:03;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Quadrado-Grande-BordaFina-Preto;1;Errou;4;0
+12;07/03/2019;19:29:11;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;4;Acertou;1;5
+12;07/03/2019;19:29:16;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;2;Acertou;3;5
+12;07/03/2019;19:29:22;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;1;Acertou;4;5
+13;07/03/2019;19:30:00;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Medio-BordaFina-Preto;4;Errou;1;0
+13;07/03/2019;19:30:04;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
+13;07/03/2019;19:30:08;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Medio-BordaFina-Preto;1;Acertou;4;5
+13;07/03/2019;19:30:12;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;3;Acertou;2;5
+13;07/03/2019;19:30:20;Ordenacao;1;1;4;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;2;Errou;3;0
+13;07/03/2019;19:30:24;Ordenacao;1;1;4;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
+13;07/03/2019;19:30:30;Ordenacao;1;1;4;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;4;Errou;1;0
