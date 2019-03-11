@@ -192,13 +192,7 @@ public class Partida implements Cloneable{
                     }//verificar se o id pertence ao idsDoICC e, se sim, adicionar na filaElementos
                 }
             }
-            
-//            System.out.println("\fila elementossssssssss");
-//            for (int i=0; i<filaElementos.size(); i++) {
-//                System.out.println(" " + filaElementos.get(i).getId());
-//            }
         } else {
-        
             switch (move4math.Move4Math.indiceFaseAtual) {
                 case 1:
                     for(int i=0;i<imagens.size();i++){

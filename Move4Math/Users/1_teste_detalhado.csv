@@ -90,3 +90,11 @@
 13;07/03/2019;19:30:20;Ordenacao;1;1;4;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;2;Errou;3;0
 13;07/03/2019;19:30:24;Ordenacao;1;1;4;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
 13;07/03/2019;19:30:30;Ordenacao;1;1;4;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;4;Errou;1;0
+14;11/03/2019;12:52:02;Classificacao;1;1;2;GeometricosPB-Quadrado-Grande-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+14;11/03/2019;12:52:17;Classificacao;1;1;2;GeometricosPB-Quadrado-Grande-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+15;11/03/2019;12:52:46;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;5;Errou;1;0
+15;11/03/2019;12:52:54;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
+15;11/03/2019;12:53:00;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;3;Errou;2;0
+15;11/03/2019;12:53:04;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;2;Acertou;3;5
+15;11/03/2019;12:53:11;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Medio-BordaFina-Preto;5;Acertou;1;5
+15;11/03/2019;12:53:20;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;Nao tocou;7;Omitiu;0;0
