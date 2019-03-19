@@ -26,7 +26,7 @@ import move4math.MainWindow;
  * @author Mayco, Matheus, Henrique
  */
 public class ParserPublics {
-    public static int linhaAtual = 0;
+    public static int linhaAtual;
     static boolean jaContouAsLinhas = false;
     public static Vector<Publico> loadPublicos(String jogos) throws IOException{
         
@@ -45,7 +45,7 @@ public class ParserPublics {
             aux.setNome(diretorios[i].getName());
             
             String arquivo = diretorios[i].getPath();
-            System.out.println("arquivo: " + arquivo);
+            System.out.println(arquivo);
             aux.setConfiguracoes(parserParametros(arquivo));
             aux.setFases(parserFases(arquivo,aux.getConfiguracoes()));
             aux.setNiveis(parserNiveis(arquivo,aux.getConfiguracoes()));
@@ -193,13 +193,11 @@ public class ParserPublics {
             //QIO
             if("1".equals(vet1.elementAt(5))){
                 aux.setQIO(1);
-            } else if("2".equals(vet1.elementAt(5))){
-                aux.setQIO(2);
-            } else if("3".equals(vet1.elementAt(5))){
+            }else if("3".equals(vet1.elementAt(5))){
                 aux.setQIO(3);
-            } else if("4".equals(vet1.elementAt(5))){
+            }else if("4".equals(vet1.elementAt(5))){
                 aux.setQIO(4);
-            } else if("5".equals(vet1.elementAt(5))){
+            }else if("5".equals(vet1.elementAt(5))){
                 aux.setQIO(5);
             }
             
@@ -234,14 +232,8 @@ public class ParserPublics {
             //terceiroICC
             aux.setTerceiroICC(vet1.elementAt(10));
             
-            if (vet1.size() > 11) {
-                aux.setSequenciacaoICC(vet1.elementAt(11));
-            }
-            
             nivel.add(aux);
         }
-        
-        linhaAtual = 0;
         
 //        for(String[] row : vet2){
 //            aux = new Nivel();
