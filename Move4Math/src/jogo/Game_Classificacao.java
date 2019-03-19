@@ -1412,6 +1412,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                 default:
                     //System.out.println("Indice Inválido !!!");
             }
+<<<<<<< HEAD
             //setar a vida menos 1;
             //partida.getPlayer().setVidas(partida.getPlayer().getVidas() -1 );
             //System.out.println("vidas : " + player.getVidas());
@@ -1433,6 +1434,8 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     formKeyPressed(e);
                 }
             }
+=======
+>>>>>>> parent of 407fb79... game over 09/11
         }
         
         int checarColisao(Mat cenario,Mat cenarioAnterior, Grade grade,Partida partida) throws UnsupportedAudioFileException, IOException, LineUnavailableException, AWTException{
@@ -1593,6 +1596,23 @@ public class Game_Classificacao extends javax.swing.JFrame {
                             clip = (Clip) AudioSystem.getLine(info);
                             clip.open(stream);
                             clip.start();
+                        }
+
+                        //setar a vida menos 1;
+                        //partida.getPlayer().setVidas(partida.getPlayer().getVidas() -1 );
+                        System.out.println("vidas : " + partida.getPlayer().getVidas());
+                        //Se zerou as vidas, Game Over
+                        if(partida.getPlayer().getVidas()<=0){
+                            gameOver = true;
+                            int goverW = (int)(grade.getScreenWidth())/2;
+                            int goverH = (int)(grade.getScreenHeight())/2;
+                            int goverX = (int)(grade.getScreenWidth() - goverW)/2;
+                            int goverY = (int)(grade.getScreenHeight() - goverH)/2;
+                            System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER\n" + goverW + " " + goverH + " " + goverX + " " + goverY);
+                            GameOver();
+                            MainWindow.tecla = null;
+                            break; 
+                            
                         }
                     }
                     

@@ -82,6 +82,7 @@
 5;07/11/2018;17:37:17;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;1;Errou;4;0
 5;07/11/2018;17:37:23;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;1;Errou;4;0
 5;07/11/2018;17:37:28;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;1;Errou;4;0
+<<<<<<< HEAD
 5;09/11/2018;12:49:13;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;1;Acertou;4;5
 5;09/11/2018;12:49:18;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Triangulo-Grande-BordaFina-Preto;1;Errou;4;0
 5;09/11/2018;12:49:23;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;1;Errou;4;0
@@ -155,3 +156,5 @@
 15;29/11/2018;11:15:24;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;1;Errou;4;0
 15;29/11/2018;11:15:33;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;6;Errou;1;0
 15;29/11/2018;11:15:49;Ordenacao;1;1;2;GeometricosPB-Quadrado-Pequeno-BordaFina-Preto;GeometricosPB-Triangulo-Pequeno-BordaFina-Preto;1;Errou;4;0
+=======
+>>>>>>> parent of 407fb79... game over 09/11

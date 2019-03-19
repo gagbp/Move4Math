@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+<<<<<<< HEAD
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="13">
+=======
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="7">
+>>>>>>> parent of 407fb79... game over 09/11
         <file>
             <url>src/jogo/Game_Sequenciacao.java</url>
             <bookmark id="13">
@@ -11,9 +15,20 @@
         </file>
         <file>
             <url>src/jogo/Game_Classificacao.java</url>
+<<<<<<< HEAD
             <bookmark id="11">
                 <name/>
                 <line>1418</line>
+=======
+            <bookmark id="7">
+                <name/>
+                <line>1186</line>
+                <key/>
+            </bookmark>
+            <bookmark id="6">
+                <name/>
+                <line>1666</line>
+>>>>>>> parent of 407fb79... game over 09/11
                 <key/>
             </bookmark>
         </file>
