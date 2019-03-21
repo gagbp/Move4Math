@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="10">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="12">
+        <file>
+            <url>src/jogo/Game_Sequenciacao.java</url>
+            <bookmark id="12">
+                <name/>
+                <line>840</line>
+                <key/>
+            </bookmark>
+        </file>
         <file>
             <url>src/jogo/Game_Ordenacao.java</url>
             <bookmark id="3">
@@ -45,7 +53,8 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Gabriel%20Brunelli/Documents/GitHub/Move4Math/Move4Math/src/controle/Nivel.java</file>
+            <file>file:/C:/Users/Gabriel%20Brunelli/Documents/GitHub/Move4Math/Move4Math/src/jogo/Game_Sequenciacao.java</file>
+            <file>file:/C:/Users/Gabriel%20Brunelli/Documents/GitHub/Move4Math/Move4Math/src/move4math/MainWindow.java</file>
             <file>file:/C:/Users/Gabriel%20Brunelli/Documents/GitHub/Move4Math/Move4Math/src/jogo/Partida.java</file>
         </group>
     </open-files>

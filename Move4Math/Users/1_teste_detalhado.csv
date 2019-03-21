@@ -79,3 +79,11 @@
 10;12/09/2018;19:26:05;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Medio-BordaFina-Preto;1;Acertou;4;5
 10;12/09/2018;19:26:08;Ordenacao;1;1;52;GeometricosPB-Retangulo-Pequeno-BordaFina-Preto;GeometricosPB-Retangulo-Grande-BordaFina-Preto;1;Acertou;4;5
 11;24/10/2018;21:10:51;Classificacao;1;1;4;GeometricosPB-Retangulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;1;Errou;4;0
+12;21/03/2019;10:26:16;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Quadrado-Grande-BordaFina-Preto;3;Errou;2;0
+12;21/03/2019;10:26:25;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;5;Acertou;1;5
+12;21/03/2019;10:26:32;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;3;Acertou;2;5
+12;21/03/2019;10:26:37;Classificacao;1;1;1;GeometricosPB-Circulo-Grande-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;1;Acertou;4;5
+13;21/03/2019;10:26:52;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;3;Acertou;2;5
+13;21/03/2019;10:26:55;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Medio-BordaFina-Preto;1;Acertou;4;5
+13;21/03/2019;10:26:58;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Medio-BordaFina-Preto;1;Errou;4;0
+13;21/03/2019;10:27:01;Ordenacao;1;1;1;GeometricosPB-Circulo-Pequeno-BordaFina-Preto;GeometricosPB-Circulo-Grande-BordaFina-Preto;1;Acertou;4;5
