@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+<<<<<<< HEAD
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="12">
         <file>
             <url>src/jogo/Game_Sequenciacao.java</url>
@@ -9,44 +10,37 @@
                 <key/>
             </bookmark>
         </file>
+=======
+<<<<<<< HEAD
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="13">
+=======
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="7">
+>>>>>>> parent of 407fb79... game over 09/11
+>>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
         <file>
-            <url>src/jogo/Game_Ordenacao.java</url>
-            <bookmark id="3">
+            <url>src/jogo/Game_Sequenciacao.java</url>
+            <bookmark id="13">
                 <name/>
-                <line>67</line>
-                <key/>
-            </bookmark>
-            <bookmark id="5">
-                <name/>
-                <line>162</line>
-                <key/>
-            </bookmark>
-            <bookmark id="1">
-                <name/>
-                <line>714</line>
-                <key/>
-            </bookmark>
-            <bookmark id="4">
-                <name/>
-                <line>731</line>
-                <key/>
-            </bookmark>
-            <bookmark id="2">
-                <name/>
-                <line>739</line>
+                <line>775</line>
                 <key/>
             </bookmark>
         </file>
         <file>
             <url>src/jogo/Game_Classificacao.java</url>
-            <bookmark id="8">
+<<<<<<< HEAD
+            <bookmark id="11">
                 <name/>
-                <line>1192</line>
+                <line>1418</line>
+=======
+            <bookmark id="7">
+                <name/>
+                <line>1186</line>
                 <key/>
             </bookmark>
-            <bookmark id="10">
+            <bookmark id="6">
                 <name/>
-                <line>1512</line>
+                <line>1666</line>
+>>>>>>> parent of 407fb79... game over 09/11
                 <key/>
             </bookmark>
         </file>

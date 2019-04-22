@@ -13,6 +13,7 @@ import controle.Nivel;
 import controle.Publico;
 import java.awt.AWTException;
 import java.awt.Dimension;
+import static java.awt.Frame.ICONIFIED;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -20,6 +21,7 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import static java.awt.image.ImageObserver.ERROR;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -41,6 +43,10 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+<<<<<<< HEAD
+=======
+import javax.swing.ImageIcon;
+>>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
 import javax.swing.JOptionPane;
 import move4math.MainWindow;
 import move4math.Move4Math;
@@ -1006,7 +1012,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         }                    
 
                         //capturar teclas atalho
-                        if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE) || gameOver){//Fecha o jogo
+                        if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)){//Fecha o jogo
                             MainWindow.tecla = null;
                             break;
                         }
@@ -1142,6 +1148,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
             gamewindow.dispose();
 
         }//fim run
+<<<<<<< HEAD
 
         void GameOver(){
             VideoCapture webSource= new VideoCapture(0);
@@ -1192,6 +1199,8 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     }
                 }//fim while
         }
+=======
+>>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
         
         //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1459,11 +1468,13 @@ public class Game_Classificacao extends javax.swing.JFrame {
                 default:
                     //System.out.println("Indice Inválido !!!");
             }
+<<<<<<< HEAD
             //setar a vida menos 1;
             //partida.getPlayer().setVidas(partida.getPlayer().getVidas() -1 );
             //System.out.println("vidas : " + player.getVidas());
             //Se zerou as vidas, Game Over
             if(player.getVidas()<=0){
+<<<<<<< HEAD
                 gameOver = true;
                 //System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER\n");
                 String[] options = {"Sair", "Resetar vidas"};
@@ -1477,11 +1488,26 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         player.setVidas(5);
                     }
                 }else{
+=======
+                System.out.println("vidas : " + player.getVidas());
+                ImageIcon icon = new ImageIcon("Resources/images/GameOver.png");
+                String[] options = {"Sair", "Resetar vidas"};
+                int fin = JOptionPane.showOptionDialog(null, "","Game Over!",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+                if ("Crianca".equals(player.getPublico())){
+                    player.setVidas(3);
+                }else{
+                    player.setVidas(5);
+                }
+                if(fin==0){
+>>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
                     KeyEvent e = new KeyEvent(rootPane, fin, fin, ICONIFIED, ERROR);
                     fimDeJogo = true;
                     formKeyPressed(e);
                 }
             }
+=======
+>>>>>>> parent of 407fb79... game over 09/11
         }
         
         int checarColisao(Mat cenario,Mat cenarioAnterior, Grade grade,Partida partida) throws UnsupportedAudioFileException, IOException, LineUnavailableException, AWTException{
@@ -1642,6 +1668,23 @@ public class Game_Classificacao extends javax.swing.JFrame {
                             clip = (Clip) AudioSystem.getLine(info);
                             clip.open(stream);
                             clip.start();
+                        }
+
+                        //setar a vida menos 1;
+                        //partida.getPlayer().setVidas(partida.getPlayer().getVidas() -1 );
+                        System.out.println("vidas : " + partida.getPlayer().getVidas());
+                        //Se zerou as vidas, Game Over
+                        if(partida.getPlayer().getVidas()<=0){
+                            gameOver = true;
+                            int goverW = (int)(grade.getScreenWidth())/2;
+                            int goverH = (int)(grade.getScreenHeight())/2;
+                            int goverX = (int)(grade.getScreenWidth() - goverW)/2;
+                            int goverY = (int)(grade.getScreenHeight() - goverH)/2;
+                            System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER\n" + goverW + " " + goverH + " " + goverX + " " + goverY);
+                            GameOver();
+                            MainWindow.tecla = null;
+                            break; 
+                            
                         }
                     }
                     
