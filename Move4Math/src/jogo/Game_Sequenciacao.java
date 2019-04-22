@@ -41,10 +41,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-<<<<<<< HEAD
-=======
-import javax.swing.ImageIcon;
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
 import javax.swing.JOptionPane;
 import move4math.MainWindow;
 import move4math.Move4Math;
@@ -357,11 +353,7 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
             //publico.get
             int CIT = publico.getFases().elementAt(indexFase-1).getCIT();//gambiarra
             
-<<<<<<< HEAD
             System.out.println("\n opaaa " + player.getSexo());
-=======
-            System.out.println("player.getSexo: " + player.getSexo());
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
             
             if ("Masculino".equals(player.getSexo())) {
                 System.out.println("\n\nMasculino\n\n");
@@ -557,10 +549,7 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
                     minutos = cronometro.get(Calendar.MINUTE); //minutos começando de 00
 
                     // -+-+-+-+-+-+  mostra logoEsq e logoDir
-<<<<<<< HEAD
-=======
                     
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
                     /*dst = new Mat();
                     Mat roiLogoEsq = cenario.submat(new Rect(new Point(0, 0),new Point(25, 27)));
                     Core.addWeighted(roiLogoEsq,1.0,logoEsq,0.8,0.0,dst);
@@ -570,10 +559,7 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
                     Mat roiLogoDir = cenario.submat(new Rect(new Point(615, 0),new Point(640, 27)));
                     Core.addWeighted(roiLogoDir,1.0,logoDir,0.8,0.0,dst);
                     dst.copyTo(cenario.colRange(615,640).rowRange(0,27));
-<<<<<<< HEAD
-=======
 
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
                     */
                     //tentando acrescentar a imagem do coração
 
@@ -628,8 +614,6 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
                     // -+-+-+-+-+-+ mostra pontuação
                     partida.mostrarPontuacao(cenario);
 
-<<<<<<< HEAD
-=======
                     //Jogo de Ordenação
                     if (Move4Math.indiceJogoAtual == 1){
                         partida.mostraEscada(cenario);
@@ -653,7 +637,6 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
                                 " | tempoAux2 = " + minutosAux2 + ":" + segundosAux2);
                    // */
                         
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
                     if (irParaProximaLinha == false){
                         if ((60*minutos + segundos) - (60*minutosAux2 + segundosAux2) < 2){
                             //System.out.println("aguardando...");
@@ -767,16 +750,11 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
                                 default:
                                     break;
                             }
-<<<<<<< HEAD
-                            gerouImagens = true;
-                        }else{
-=======
 
                                 gerouImagens = true;
                             //}//fimteste
                         }else{
 
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
                             // -+-+-+-+-+-+ mostra imagem e/ou som de REFERENCIA
                             if( partida.getFase().getEST() != 0) {
                                 //mostra quantidade de imagens do objetivo
@@ -859,8 +837,6 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
                                         dst.copyTo(cenario.colRange(referencia3.getX(),referencia3.getX() + referencia3.getWidth()).rowRange(referencia3.getY(),referencia3.getY() + referencia3.getHeight()));
                                         referencia3.setX(referencia3.getX() + referencia3.getWidth());
                                     }
-<<<<<<< HEAD
-=======
 //                                    if (!mostrarEstrelas){ //talvez tirar esse if
 //                                        for (int i=numAcertosNaRodada; i<partida.getNivel().getQIO(); i++){
 //                                            Imgproc.resize(sombraObjetivo, sombraObjetivo, new Size(50.0, 50.0));
@@ -871,7 +847,6 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
 //                                            referencia.setX(referencia.getX() + referencia.getWidth());
 //                                        } 
 //                                    }
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
                                 }
 
                                 if (Move4Math.indiceJogoAtual == 0 || Move4Math.indiceJogoAtual == 2){
@@ -894,32 +869,19 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
 
 
                             //Só mostra os blobs se já se passou um tempo de referência
-<<<<<<< HEAD
-                            //if(Calendar.getInstance().getTimeInMillis()>(gerarRodada.getTimeInMillis()+tempoExposicaoReferencia)){
-                                //guarda o instante que os blobs sao mostrados na tela
-
-                            if ( ( (((60*minutos) + segundos) - ((60*minutosAux) + segundosAux)) > partida.getNivel().getTEO() && primeiroToque == true ) || ( (((60*minutos) + segundos) - ((60*minutosAux) + segundosAux)) > partida.getNivel().getTEO()/2 && primeiroToque == false ) ){
-                                //topoFeedback = Imgcodecs.imread("Resources/images/topoFeedback.png",1);
-                                System.out.println("1");
-=======
                   //          if(Calendar.getInstance().getTimeInMillis()>(gerarRodada.getTimeInMillis()+tempoExposicaoReferencia)){
                                 //guarda o instante que os blobs sao mostrados na tela
 
                                 if ( ( (((60*minutos) + segundos) - ((60*minutosAux) + segundosAux)) > partida.getNivel().getTEO() && primeiroToque == true ) || ( (((60*minutos) + segundos) - ((60*minutosAux) + segundosAux)) > partida.getNivel().getTEO()/2 && primeiroToque == false ) ){
 
                                 //topoFeedback = Imgcodecs.imread("Resources/images/topoFeedback.png",1);
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
                                 mostrarEstrelas = false;
                                 mostrarReferencias = false;
                                 jogando = true;
                                 if(gerouBlobs==false){
                                     mostrarBlobs = Calendar.getInstance();
                                     gerouBlobs=true;
-<<<<<<< HEAD
-                                }
-=======
                                 }       
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
 
                                 //mostra a barrinha de tempo
                                 //criando a barrinha de tempo que vai decrescendo
@@ -1673,7 +1635,6 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
                         //partida.getPlayer().setVidas(partida.getPlayer().getVidas() -1 );
                         //Se zerou as vidas, Game Over
                         if(partida.getPlayer().getVidas()<=0){
-<<<<<<< HEAD
                             //System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER\n");
                             String[] options = {"Sair", "Resetar vidas"};
                             int fin = JOptionPane.showOptionDialog(null, "Game Over!","Click a button",
@@ -1690,23 +1651,6 @@ public class Game_Sequenciacao extends javax.swing.JFrame {
                                 fimDeJogo = true;
                                 formKeyPressed(e);
                             } 
-=======
-                            System.out.println("vidas : " + player.getVidas());
-                            ImageIcon icon = new ImageIcon("Resources/images/GameOver.png");
-                            String[] options = {"Sair", "Resetar vidas"};
-                            int fin = JOptionPane.showOptionDialog(null, "","Game Over!",
-                                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
-                            if ("Crianca".equals(player.getPublico())){
-                                player.setVidas(3);
-                            }else{
-                                player.setVidas(5);
-                            }
-                            if(fin==0){
-                                KeyEvent e = new KeyEvent(rootPane, fin, fin, ICONIFIED, ERROR);
-                                fimDeJogo = true;
-                                formKeyPressed(e);
-                            }
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
                         }
                     }
                     

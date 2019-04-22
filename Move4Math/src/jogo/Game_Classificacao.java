@@ -13,7 +13,6 @@ import controle.Nivel;
 import controle.Publico;
 import java.awt.AWTException;
 import java.awt.Dimension;
-import static java.awt.Frame.ICONIFIED;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -21,7 +20,6 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import static java.awt.image.ImageObserver.ERROR;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -43,11 +41,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-<<<<<<< HEAD
-=======
-import javax.swing.ImageIcon;
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
-import javax.swing.JOptionPane;
 import move4math.MainWindow;
 import move4math.Move4Math;
 import org.opencv.core.Core;
@@ -222,7 +215,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
         
-        ////System.out.println("jogo.Game.formKeyPressed() " + fimDeJogo);
+        //System.out.println("jogo.Game.formKeyPressed() " + fimDeJogo);
         if(fimDeJogo){
             this.dispose();
         }
@@ -236,16 +229,16 @@ public class Game_Classificacao extends javax.swing.JFrame {
     public void Iniciar(Game_Classificacao gameWindow, Jogos jogo, Publico publico, Player player, Vector<ConjuntoImagem> conjuntosDeTrabalho,int indexFase, int indexNivel) throws IOException, InterruptedException{
         try{
             jPanel1.setSize(screenWidth, screenHeight);
-            ////System.out.println(gameWindow.getClass() + " \n" + jogo.getClass() + " \n" + player.getClass());
+            //System.out.println(gameWindow.getClass() + " \n" + jogo.getClass() + " \n" + player.getClass());
             
-            //System.out.println("01J: " + jogo.getNome() + " Pu: " + publico.getNome() + " Pl: " + player.getNome() + " CIT:" + conjuntosDeTrabalho.size() + " F:" + indexFase + " N:" + indexNivel);
+            System.out.println("01J: " + jogo.getNome() + " Pu: " + publico.getNome() + " Pl: " + player.getNome() + " CIT:" + conjuntosDeTrabalho.size() + " F:" + indexFase + " N:" + indexNivel);
             Thread t = new Thread(new WebcamFeed(gameWindow, jogo, publico,  player, conjuntosDeTrabalho, indexFase,  indexNivel));
             t.start();            
             //t.join();
             //gameWindow.dispose();
-            ////System.out.println("FOI!");
+            //System.out.println("FOI!");
         }catch (Exception e){
-            //System.out.println(e.getClass() + e.getMessage() + e.getStackTrace());
+            System.out.println(e.getClass() + e.getMessage() + e.getStackTrace());
        }
     }
 
@@ -288,14 +281,14 @@ public class Game_Classificacao extends javax.swing.JFrame {
         Calendar mostrarBlobs;  //guarda quando os blobs foram mostrados
         
         public WebcamFeed(Game_Classificacao gameWindowParametro, Jogos jogo, Publico publico, Player player, Vector<ConjuntoImagem> conjuntosDeTrabalho,int indexFase, int indexNivel){
-            //System.out.println("\n________________________________________");
-            //System.out.println("\nJogo: " + jogo.getNome() + "\nPublico: " + publico.getNome() + "\nPlayer: " + player.getNome() + "\nconjuntosDeTrabalho.size(): " + conjuntosDeTrabalho.size() + "\nFase: " + indexFase + "\nNivel: " + indexNivel);
-            //System.out.println("-------");
+            System.out.println("\n________________________________________");
+            System.out.println("\nJogo: " + jogo.getNome() + "\nPublico: " + publico.getNome() + "\nPlayer: " + player.getNome() + "\nconjuntosDeTrabalho.size(): " + conjuntosDeTrabalho.size() + "\nFase: " + indexFase + "\nNivel: " + indexNivel);
+            System.out.println("-------");
             int nivelParaSetar = 0;
             
             //aqui o vetor de níveis é percorrido setando-se corretamente os níveis
             for (int i = 0; i<publico.getNiveis().size(); i++){
-                ////System.out.println("i: " + i + " | i%4: " + i%4);
+                //System.out.println("i: " + i + " | i%4: " + i%4);
                 if (i%4 == 0){
                     nivelParaSetar++;
                 }
@@ -332,7 +325,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
             partida.setFase(publico.getFases().elementAt(indexFase-1)); //gambiarra
 
             jogadasDoNivel = partida.geraJogadasDoNivel(indexNivel);
-            //System.out.println("jogadas do nivel " + jogadasDoNivel.toString());
+            System.out.println("jogadas do nivel " + jogadasDoNivel.toString());
 
             linhaNivelSelecionado = partida.selecionaLinhaNivel(indexNivel);
 
@@ -343,7 +336,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
             partida.setPlayer(player); //acho que não precisa, pois podemos alterar o player que foi passado por parametro na funcao
             //int CIT2 = partida.getJogo().getCIT();
             //int CIT = publico.getFases().elementAt(indexFase - 1).getCIT();
-            //System.out.println("AQUI: " + partida.getJogo().getNome() + " " + partida.getPublico().getNome() + " " + partida.getFase().getNumeroFase()+" "+partida.getNivel().getNumero());
+            System.out.println("AQUI: " + partida.getJogo().getNome() + " " + partida.getPublico().getNome() + " " + partida.getFase().getNumeroFase()+" "+partida.getNivel().getNumero());
 
             partida.imagensDaCena(move4math.Move4Math.indiceFaseAtual,partida.getNivel());
 
@@ -357,7 +350,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
             //publico.get
             int CIT = publico.getFases().elementAt(indexFase-1).getCIT();//gambiarra
 
-            //System.out.println("CIT: " + CIT);
+            System.out.println("CIT: " + CIT);
 
             for(int i=0;i<conjuntosDeTrabalho.size();i++){
                 if(conjuntosDeTrabalho.elementAt(i).getId()==CIT){
@@ -367,7 +360,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                 }
             }
             //imagens do cenario
-            
+
             Mat degrade = Imgcodecs.imread("Resources/images/TES-degrade.png", 1);
             Mat barraBordas = Imgcodecs.imread("Resources/images/TES-vazio.png", 1);
             Mat ref_background = Imgcodecs.imread("Resources/images/ref-background.png", 1);
@@ -410,10 +403,10 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     jogo = "Ordenacao";
                     break;
                 case 2:
-                    jogo = "Sequenciacao";
+                    jogo = "Contagem";
                     break;
                 case 3:
-                    jogo = "Contagem";
+                    jogo = "AnterioProximo";
                     break;
                 default:
                     break;
@@ -488,14 +481,14 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     }
 
                     //teclas de atalho ESC, enter ou space pra começar
-                    ////System.out.println("Tecla inicial: " + MainWindow.tecla.getKeyCode());
+                    //System.out.println("Tecla inicial: " + MainWindow.tecla.getKeyCode());
                     if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_ENTER)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_SPACE)){
                         MainWindow.tecla = null;
                         break;
                     }
                 } //fim try
                 catch(Exception ex){
-                    ////System.out.println("erro gravando frame");
+                    //System.out.println("erro gravando frame");
                 }
             }//fim while
 
@@ -525,6 +518,12 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     Core.addWeighted(roiTopo,1.5,topo,2.0,0.0,dst);
                     dst.copyTo(cenario.colRange(0,640).rowRange(0,77));
 
+                    // -+-+-+-+-+-+ mostra o relogio
+                    /*
+                    Mat roiClock = cenario.submat(new Rect(new Point(70, 10), new Point(170, 110)));
+                    putText( roiClock ,"Tempo", new Point(5,20),Core.FONT_HERSHEY_COMPLEX,0.6,new Scalar(0,0,0), 2, 9, false );
+                    Mat roiTempo = roiClock.submat(new Rect(0,20,80,80));
+                    */
                     if(Calendar.getInstance().getTimeInMillis()>tempoAtual.getTimeInMillis()+1000){
                         tempoAtual = Calendar.getInstance();
                         cronometro.set(Calendar.SECOND, cronometro.get(Calendar.SECOND)+1);
@@ -532,10 +531,32 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     segundos = cronometro.get(Calendar.SECOND); //segundos começando de 00
                     minutos = cronometro.get(Calendar.MINUTE); //minutos começando de 00
 
+                    // -+-+-+-+-+-+  mostra logoEsq e logoDir
+                    
+                    /*dst = new Mat();
+                    Mat roiLogoEsq = cenario.submat(new Rect(new Point(0, 0),new Point(25, 27)));
+                    Core.addWeighted(roiLogoEsq,1.0,logoEsq,0.8,0.0,dst);
+                    dst.copyTo(cenario.colRange(0,25).rowRange(0,27));
+                      
+                    dst = new Mat();
+                    Mat roiLogoDir = cenario.submat(new Rect(new Point(615, 0),new Point(640, 27)));
+                    Core.addWeighted(roiLogoDir,1.0,logoDir,0.8,0.0,dst);
+                    dst.copyTo(cenario.colRange(615,640).rowRange(0,27));
+
+                    */
                     //tentando acrescentar a imagem do coração
 
                     partida.mostrarVidas(cenario,Move4Math.indicePublicoAtual);
                     partida.mostrarSombras(cenario,Move4Math.indicePublicoAtual);
+                    
+                    /*
+                    for(int i =0; i< partida.getPlayer().getVidas(); i++){
+                        dst = new Mat();
+                        Mat roiImgVidas = cenario.submat(new Rect(new Point(32+(i*25), 15),new Point(82+(i*25), 65)));
+                        Core.addWeighted(imgVida,1.0,roiImgVidas,0.3,0.0,dst);
+                        dst.copyTo(cenario.colRange(32+(i*25),82+(i*25)).rowRange(15,65));
+                    }
+                    */
                     
                     //fim tentando incluir imagem do coração
 
@@ -547,17 +568,24 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     }else{
                         putText( roiFase, "Fase: " + partida.getFase().getNumeroFase() + "  de " + qtdFases, new Point(10,12), Core.FONT_HERSHEY_SIMPLEX,0.5,new Scalar(0,0,0),1,8,false );
                     }
-                    
+
                     int qtdNiveis = publico.getNiveis().size() / 4;
                     Mat roiNivel = cenario.submat(new Rect(new Point(20, 60),new Point(150, 120)));
                     putText( roiNivel ,"Nivel: " + String.valueOf(partida.getNivel().getNumero()) + " de " + qtdNiveis, new Point(10,11), Core.FONT_HERSHEY_SIMPLEX,0.5,new Scalar(0,0,0),1,8,false );
                     //putText( roiNivel , String.valueOf(partida.getNivel().getNumero()), new Point(5,28), Core.FONT_HERSHEY_SIMPLEX,0.5,new Scalar(0,0,0),1,8,false );
 
+                    // -+-+-+-+-+-+ mostra grades isGradesVisiveis()
+                    /*
+                    if(isGradesVisiveis()){
+                            //gradeEsq.showRegioes(cenario);
+                            //gradeDir.showRegioes(cenario);
+                    }
+                    */
                     if (tipoColisao != 0 && mostrarEstrelas){
-                        ////System.out.println("dif: " + iDiferenca + " | ptsAtual: " + iPontosAtual + " | ptsAnt: " + iPontosAnt);
+                        //System.out.println("dif: " + iDiferenca + " | ptsAtual: " + iPontosAtual + " | ptsAnt: " + iPontosAnt);
                         mostrarEstrelas(cenario, iDiferenca);
                         if (numAcertosNaRodada < partida.getNivel().getQIO()){
-                            ////System.out.println("Chamou o mostrarTopoFeedback junto com o mostrarEstrelas");
+                            //System.out.println("Chamou o mostrarTopoFeedback junto com o mostrarEstrelas");
                             mostrarTopoFeedback(piscarTopo, partida); 
                         }else{
                             //topoFeedback = Imgcodecs.imread("Resources/images/topoFeedback.png",1);
@@ -565,7 +593,6 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         }
                             //iDiferenca = 0;
                     }
-                    
 
                     // -+-+-+-+-+-+ mostra pontuação
                     partida.mostrarPontuacao(cenario);
@@ -574,10 +601,28 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     if (Move4Math.indiceJogoAtual == 1){
                         partida.mostraEscada(cenario);
                     }
-                                            
+                    /*
+                        partida.mostrarTrofeus(cenario,partida.getNivel().getNumero()*3);
+                        // -+-+-+-+-+-+ gerar rodada
+                        if ((segundos == 0 || segundos == 1)){
+                            if (60 - segundosAux2 < 3){    
+                                segundosAux2 = 57;
+                            }
+                            if (60 - segundosAux < partida.getNivel().getTEO()){
+                                System.out.println("segundosAux = 60 - partida.getNivel().getTEO();");
+                                segundosAux = 60 - partida.getNivel().getTEO();
+                            }
+                        }
+
+                        System.out.println("minutos: " + minutos);
+                        System.out.println("tempoAtual = " + minutos + ":" + segundos + 
+                                " | tempoAux = " + minutosAux + ":" + segundosAux + 
+                                " | tempoAux2 = " + minutosAux2 + ":" + segundosAux2);
+                   // */
+                        
                     if (irParaProximaLinha == false){
                         if ((60*minutos + segundos) - (60*minutosAux2 + segundosAux2) < 2){
-                            ////System.out.println("aguardando...");
+                            //System.out.println("aguardando...");
                             geraProximaLinha = false;
                             piscarTopo = false;
                             topoFeedback = Imgcodecs.imread("Resources/images/topoFeedbackAcerto.png",1);
@@ -591,7 +636,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                             minutosAux = minutos;
                         }else{
                                 //if((partida.getNivel().getNumeroLinha() - 1) != (int) jogadasDoNivel.get(0) && mostrarReferencias){
-                                //    //System.out.println("Chamou o mostrarTopoFeedback que NAO EH da primeira linha");
+                                //    System.out.println("Chamou o mostrarTopoFeedback que NAO EH da primeira linha");
                                 //    mostrarTopoFeedback(true, tempoAtual.getTimeInMillis());
                                 //}
                                 if (feedback2){
@@ -610,22 +655,20 @@ public class Game_Classificacao extends javax.swing.JFrame {
                                 feedback2 = false;
                             }
                         }
-                    
+
                         if((partida.getNivel().getNumeroLinha() - 1) == (int) jogadasDoNivel.get(0) && mostrarReferencias){
-                                ////System.out.println("Chamou mostrarTopoFeedback da primeira linha");
+                                //System.out.println("Chamou mostrarTopoFeedback da primeira linha");
                                 mostrarTopoFeedback(piscarTopo, partida);
                         }
 
                         if ((partida.getNivel().getNumeroLinha() - 1) == (int) jogadasDoNivel.get(3) && (numAcertosNaRodada == NST || numErrosLimite == 16)){
-                            ////System.out.println("chegou na ultima posicao do jogadas do nivel, que eh: " + (int) jogadasDoNivel.get(3));
+                            //System.out.println("chegou na ultima posicao do jogadas do nivel, que eh: " + (int) jogadasDoNivel.get(3));
                             segundosAux2 = segundos;
                             minutosAux2 = minutos;
                             verificaTransicaoDeNivel(partida);
                         }
-                        
-                        ////System.out.println("geraProximaLinha = " +geraProximaLinha + " | grades = " + ((gradeEsq.getNumImagens()==0)&&(gradeDir.getNumImagens()==0)));
+                        //System.out.println("geraProximaLinha = " +geraProximaLinha + " | grades = " + ((gradeEsq.getNumImagens()==0)&&(gradeDir.getNumImagens()==0)));
                         if((gradeEsq.getNumImagens()==0)&&(gradeDir.getNumImagens()==0) && geraProximaLinha){
-                            
                             /*
                             * Antes de gerar, espera um tempo com o contador SLEEP_B
                             * para que o jogador possa baixar os braços antes de gerar novas imagens.
@@ -636,24 +679,23 @@ public class Game_Classificacao extends javax.swing.JFrame {
                             }
 /*
                             if(Calendar.getInstance().getTimeInMillis()>(gerarRodada.getTimeInMillis()+SLEEP_BEFORE_GENERATE_BLOB)){
-                            //System.out.println("gerando a proxima linha");
+                            System.out.println("gerando a proxima linha");
                             if(Calendar.getInstance().getTimeInMillis()>(gerarRodada.getTimeInMillis()+SLEEP_BEFORE_GENERATE_BLOB)){
-                                //System.out.println("mostrarReferencias = false");
+                                System.out.println("mostrarReferencias = false");
                             }else{//teste, este bloco de código ficava no if, não no else
 */    
-                            float tempoJogada = ((mostrarBlobs.getTimeInMillis()+tempoExposicao) - Calendar.getInstance().getTimeInMillis());
-                            tempoJogada = (tempoJogada/1000 < 0)? 0 : tempoJogada/1000;
-                            float tempoExposicaoObjetivo = partida.getNivel().getTEO();
-                            ////System.out.println("tempoJogada: " + tempoJogada);
-                            auxTopoFeedback = 0; //auxTopoFeedback é a variavel que faz piscar o topo amarelo
-                            //incrementa NST
-                            contNST++;
-                            if(numRodadasGeradas != NST*4){
-                                //verificaTransicaoDeNivel(partida);
-                                numRodadasGeradas++;
-                            } //Matheus
-                            ////System.out.println("numRodadasGeradas : " + numRodadasGeradas);
-                            
+                                float tempoJogada = ((mostrarBlobs.getTimeInMillis()+tempoExposicao) - Calendar.getInstance().getTimeInMillis());
+                                tempoJogada = (tempoJogada/1000 < 0)? 0 : tempoJogada/1000;
+                                float tempoExposicaoObjetivo = partida.getNivel().getTEO();
+                                //System.out.println("tempoJogada: " + tempoJogada);
+                                    auxTopoFeedback = 0; //auxTopoFeedback é a variavel que faz piscar o topo amarelo
+                                    //incrementa NST
+                                    contNST++;
+                                    if(numRodadasGeradas != NST*4){
+                                        //verificaTransicaoDeNivel(partida);
+                                        numRodadasGeradas++;
+                                    } //Matheus
+                                    //System.out.println("numRodadasGeradas : " + numRodadasGeradas);
                             switch (partida.getNivel().getTAI()) {
                                 case 3:
                                     numSimbolosParaGerar=2;
@@ -669,19 +711,19 @@ public class Game_Classificacao extends javax.swing.JFrame {
                                     break;
                             }
                             /*
-                            //System.out.println("partida.getNivel().getQIS(): " + partida.getNivel().getQIS());
+                            System.out.println("partida.getNivel().getQIS(): " + partida.getNivel().getQIS());
                             numSimbolosParaGerar = partida.getNivel().getQIS();
                             se vai gerar na esquerda, direita ou ambos
                             //*/
                             switch (partida.getNivel().getLAD()) {
                                 case 1:
                                     // 1=esquerda, 2=direita, 3=ambos
-                                    ////System.out.println("chamou o 1o gerarImagens2");
+                                    //System.out.println("chamou o 1o gerarImagens2");
                                     gerarImagens2(gradeEsq, partida, numSimbolosParaGerar, true, true);
                                     gerarRodada = Calendar.getInstance();
                                     break;
                                 case 2:
-                                    ////System.out.println("chamou o 2o gerarImagens2");
+                                    //System.out.println("chamou o 2o gerarImagens2");
                                     gerarImagens2(gradeDir, partida, numSimbolosParaGerar, true, true);
                                     gerarRodada = Calendar.getInstance();
                                     break;
@@ -702,7 +744,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                                         partida.geraFilaAleatoria();
                                         //System.out.println("chamou o 5o gerarImagens2 (direita)");
                                         gerarImagens2(gradeDir, partida, numSimbolosParaGerar, true, true);
-                                        //System.out.println("chamou o 6o gerarImagens2 (esquerda)");
+                                        // System.out.println("chamou o 6o gerarImagens2 (esquerda)");
                                         gerarImagens2(gradeEsq, partida, numSimbolosParaGerar, false, false);
 
                                     }
@@ -714,7 +756,6 @@ public class Game_Classificacao extends javax.swing.JFrame {
 
                                 gerouImagens = true;
                             //}//fimteste
-                            
                         }else{
 
                             // -+-+-+-+-+-+ mostra imagem e/ou som de REFERENCIA
@@ -731,10 +772,10 @@ public class Game_Classificacao extends javax.swing.JFrame {
     //                            nivel.getQIO();
     //                            nivel.getAIO();
     //                                                          180                             0                           78                                  78
-                                ////System.out.println("REF" + "X:"+referencia.getX() + "" + "Y:"+referencia.getY() + "" + "L:"+referencia.getWidth()+ "" + "A:"+referencia.getHeight());
+                                //System.out.println("REF" + "X:"+referencia.getX() + "" + "Y:"+referencia.getY() + "" + "L:"+referencia.getWidth()+ "" + "A:"+referencia.getHeight());
 
                                 //mostra quantidade de imagens do objetivo aaqui
-                                ////System.out.println("numAcertosNaRodada: " + numAcertosNaRodada);
+                                //System.out.println("numAcertosNaRodada: " + numAcertosNaRodada);
                                 int deslocamento=0;
                                 if (partida.getNivel().getQIO() == 3){
                                     deslocamento = 50;
@@ -759,7 +800,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                                         //Core.addWeighted(referencia.getImagem(), 1.0, mescRef2, 0.3, 0.0, dst);
                                         //dst.copyTo(cenario.colRange(referencia.getX(),referencia.getX() + referencia.getWidth()).rowRange(referencia.getY(),referencia.getY() + referencia.getHeight()));
                                     }
-                                    ////System.out.println("mostrando referencias");
+                                    //System.out.println("mostrando referencias");
                                 }
 
                                 if (jogando){ // jogando é um bool que indica que o usuário está tocando os objetos e por isso devem aparecer os acertos no lugar das referências
@@ -772,7 +813,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                                     }
                                     if (!mostrarEstrelas){ //talvez tirar esse if
                                         for (int i=numAcertosNaRodada; i<partida.getNivel().getQIO(); i++){
-                                            ////System.out.println("i: " + i);
+                                            //System.out.println("i: " + i);
                                             Imgproc.resize(sombraObjetivo, sombraObjetivo, new Size(50.0, 50.0));
                                             dst = new Mat();
                                             Mat roiSombraObjetivo = cenario.submat(new Rect(new Point(referencia.getX(), referencia.getY()),new Point(referencia.getX() + referencia.getWidth(), referencia.getY() + referencia.getHeight())));
@@ -817,10 +858,10 @@ public class Game_Classificacao extends javax.swing.JFrame {
                   //          if(Calendar.getInstance().getTimeInMillis()>(gerarRodada.getTimeInMillis()+tempoExposicaoReferencia)){
                                 //guarda o instante que os blobs sao mostrados na tela
 
-                                ////System.out.println("partida.getNivel().getTEO(): " + partida.getNivel().getTEO());
-                                ////System.out.println("(60*minutos) + segundos) - ((60*minutosAux) + segundosAux): " + (((60*minutos) + segundos) - ((60*minutosAux) + segundosAux)));
+                                //System.out.println("partida.getNivel().getTEO(): " + partida.getNivel().getTEO());
+                                //System.out.println("(60*minutos) + segundos) - ((60*minutosAux) + segundosAux): " + (((60*minutos) + segundos) - ((60*minutosAux) + segundosAux)));
                                 if ( ( (((60*minutos) + segundos) - ((60*minutosAux) + segundosAux)) > partida.getNivel().getTEO() && primeiroToque == true ) || ( (((60*minutos) + segundos) - ((60*minutosAux) + segundosAux)) > partida.getNivel().getTEO()/2 && primeiroToque == false ) ){
-                                ////System.out.println("passou");
+                                //System.out.println("passou");
                                 //topoFeedback = Imgcodecs.imread("Resources/images/topoFeedback.png",1);
                                 mostrarEstrelas = false;
                                 mostrarReferencias = false;
@@ -884,7 +925,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                                         default:
                                             break;
                                     }
-                                    ////System.out.println("contNST: " + contNST);
+                                    //System.out.println("contNST: " + contNST);
                                     if(houveColisao==1){
                                         mostrarEstrelas = true;
                                         primeiroToque = false;
@@ -895,7 +936,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
 
                                         segundosAux = segundos;
                                         minutosAux = minutos;
-                                        //System.out.println("TIPO COLISAO: " + tipoColisao + "; Pontos Motor: " + iPontosMotor + "; Pontos Cognitivo: " + iPontosCognitivo);
+                                        System.out.println("TIPO COLISAO: " + tipoColisao + "; Pontos Motor: " + iPontosMotor + "; Pontos Cognitivo: " + iPontosCognitivo);
                                         iPontosMotor = 0;
                                         iPontosCognitivo = 0;
                                         switch (tipoColisao) {
@@ -924,7 +965,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                                         gerouBlobs=false;
                                         gerouImagens=false;
                                         gerarRodada = Calendar.getInstance();
-                                        ////System.out.println("numAcertosNaRodada: " + numAcertosNaRodada + " | NST: " + NST);
+                                        //System.out.println("numAcertosNaRodada: " + numAcertosNaRodada + " | NST: " + NST);
                                         //if(contNST==NST){
 
                                         if(numAcertosNaRodada==NST && (partida.getNivel().getNumeroLinha() - 1) != (int) jogadasDoNivel.get(3)){ // era contNST == NST, mas como queremos que avance de linha apenas quando o usuário completar os objetivos propostos, precisamos verificar se o número de acertos é igual ao de objetivos e se ele não está na última linha do nível.
@@ -1005,19 +1046,19 @@ public class Game_Classificacao extends javax.swing.JFrame {
 
                         if(buff!=null){
                             g.drawImage(buff, 0, 0, jPanel1.getWidth(), jPanel1.getHeight() , 0, 0, buff.getWidth(), buff.getHeight(), null);
-                            ////System.out.println(jPanel1.getWidth());
-                            ////System.out.println(jPanel1.getHeight());
-                            ////System.out.println(buff.getWidth());
-                            ////System.out.println(buff.getHeight());
+                            //System.out.println(jPanel1.getWidth());
+                            //System.out.println(jPanel1.getHeight());
+                            //System.out.println(buff.getWidth());
+                            //System.out.println(buff.getHeight());
                         }                    
 
                         //capturar teclas atalho
-                        if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)){//Fecha o jogo
+                        if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE) || gameOver){//Fecha o jogo
                             MainWindow.tecla = null;
                             break;
                         }
                         if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_G)){//Liga/Desliga a grade
-                            ////System.out.println("grades");
+                            //System.out.println("grades");
                             if(isGradesVisiveis())
                                 setGradesVisiveis(false);
                             else
@@ -1109,11 +1150,11 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         }
                         
                         if(MainWindow.tecla.getKeyCode() == KeyEvent.VK_UP){//Aumenta o tempo.
-                            //System.out.println("\nTempo de Exposição a: "+tempoExposicao);
+                            System.out.println("\nTempo de Exposição a: "+tempoExposicao);
                             if(tempoExposicao < 15000){
                                 tempoExposicao += 1000;
                             }
-                            //System.out.println("\nTempo de Exposição b: "+tempoExposicao);
+                            System.out.println("\nTempo de Exposição b: "+tempoExposicao);
                             int a = tempoExposicao / 1000;
                             partida.getNivel().setTEI(a);
                             
@@ -1121,11 +1162,11 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         }
                         
                         if(MainWindow.tecla.getKeyCode() == KeyEvent.VK_DOWN){//Diminui o tempo.
-                            //System.out.println("\nTempo de Exposição a: "+tempoExposicao);
+                            System.out.println("\nTempo de Exposição a: "+tempoExposicao);
                             if(tempoExposicao > 3000){
                                 tempoExposicao -= 1000;
                             }
-                            //System.out.println("\nTempo de Exposição b: "+tempoExposicao);
+                            System.out.println("\nTempo de Exposição b: "+tempoExposicao);
                             int a = tempoExposicao / 1000;
                             partida.getNivel().setTEI(a);
                             
@@ -1134,7 +1175,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
 
                     } //fim try
                     catch(Exception ex){
-                        ////System.out.println("erro gravando frame");
+                        //System.out.println("erro gravando frame");
                     }
             }//fim while
             try {
@@ -1148,7 +1189,6 @@ public class Game_Classificacao extends javax.swing.JFrame {
             gamewindow.dispose();
 
         }//fim run
-<<<<<<< HEAD
 
         void GameOver(){
             VideoCapture webSource= new VideoCapture(0);
@@ -1161,15 +1201,15 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         Core.flip(frame,cenario,1);
                         // -+-+-+-+-+-+ grava o topo-background
                         Imgproc.resize(topoErro, topoErro, new Size(640.0, 90.0));
-        //System.out.println("4");
+        System.out.println("4");
                         dst = new Mat();
-        //System.out.println("5");
+        System.out.println("5");
                         Mat roiTopo = cenario.submat(new Rect(new Point(0,0),new Point(640, 90)));
-        //System.out.println("6");
+        System.out.println("6");
                         Core.addWeighted(roiTopo,1.0,topoErro,1.0,0.0,dst);
-        //System.out.println("7");
+        System.out.println("7");
                         dst.copyTo(cenario.colRange(0,640).rowRange(0,90));
-        //System.out.println("8");
+        System.out.println("8");
                         // -+-+-+-+-+-+  mostra Silhueta
                         dst = new Mat();
                         Mat roiGameOver = cenario.submat(new Rect(new Point(160, 120),new Point(480, 360)));
@@ -1187,20 +1227,18 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         }
         
                         //teclas de atalho ESC, enter ou space pra começar
-                        ////System.out.println("Tecla inicial: " + MainWindow.tecla.getKeyCode());
+                        //System.out.println("Tecla inicial: " + MainWindow.tecla.getKeyCode());
                         if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_ENTER)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_SPACE)){
                             MainWindow.tecla = null;
                             break;
                         }
-        //System.out.println("8");
+        System.out.println("8");
                     } //fim try
                     catch(Exception ex){
-                        ////System.out.println("erro gravando frame");
+                        //System.out.println("erro gravando frame");
                     }
                 }//fim while
         }
-=======
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
         
         //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1275,7 +1313,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
         }
 
         void verificaTransicaoDeNivel(Partida partida) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
-            // //System.out.println("Verificando transição de nivel");
+            // System.out.println("Verificando transição de nivel");
 
             posicaoJogadasDoNivel=1;
             irParaProximaLinha = false;
@@ -1294,25 +1332,25 @@ public class Game_Classificacao extends javax.swing.JFrame {
             desempenhoCognitivo = (double)(numAcertos-numErros)/numRodadasGeradas;
             mediaTempoToque = (double)somaTempoToque / numRodadasGeradas;
             desempenhoMotor = (double)(mediaTempoToque/(tempoExposicao));
-            //System.out.println("----------");
-            //System.out.println("numAcertos: " + numAcertos +" numErros: " + numErros);
-            //System.out.println("desempenhoCognitivo: " + desempenhoCognitivo);
-            //System.out.println("somaTempoToque: " + somaTempoToque + " numRodadasGeradas: " + numRodadasGeradas+ " mediaTempoToque: "+mediaTempoToque);
-            //System.out.println("desempenhoMotor: " + desempenhoMotor + " tempoExposicao: " + tempoExposicao);
-            //System.out.println("----------");
+            System.out.println("----------");
+            System.out.println("numAcertos: " + numAcertos +" numErros: " + numErros);
+            System.out.println("desempenhoCognitivo: " + desempenhoCognitivo);
+            System.out.println("somaTempoToque: " + somaTempoToque + " numRodadasGeradas: " + numRodadasGeradas+ " mediaTempoToque: "+mediaTempoToque);
+            System.out.println("desempenhoMotor: " + desempenhoMotor + " tempoExposicao: " + tempoExposicao);
+            System.out.println("----------");
 
             if((desempenhoMotor<0.4)&&(desempenhoCognitivo>0.6)){
-                //System.out.println("avancou nivel");
+                System.out.println("avancou nivel");
                 avancaNivel(partida);
                 tipoFeedback = 1;
 
             }else if((desempenhoMotor>0.6) && (desempenhoCognitivo<0.3)){ // tava OU 
-                //System.out.println("retrocedeu nivel");
+                System.out.println("retrocedeu nivel");
                 iNiveisRetrocedidos++;
                 retrocedeNivel(partida);
                 tipoFeedback = 3;
             }else{
-                //System.out.println("permaneceu no nivel");
+                System.out.println("permaneceu no nivel");
                 iNiveisRepetidos++;
                 permaneceNivel(partida);
                 tipoFeedback = 2;
@@ -1338,17 +1376,17 @@ public class Game_Classificacao extends javax.swing.JFrame {
             int numeroNivelAntigo = partida.getNivel().getNumero();
             int numeroNivelNovo;
 
-            //System.out.println("AVANCA NIVEL  -  IND: " + indexNivel + " Tam: " + publico.getNiveis().size());
+            System.out.println("AVANCA NIVEL  -  IND: " + indexNivel + " Tam: " + publico.getNiveis().size());
             //if(indexNivel<publico.getNiveis().size()-1){
             if(indexNivel<publico.getNiveis().size()/4){   
-                ////System.out.println("entrou IF" + "IND_N: " + indexNivel + "TAM: " + publico.getNiveis().size()/4);
-                ////System.out.println("FIM DE UM NÍVEL");
+                //System.out.println("entrou IF" + "IND_N: " + indexNivel + "TAM: " + publico.getNiveis().size()/4);
+                //System.out.println("FIM DE UM NÍVEL");
                 numeroNivelNovo = numeroNivelAntigo + 1;
 
                 jogadasDoNivel.clear();
                 jogadasDoNivel = partida.geraJogadasDoNivel(numeroNivelNovo);
-                ////System.out.println(" ");
-                //System.out.println("novo jogadasDoNivel: " + jogadasDoNivel.toString());
+                //System.out.println(" ");
+                System.out.println("novo jogadasDoNivel: " + jogadasDoNivel.toString());
                 int o = Integer.parseInt(jogadasDoNivel.get(0).toString()); //aqui dava problema, pois eu setava o próximo nivel a partir do cálculo da primeira linha; mas este deve ser setado com a primeira posição do jogadasDoNivel
 
                 partida.setNivel(publico.getNiveis().elementAt(o)); //Matheus
@@ -1356,7 +1394,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
 
             }else{
                 //Transição do último nível da fase 1 para o primeiro da fase 2
-                ////System.out.println("entrou ELSE");
+                //System.out.println("entrou ELSE");
                 numeroNivelNovo = 1;
                 partida.setNivel(publico.getNiveis().elementAt((numeroNivelNovo)));
                 numRodadasGeradas=1;
@@ -1366,7 +1404,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                 jogadasDoNivel = partida.geraJogadasDoNivel(numeroNivelNovo);
             }
 
-            ////System.out.println("nivel da partida: " + partida.getNivel().getNumero());
+            //System.out.println("nivel da partida: " + partida.getNivel().getNumero());
             gradeEsq.setTamanhoGrade(partida.getNivel().getTAI());
             gradeDir.setTamanhoGrade(partida.getNivel().getTAI());
         }
@@ -1383,7 +1421,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                 
                 jogadasDoNivel.clear();
                 jogadasDoNivel = partida.geraJogadasDoNivel(numeroNivelNovo);
-                //System.out.println("novo jogadasDoNivel: " + jogadasDoNivel.toString());
+                System.out.println("novo jogadasDoNivel: " + jogadasDoNivel.toString());
                 int o = Integer.parseInt(jogadasDoNivel.get(0).toString()); //aqui dava problema, pois eu setava o próximo nivel a partir do cálculo da primeira linha; mas este deve ser setado com a primeira posição do jogadasDoNivel
                 
                 partida.setNivel(publico.getNiveis().elementAt(o)); //Matheus
@@ -1405,7 +1443,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
             jogadasDoNivel.clear();
             jogadasDoNivel = partida.geraJogadasDoNivel(partida.getNivel().getNumero());
 
-            //System.out.println("novo jogadasDoNivel: " + jogadasDoNivel.toString());
+            System.out.println("novo jogadasDoNivel: " + jogadasDoNivel.toString());
             int o = Integer.parseInt(jogadasDoNivel.get(0).toString()); //aqui dava problema, pois eu setava o próximo nivel a partir do cálculo da primeira linha; mas este deve ser setado com a primeira posição do jogadasDoNivel
 
             partida.setNivel(publico.getNiveis().elementAt(o)); //Matheus
@@ -1419,15 +1457,15 @@ public class Game_Classificacao extends javax.swing.JFrame {
         }
         
         void avancaFase(Partida partida){
-            ////System.out.println("entrou AVANCA FASE" + partida.getFase().getNumeroFase());
+            //System.out.println("entrou AVANCA FASE" + partida.getFase().getNumeroFase());
             int numeroFaseAntiga = partida.getFase().getNumeroFase();
             int numeroFaseNova = numeroFaseAntiga + 1;
-            ////System.out.println("IND: " + indexFase + "Tam Fase:" + publico.getFases().size() + "Nova: " + numeroFaseNova);
+            //System.out.println("IND: " + indexFase + "Tam Fase:" + publico.getFases().size() + "Nova: " + numeroFaseNova);
             if(indexFase<publico.getFases().size()){
-                ////System.out.println("entrou IF AVANCA FASE" + "IND: " + indexFase + "Tam Fase:" + publico.getFases().size());
+                //System.out.println("entrou IF AVANCA FASE" + "IND: " + indexFase + "Tam Fase:" + publico.getFases().size());
                 partida.setFase(publico.getFases().elementAt(numeroFaseNova));
             }
-            ////System.out.println("SAINDO AVANCA FASE" + partida.getFase().getNumeroFase());
+            //System.out.println("SAINDO AVANCA FASE" + partida.getFase().getNumeroFase());
         }
         
         void retrocedeFase(Partida partida){
@@ -1442,8 +1480,8 @@ public class Game_Classificacao extends javax.swing.JFrame {
 
         void atualizaVidas() throws UnsupportedAudioFileException, LineUnavailableException, IOException{
             int iVidas = player.getVidas();
-            ////System.out.println("iVidas: " + iVidas);
-            //System.out.println("numErros: " + numErros);
+            //System.out.println("iVidas: " + iVidas);
+            System.out.println("numErros: " + numErros);
             switch (Move4Math.indicePublicoAtual){ 
                 case 0: // Criança
                     if (iNiveisRetrocedidos == 3 || iNiveisRepetidos == 5 || numErros >= 3){
@@ -1466,54 +1504,25 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     }
                     break;
                 default:
-                    //System.out.println("Indice Inválido !!!");
+                    System.out.println("Indice Inválido !!!");
             }
-<<<<<<< HEAD
             //setar a vida menos 1;
             //partida.getPlayer().setVidas(partida.getPlayer().getVidas() -1 );
-            //System.out.println("vidas : " + player.getVidas());
+            System.out.println("vidas : " + player.getVidas());
             //Se zerou as vidas, Game Over
             if(player.getVidas()<=0){
-<<<<<<< HEAD
                 gameOver = true;
-                //System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER\n");
-                String[] options = {"Sair", "Resetar vidas"};
-                int fin = JOptionPane.showOptionDialog(null, "Game Over!","Click a button",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
-                //System.out.println(fin + " " + player.getPublico());
-                if(fin==1){
-                    if ("Crianca".equals(player.getPublico())){
-                        player.setVidas(3);
-                    }else{
-                        player.setVidas(5);
-                    }
-                }else{
-=======
-                System.out.println("vidas : " + player.getVidas());
-                ImageIcon icon = new ImageIcon("Resources/images/GameOver.png");
-                String[] options = {"Sair", "Resetar vidas"};
-                int fin = JOptionPane.showOptionDialog(null, "","Game Over!",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
-                if ("Crianca".equals(player.getPublico())){
-                    player.setVidas(3);
-                }else{
-                    player.setVidas(5);
-                }
-                if(fin==0){
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
-                    KeyEvent e = new KeyEvent(rootPane, fin, fin, ICONIFIED, ERROR);
-                    fimDeJogo = true;
-                    formKeyPressed(e);
-                }
+                System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER\n");
+                //GameOver();
+                //MainWindow.tecla.setKeyCode(KeyEvent.VK_ESCAPE);
+                            
             }
-=======
->>>>>>> parent of 407fb79... game over 09/11
         }
         
         int checarColisao(Mat cenario,Mat cenarioAnterior, Grade grade,Partida partida) throws UnsupportedAudioFileException, IOException, LineUnavailableException, AWTException{
             int colisao = 0;
             int threshold = 10;
-           //System.out.println("W: " + grade.getScreenWidth() + " H: " + grade.getScreenHeight()); 
+           System.out.println("W: " + grade.getScreenWidth() + " H: " + grade.getScreenHeight()); 
             for(int i=0;i<grade.getRegioes().size();i++){
                 if(grade.getRegioes().elementAt(i).isOcupado()){
                     int x1 = (int)grade.getRegioes().elementAt(i).getpInicial().x;
@@ -1543,7 +1552,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
 
                     Imgproc.findContours(dst, contours, v, Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_SIMPLE);
 
-                    ////System.out.println(contours.size());
+                    //System.out.println(contours.size());
 
                     double maxArea = 40;//valor fixo para sensibilidade da colisão
 
@@ -1551,8 +1560,8 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         Mat contour = contours.get(idx);
                         double contourarea = Imgproc.contourArea(contour);
                         if(contourarea > maxArea){
-                            ////System.out.println(contourarea);
-                            ////System.out.println("colisao!");
+                            //System.out.println(contourarea);
+                            //System.out.println("colisao!");
                             colisao = 1;
                         }
                     }
@@ -1669,23 +1678,6 @@ public class Game_Classificacao extends javax.swing.JFrame {
                             clip.open(stream);
                             clip.start();
                         }
-
-                        //setar a vida menos 1;
-                        //partida.getPlayer().setVidas(partida.getPlayer().getVidas() -1 );
-                        System.out.println("vidas : " + partida.getPlayer().getVidas());
-                        //Se zerou as vidas, Game Over
-                        if(partida.getPlayer().getVidas()<=0){
-                            gameOver = true;
-                            int goverW = (int)(grade.getScreenWidth())/2;
-                            int goverH = (int)(grade.getScreenHeight())/2;
-                            int goverX = (int)(grade.getScreenWidth() - goverW)/2;
-                            int goverY = (int)(grade.getScreenHeight() - goverH)/2;
-                            System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER\n" + goverW + " " + goverH + " " + goverX + " " + goverY);
-                            GameOver();
-                            MainWindow.tecla = null;
-                            break; 
-                            
-                        }
                     }
                     
                     rodada.setPontosCognitivo(iPontosCognitivo);
@@ -1699,17 +1691,17 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         break; //nao precisa verificar o resto das imagens já que houve colisao
                 }
             }
-            ////System.out.println(colisao);
+            //System.out.println(colisao);
             return colisao;
         }
 
         void gerarImagens2(Grade grade, Partida partida, int numSimbolosParaGerar, boolean emitirSom,boolean isReferencia) throws LineUnavailableException, UnsupportedAudioFileException, IOException{
             /*            
-            //System.out.println("Entrou no gerarImagens2");
+            System.out.println("Entrou no gerarImagens2");
 
             //MAYCO
             int Gao = partida.getFase().getGAO();
-            //System.out.println(partida.getFilaElementosReferencia().isEmpty());
+            System.out.println(partida.getFilaElementosReferencia().isEmpty());
 
             if(Gao==2){
                 partida.geraFilaFixaReferencias();
@@ -1722,7 +1714,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                 partida.geraNovaFilaReferencias();
 
             if(partida.getFilaElementosReferencia().isEmpty()){
-                //System.out.println("chamou geraNovaFilaReferencias");
+                System.out.println("chamou geraNovaFilaReferencias");
                 partida.geraNovaFilaReferencias(partida.imagensDaCena(partida.getNivel()));
             }
             */
@@ -1827,7 +1819,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
 
                 if (idTemp != imgRefTemp.getId()){
                     if((partida.getNivel().getNumeroLinha() - 1) != (int) jogadasDoNivel.get(0)){
-                        //System.out.println("Alterou o topoFeedback no gerarImagens2");
+                        System.out.println("Alterou o topoFeedback no gerarImagens2");
                         piscarTopo = true;
                         topoFeedback = Imgcodecs.imread("Resources/images/topoReferencia.png",1); 
                     }
@@ -1883,14 +1875,14 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     controle = false;
                     
                 }else{
-                    // //System.out.println("entrou no ELSE");
+                    // System.out.println("entrou no ELSE");
                     if (elementoDaFila == partida.getFilaElementos().size()){
                         elementoDaFila = 0;
                     }
                     Imagem imgTemp = new Imagem(partida.getFilaElementos().elementAt(elementoDaFila));
                     elementoDaFila++;
     //                    if (!partida.getFilaElementos().isEmpty()){
-    //                        //System.out.println("chamou remove");
+    //                        System.out.println("chamou remove");
     //                        partida.removeElementoDaFila(partida.getFilaElementos());
     //                    }
                     //sorteia uma posição na grade
@@ -1905,7 +1897,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     tempRef = imgTemp.getImg();
                     Imgproc.resize(tempRef,tempRef,new Size(width, height));
                     imgTemp.setImg(tempRef);
-                    ////System.out.println("id da imagem: " + imgTemp.getId());
+                    //System.out.println("id da imagem: " + imgTemp.getId());
                     grade.getRegioes().elementAt(posicao).setImg(imgTemp);
 
                     //seta regiao como ocupada
@@ -1919,7 +1911,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
             //if(isReferencia){
             if(emitirSom){
                 if((partida.getFase().getEST()==2)||(partida.getFase().getEST()==0)){
-                    ////System.out.println(referencia.getSom().getSom());
+                    //System.out.println(referencia.getSom().getSom());
                     File yourFile = new File(referencia.getSom().getSom());
                     AudioInputStream stream;
                     AudioFormat format;
@@ -2121,7 +2113,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                 default:
             }
             //*/
-            ////System.out.println("Entrou no aguarda");
+            //System.out.println("Entrou no aguarda");
     //        contAguarda++;
     //        if (contAguarda==1){
     //            File yourFile = new File("Resources/sounds/acertou.wav");
@@ -2163,7 +2155,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
             SimpleDateFormat formata = new SimpleDateFormat(data);
             dataErro = formata.format(agora);
             formata = new SimpleDateFormat(hora2);
-            ////System.out.print(dataErro+" -- ");
+            //System.out.print(dataErro+" -- ");
             //System.err.println("Data: " + dataErro + "Novo...." + dataErroCerto);
             Robot robot = new Robot();
             Rectangle screenRect = new Rectangle(screenSize);
@@ -2268,12 +2260,12 @@ public class Game_Classificacao extends javax.swing.JFrame {
         
         public void mostrarTopoFeedback(boolean piscarTopo, Partida partida){
             //AQUI to mostrando o topoFeedback
-            ////System.out.println("auxTopoFeedback: " + auxTopoFeedback);
+            //System.out.println("auxTopoFeedback: " + auxTopoFeedback);
 
             if (piscarTopo){
                 auxTopoFeedback++;
                 int TEO = partida.getNivel().getTEO();
-                ////System.out.println("TEO: " + TEO);
+                //System.out.println("TEO: " + TEO);
                 switch (TEO){ // este switch verifica o Tempo de Exposição dos Objetivos e, dependendo deste, faz piscar o topo N vezes
                     case 2:
                         if (auxTopoFeedback == 5 || auxTopoFeedback == 20 || auxTopoFeedback == 40){
@@ -2354,7 +2346,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     }else{
                         topoFeedback = Imgcodecs.imread("Resources/images/topoFeedback.png",1);
                     }
-                    //System.out.println("cronometro: " + cronometro);
+                    System.out.println("cronometro: " + cronometro);
                 }// */
         }
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-<<<<<<< HEAD
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="12">
         <file>
             <url>src/jogo/Game_Sequenciacao.java</url>
@@ -10,45 +9,57 @@
                 <key/>
             </bookmark>
         </file>
-=======
-<<<<<<< HEAD
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="13">
-=======
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="7">
->>>>>>> parent of 407fb79... game over 09/11
->>>>>>> parent of 90c4930... Restauração do M4M antes do jogo de Sequenciação
         <file>
-            <url>src/jogo/Game_Sequenciacao.java</url>
-            <bookmark id="13">
+            <url>src/jogo/Game_Ordenacao.java</url>
+            <bookmark id="3">
                 <name/>
-                <line>775</line>
+                <line>67</line>
+                <key/>
+            </bookmark>
+            <bookmark id="5">
+                <name/>
+                <line>162</line>
+                <key/>
+            </bookmark>
+            <bookmark id="1">
+                <name/>
+                <line>714</line>
+                <key/>
+            </bookmark>
+            <bookmark id="4">
+                <name/>
+                <line>731</line>
+                <key/>
+            </bookmark>
+            <bookmark id="2">
+                <name/>
+                <line>739</line>
                 <key/>
             </bookmark>
         </file>
         <file>
             <url>src/jogo/Game_Classificacao.java</url>
-<<<<<<< HEAD
-            <bookmark id="11">
+            <bookmark id="8">
                 <name/>
-                <line>1418</line>
-=======
-            <bookmark id="7">
-                <name/>
-                <line>1186</line>
+                <line>1189</line>
                 <key/>
             </bookmark>
-            <bookmark id="6">
+            <bookmark id="10">
                 <name/>
-                <line>1666</line>
->>>>>>> parent of 407fb79... game over 09/11
+                <line>1509</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Gabriel%20Brunelli/Documents/GitHub/Move4Math/Move4Math/src/parsers/ParserTables.java</file>
             <file>file:/C:/Users/Gabriel%20Brunelli/Documents/GitHub/Move4Math/Move4Math/src/jogo/Game_Sequenciacao.java</file>
-            <file>file:/C:/Users/Gabriel%20Brunelli/Documents/GitHub/Move4Math/Move4Math/src/move4math/MainWindow.java</file>
+            <file>file:/C:/Users/Gabriel%20Brunelli/Documents/GitHub/Move4Math/Move4Math/src/parsers/ParserPublics.java</file>
+            <file>file:/C:/Users/Gabriel%20Brunelli/Documents/GitHub/Move4Math/Move4Math/src/parsers/ParserCSV.java</file>
+            <file>file:/C:/Users/Gabriel%20Brunelli/Documents/GitHub/Move4Math/Move4Math/src/parsers/ParserUsers.java</file>
+            <file>file:/C:/Users/Gabriel%20Brunelli/Documents/GitHub/Move4Math/Move4Math/src/parsers/ParserJogos.java</file>
+            <file>file:/C:/Users/Gabriel%20Brunelli/Documents/GitHub/Move4Math/Move4Math/src/jogo/Game_Classificacao.java</file>
             <file>file:/C:/Users/Gabriel%20Brunelli/Documents/GitHub/Move4Math/Move4Math/src/jogo/Partida.java</file>
         </group>
     </open-files>
