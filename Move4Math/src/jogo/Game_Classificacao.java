@@ -13,6 +13,7 @@ import controle.Nivel;
 import controle.Publico;
 import java.awt.AWTException;
 import java.awt.Dimension;
+import static java.awt.Frame.ICONIFIED;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -20,6 +21,7 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import static java.awt.image.ImageObserver.ERROR;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -41,6 +43,8 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import move4math.MainWindow;
 import move4math.Move4Math;
 import org.opencv.core.Core;
@@ -229,16 +233,16 @@ public class Game_Classificacao extends javax.swing.JFrame {
     public void Iniciar(Game_Classificacao gameWindow, Jogos jogo, Publico publico, Player player, Vector<ConjuntoImagem> conjuntosDeTrabalho,int indexFase, int indexNivel) throws IOException, InterruptedException{
         try{
             jPanel1.setSize(screenWidth, screenHeight);
-            //System.out.println(gameWindow.getClass() + " \n" + jogo.getClass() + " \n" + player.getClass());
+            ////System.out.println(gameWindow.getClass() + " \n" + jogo.getClass() + " \n" + player.getClass());
             
-            System.out.println("01J: " + jogo.getNome() + " Pu: " + publico.getNome() + " Pl: " + player.getNome() + " CIT:" + conjuntosDeTrabalho.size() + " F:" + indexFase + " N:" + indexNivel);
+            //System.out.println("01J: " + jogo.getNome() + " Pu: " + publico.getNome() + " Pl: " + player.getNome() + " CIT:" + conjuntosDeTrabalho.size() + " F:" + indexFase + " N:" + indexNivel);
             Thread t = new Thread(new WebcamFeed(gameWindow, jogo, publico,  player, conjuntosDeTrabalho, indexFase,  indexNivel));
             t.start();            
             //t.join();
             //gameWindow.dispose();
             //System.out.println("FOI!");
         }catch (Exception e){
-            System.out.println(e.getClass() + e.getMessage() + e.getStackTrace());
+            //System.out.println(e.getClass() + e.getMessage() + e.getStackTrace());
        }
     }
 
@@ -281,9 +285,9 @@ public class Game_Classificacao extends javax.swing.JFrame {
         Calendar mostrarBlobs;  //guarda quando os blobs foram mostrados
         
         public WebcamFeed(Game_Classificacao gameWindowParametro, Jogos jogo, Publico publico, Player player, Vector<ConjuntoImagem> conjuntosDeTrabalho,int indexFase, int indexNivel){
-            System.out.println("\n________________________________________");
-            System.out.println("\nJogo: " + jogo.getNome() + "\nPublico: " + publico.getNome() + "\nPlayer: " + player.getNome() + "\nconjuntosDeTrabalho.size(): " + conjuntosDeTrabalho.size() + "\nFase: " + indexFase + "\nNivel: " + indexNivel);
-            System.out.println("-------");
+            //System.out.println("\n________________________________________");
+            //System.out.println("\nJogo: " + jogo.getNome() + "\nPublico: " + publico.getNome() + "\nPlayer: " + player.getNome() + "\nconjuntosDeTrabalho.size(): " + conjuntosDeTrabalho.size() + "\nFase: " + indexFase + "\nNivel: " + indexNivel);
+            //System.out.println("-------");
             int nivelParaSetar = 0;
             
             //aqui o vetor de níveis é percorrido setando-se corretamente os níveis
@@ -325,7 +329,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
             partida.setFase(publico.getFases().elementAt(indexFase-1)); //gambiarra
 
             jogadasDoNivel = partida.geraJogadasDoNivel(indexNivel);
-            System.out.println("jogadas do nivel " + jogadasDoNivel.toString());
+            //System.out.println("jogadas do nivel " + jogadasDoNivel.toString());
 
             linhaNivelSelecionado = partida.selecionaLinhaNivel(indexNivel);
 
@@ -336,7 +340,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
             partida.setPlayer(player); //acho que não precisa, pois podemos alterar o player que foi passado por parametro na funcao
             //int CIT2 = partida.getJogo().getCIT();
             //int CIT = publico.getFases().elementAt(indexFase - 1).getCIT();
-            System.out.println("AQUI: " + partida.getJogo().getNome() + " " + partida.getPublico().getNome() + " " + partida.getFase().getNumeroFase()+" "+partida.getNivel().getNumero());
+            //System.out.println("AQUI: " + partida.getJogo().getNome() + " " + partida.getPublico().getNome() + " " + partida.getFase().getNumeroFase()+" "+partida.getNivel().getNumero());
 
             partida.imagensDaCena(move4math.Move4Math.indiceFaseAtual,partida.getNivel());
 
@@ -350,7 +354,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
             //publico.get
             int CIT = publico.getFases().elementAt(indexFase-1).getCIT();//gambiarra
 
-            System.out.println("CIT: " + CIT);
+            //System.out.println("CIT: " + CIT);
 
             for(int i=0;i<conjuntosDeTrabalho.size();i++){
                 if(conjuntosDeTrabalho.elementAt(i).getId()==CIT){
@@ -360,7 +364,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                 }
             }
             //imagens do cenario
-
+            
             Mat degrade = Imgcodecs.imread("Resources/images/TES-degrade.png", 1);
             Mat barraBordas = Imgcodecs.imread("Resources/images/TES-vazio.png", 1);
             Mat ref_background = Imgcodecs.imread("Resources/images/ref-background.png", 1);
@@ -403,10 +407,10 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     jogo = "Ordenacao";
                     break;
                 case 2:
-                    jogo = "Contagem";
+                    jogo = "Sequenciacao";
                     break;
                 case 3:
-                    jogo = "AnterioProximo";
+                    jogo = "Contagem";
                     break;
                 default:
                     break;
@@ -936,7 +940,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
 
                                         segundosAux = segundos;
                                         minutosAux = minutos;
-                                        System.out.println("TIPO COLISAO: " + tipoColisao + "; Pontos Motor: " + iPontosMotor + "; Pontos Cognitivo: " + iPontosCognitivo);
+                                        //System.out.println("TIPO COLISAO: " + tipoColisao + "; Pontos Motor: " + iPontosMotor + "; Pontos Cognitivo: " + iPontosCognitivo);
                                         iPontosMotor = 0;
                                         iPontosCognitivo = 0;
                                         switch (tipoColisao) {
@@ -1053,7 +1057,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         }                    
 
                         //capturar teclas atalho
-                        if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE) || gameOver){//Fecha o jogo
+                        if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)){//Fecha o jogo
                             MainWindow.tecla = null;
                             break;
                         }
@@ -1150,11 +1154,11 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         }
                         
                         if(MainWindow.tecla.getKeyCode() == KeyEvent.VK_UP){//Aumenta o tempo.
-                            System.out.println("\nTempo de Exposição a: "+tempoExposicao);
+                            //System.out.println("\nTempo de Exposição a: "+tempoExposicao);
                             if(tempoExposicao < 15000){
                                 tempoExposicao += 1000;
                             }
-                            System.out.println("\nTempo de Exposição b: "+tempoExposicao);
+                            //System.out.println("\nTempo de Exposição b: "+tempoExposicao);
                             int a = tempoExposicao / 1000;
                             partida.getNivel().setTEI(a);
                             
@@ -1162,11 +1166,11 @@ public class Game_Classificacao extends javax.swing.JFrame {
                         }
                         
                         if(MainWindow.tecla.getKeyCode() == KeyEvent.VK_DOWN){//Diminui o tempo.
-                            System.out.println("\nTempo de Exposição a: "+tempoExposicao);
+                            //System.out.println("\nTempo de Exposição a: "+tempoExposicao);
                             if(tempoExposicao > 3000){
                                 tempoExposicao -= 1000;
                             }
-                            System.out.println("\nTempo de Exposição b: "+tempoExposicao);
+                            //System.out.println("\nTempo de Exposição b: "+tempoExposicao);
                             int a = tempoExposicao / 1000;
                             partida.getNivel().setTEI(a);
                             
@@ -1183,63 +1187,16 @@ public class Game_Classificacao extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(Game_Classificacao.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+
+
             fimDeJogo = true;
 
             webSource.release();
             gamewindow.dispose();
 
-        }//fim run
+            }//fim run
 
-        void GameOver(){
-            VideoCapture webSource= new VideoCapture(0);
-            webSource.set(Videoio.CV_CAP_PROP_FRAME_WIDTH,Move4Math.webcamWidth);
-            webSource.set(Videoio.CV_CAP_PROP_FRAME_HEIGHT,Move4Math.webcamHeight);
-            while(webSource.grab()){
-                    try{
-                        jPanel1.setSize(screenWidth, screenHeight);
-                        webSource.retrieve(frame);
-                        Core.flip(frame,cenario,1);
-                        // -+-+-+-+-+-+ grava o topo-background
-                        Imgproc.resize(topoErro, topoErro, new Size(640.0, 90.0));
-        System.out.println("4");
-                        dst = new Mat();
-        System.out.println("5");
-                        Mat roiTopo = cenario.submat(new Rect(new Point(0,0),new Point(640, 90)));
-        System.out.println("6");
-                        Core.addWeighted(roiTopo,1.0,topoErro,1.0,0.0,dst);
-        System.out.println("7");
-                        dst.copyTo(cenario.colRange(0,640).rowRange(0,90));
-        System.out.println("8");
-                        // -+-+-+-+-+-+  mostra Silhueta
-                        dst = new Mat();
-                        Mat roiGameOver = cenario.submat(new Rect(new Point(160, 120),new Point(480, 360)));
-                        Core.addWeighted(roiGameOver,1.0,gameO,0.8,0.0,dst);
-                        dst.copyTo(cenario.colRange(160,480).rowRange(120,360));
-
-                        Imgcodecs.imencode(".bmp", cenario, mem);
-                        Image im = ImageIO.read(new ByteArrayInputStream(mem.toArray()));
-                        BufferedImage buff = (BufferedImage) im;
-                        //desenha o cenario no jpanel
-                        Graphics g=jPanel1.getGraphics();
-
-                        if(buff!=null){
-                            g.drawImage(buff, 0, 0, jPanel1.getWidth(), jPanel1.getHeight() , 0, 0, buff.getWidth(), buff.getHeight(), null);
-                        }
-        
-                        //teclas de atalho ESC, enter ou space pra começar
-                        //System.out.println("Tecla inicial: " + MainWindow.tecla.getKeyCode());
-                        if((MainWindow.tecla.getKeyCode() == KeyEvent.VK_ESCAPE)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_ENTER)||(MainWindow.tecla.getKeyCode()==KeyEvent.VK_SPACE)){
-                            MainWindow.tecla = null;
-                            break;
-                        }
-        System.out.println("8");
-                    } //fim try
-                    catch(Exception ex){
-                        //System.out.println("erro gravando frame");
-                    }
-                }//fim while
-        }
-        
         //------------------------------------------------------------------------------------------------------------------------------------------
 
         void verificaTransicaoDeLinha (Partida partida){
@@ -1332,25 +1289,25 @@ public class Game_Classificacao extends javax.swing.JFrame {
             desempenhoCognitivo = (double)(numAcertos-numErros)/numRodadasGeradas;
             mediaTempoToque = (double)somaTempoToque / numRodadasGeradas;
             desempenhoMotor = (double)(mediaTempoToque/(tempoExposicao));
-            System.out.println("----------");
-            System.out.println("numAcertos: " + numAcertos +" numErros: " + numErros);
-            System.out.println("desempenhoCognitivo: " + desempenhoCognitivo);
-            System.out.println("somaTempoToque: " + somaTempoToque + " numRodadasGeradas: " + numRodadasGeradas+ " mediaTempoToque: "+mediaTempoToque);
-            System.out.println("desempenhoMotor: " + desempenhoMotor + " tempoExposicao: " + tempoExposicao);
-            System.out.println("----------");
+            //System.out.println("----------");
+            //System.out.println("numAcertos: " + numAcertos +" numErros: " + numErros);
+            //System.out.println("desempenhoCognitivo: " + desempenhoCognitivo);
+            //System.out.println("somaTempoToque: " + somaTempoToque + " numRodadasGeradas: " + numRodadasGeradas+ " mediaTempoToque: "+mediaTempoToque);
+            //System.out.println("desempenhoMotor: " + desempenhoMotor + " tempoExposicao: " + tempoExposicao);
+            //System.out.println("----------");
 
             if((desempenhoMotor<0.4)&&(desempenhoCognitivo>0.6)){
-                System.out.println("avancou nivel");
+                //System.out.println("avancou nivel");
                 avancaNivel(partida);
                 tipoFeedback = 1;
 
             }else if((desempenhoMotor>0.6) && (desempenhoCognitivo<0.3)){ // tava OU 
-                System.out.println("retrocedeu nivel");
+                //System.out.println("retrocedeu nivel");
                 iNiveisRetrocedidos++;
                 retrocedeNivel(partida);
                 tipoFeedback = 3;
             }else{
-                System.out.println("permaneceu no nivel");
+                //System.out.println("permaneceu no nivel");
                 iNiveisRepetidos++;
                 permaneceNivel(partida);
                 tipoFeedback = 2;
@@ -1376,7 +1333,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
             int numeroNivelAntigo = partida.getNivel().getNumero();
             int numeroNivelNovo;
 
-            System.out.println("AVANCA NIVEL  -  IND: " + indexNivel + " Tam: " + publico.getNiveis().size());
+            //System.out.println("AVANCA NIVEL  -  IND: " + indexNivel + " Tam: " + publico.getNiveis().size());
             //if(indexNivel<publico.getNiveis().size()-1){
             if(indexNivel<publico.getNiveis().size()/4){   
                 //System.out.println("entrou IF" + "IND_N: " + indexNivel + "TAM: " + publico.getNiveis().size()/4);
@@ -1385,8 +1342,8 @@ public class Game_Classificacao extends javax.swing.JFrame {
 
                 jogadasDoNivel.clear();
                 jogadasDoNivel = partida.geraJogadasDoNivel(numeroNivelNovo);
-                //System.out.println(" ");
-                System.out.println("novo jogadasDoNivel: " + jogadasDoNivel.toString());
+                ////System.out.println(" ");
+                //System.out.println("novo jogadasDoNivel: " + jogadasDoNivel.toString());
                 int o = Integer.parseInt(jogadasDoNivel.get(0).toString()); //aqui dava problema, pois eu setava o próximo nivel a partir do cálculo da primeira linha; mas este deve ser setado com a primeira posição do jogadasDoNivel
 
                 partida.setNivel(publico.getNiveis().elementAt(o)); //Matheus
@@ -1421,7 +1378,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
                 
                 jogadasDoNivel.clear();
                 jogadasDoNivel = partida.geraJogadasDoNivel(numeroNivelNovo);
-                System.out.println("novo jogadasDoNivel: " + jogadasDoNivel.toString());
+                //System.out.println("novo jogadasDoNivel: " + jogadasDoNivel.toString());
                 int o = Integer.parseInt(jogadasDoNivel.get(0).toString()); //aqui dava problema, pois eu setava o próximo nivel a partir do cálculo da primeira linha; mas este deve ser setado com a primeira posição do jogadasDoNivel
                 
                 partida.setNivel(publico.getNiveis().elementAt(o)); //Matheus
@@ -1443,7 +1400,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
             jogadasDoNivel.clear();
             jogadasDoNivel = partida.geraJogadasDoNivel(partida.getNivel().getNumero());
 
-            System.out.println("novo jogadasDoNivel: " + jogadasDoNivel.toString());
+            //System.out.println("novo jogadasDoNivel: " + jogadasDoNivel.toString());
             int o = Integer.parseInt(jogadasDoNivel.get(0).toString()); //aqui dava problema, pois eu setava o próximo nivel a partir do cálculo da primeira linha; mas este deve ser setado com a primeira posição do jogadasDoNivel
 
             partida.setNivel(publico.getNiveis().elementAt(o)); //Matheus
@@ -1480,8 +1437,8 @@ public class Game_Classificacao extends javax.swing.JFrame {
 
         void atualizaVidas() throws UnsupportedAudioFileException, LineUnavailableException, IOException{
             int iVidas = player.getVidas();
-            //System.out.println("iVidas: " + iVidas);
-            System.out.println("numErros: " + numErros);
+            ////System.out.println("iVidas: " + iVidas);
+            //System.out.println("numErros: " + numErros);
             switch (Move4Math.indicePublicoAtual){ 
                 case 0: // Criança
                     if (iNiveisRetrocedidos == 3 || iNiveisRepetidos == 5 || numErros >= 3){
@@ -1504,25 +1461,35 @@ public class Game_Classificacao extends javax.swing.JFrame {
                     }
                     break;
                 default:
-                    System.out.println("Indice Inválido !!!");
+                    //System.out.println("Indice Inválido !!!");
             }
             //setar a vida menos 1;
             //partida.getPlayer().setVidas(partida.getPlayer().getVidas() -1 );
-            System.out.println("vidas : " + player.getVidas());
+            //System.out.println("vidas : " + player.getVidas());
             //Se zerou as vidas, Game Over
             if(player.getVidas()<=0){
-                gameOver = true;
-                System.out.println("ENTROU NO IF QUE FAZ O GAMEOVER\n");
-                //GameOver();
-                //MainWindow.tecla.setKeyCode(KeyEvent.VK_ESCAPE);
-                            
+                System.out.println("vidas : " + player.getVidas());
+                ImageIcon icon = new ImageIcon("Resources/images/GameOver.png");
+                String[] options = {"Sair", "Resetar vidas"};
+                int fin = JOptionPane.showOptionDialog(null, "","Game Over!",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+                if ("Crianca".equals(player.getPublico())){
+                    player.setVidas(3);
+                }else{
+                    player.setVidas(5);
+                }
+                if(fin==0){
+                    KeyEvent e = new KeyEvent(rootPane, fin, fin, ICONIFIED, ERROR);
+                    fimDeJogo = true;
+                    formKeyPressed(e);
+                }
             }
         }
         
         int checarColisao(Mat cenario,Mat cenarioAnterior, Grade grade,Partida partida) throws UnsupportedAudioFileException, IOException, LineUnavailableException, AWTException{
             int colisao = 0;
             int threshold = 10;
-           System.out.println("W: " + grade.getScreenWidth() + " H: " + grade.getScreenHeight()); 
+
             for(int i=0;i<grade.getRegioes().size();i++){
                 if(grade.getRegioes().elementAt(i).isOcupado()){
                     int x1 = (int)grade.getRegioes().elementAt(i).getpInicial().x;
@@ -1819,7 +1786,7 @@ public class Game_Classificacao extends javax.swing.JFrame {
 
                 if (idTemp != imgRefTemp.getId()){
                     if((partida.getNivel().getNumeroLinha() - 1) != (int) jogadasDoNivel.get(0)){
-                        System.out.println("Alterou o topoFeedback no gerarImagens2");
+                        //System.out.println("Alterou o topoFeedback no gerarImagens2");
                         piscarTopo = true;
                         topoFeedback = Imgcodecs.imread("Resources/images/topoReferencia.png",1); 
                     }

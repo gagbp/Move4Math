@@ -113,27 +113,24 @@ public class ParserPublics {
             aux = new Nivel();
             vet1 = new Vector<String>(Arrays.asList(row));
             
-                if("G".equals(vet1.elementAt(0))){
-                    linhaAtual++;
-                   // System.out.print(vet1.elementAt(0) + " ");
-                   // System.out.println("linha: " + linhaAtual);
-                }
-                if("M".equals(vet1.elementAt(0))){
-                    linhaAtual++;
-                   // System.out.print(vet1.elementAt(0) + " ");
-                   // System.out.println("linha: " + linhaAtual);
-                }
-                if("P".equals(vet1.elementAt(0))){
-                    linhaAtual++;
-                   // System.out.print(vet1.elementAt(0) + " ");
-                   // System.out.println("linha: " + linhaAtual);
-                }
-                if (linhaAtual == vet.size()){
-                    aux.setNumeroLinha(vet.size());
-                    linhaAtual = 0;
-                }else{
-                    aux.setNumeroLinha(linhaAtual);
-                }
+            if("G".equals(vet1.elementAt(0))){
+                linhaAtual++;
+               // System.out.print(vet1.elementAt(0) + " ");
+               // System.out.println("linha: " + linhaAtual);
+            }
+            if("M".equals(vet1.elementAt(0))){
+                linhaAtual++;
+               // System.out.print(vet1.elementAt(0) + " ");
+               // System.out.println("linha: " + linhaAtual);
+            }
+            if ("P".equals(vet1.elementAt(0))) {
+                linhaAtual++;
+               // System.out.print(vet1.elementAt(0) + " ");
+               // System.out.println("linha: " + linhaAtual);
+            }
+            
+            aux.setNumeroLinha(linhaAtual);
+            
             
             //if ()
             //linhaAtual++;
