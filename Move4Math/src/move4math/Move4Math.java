@@ -18,6 +18,7 @@ import parsers.ParserJogos;
 import parsers.ParserTables;
 import parsers.ParserUsers;
 
+
 /**
  *
  * @author Mayco, Matheus, Henrique
@@ -48,6 +49,7 @@ public class Move4Math {
         jogos = ParserJogos.loadJogos();
         conjuntosDeTrabalho = ParserTables.parserTabelas();
         players = ParserUsers.parserUsuarios();
+        janelaPrincipal.loading.setIcon(new ImageIcon("ok.png"));
     }
 
     public static Publico getPublicoId(int id) {

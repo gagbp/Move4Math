@@ -67,6 +67,7 @@ public class MainWindow extends javax.swing.JFrame {
         cmbFase = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         cmbNivel = new javax.swing.JComboBox();
+        loading = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnComecar = new javax.swing.JButton();
@@ -139,6 +140,11 @@ public class MainWindow extends javax.swing.JFrame {
         cmbTipoJogo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Classificacao", "Ordenacao", "Sequenciacao" }));
         cmbTipoJogo.setSelectedIndex(-1);
         cmbTipoJogo.setToolTipText("");
+        cmbTipoJogo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbTipoJogoItemStateChanged(evt);
+            }
+        });
         cmbTipoJogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbTipoJogoActionPerformed(evt);
@@ -181,6 +187,9 @@ public class MainWindow extends javax.swing.JFrame {
         cmbNivel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cmbNivel.setEnabled(false);
         jPanel1.add(cmbNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 70, 25));
+
+        loading.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logos/loader.gif"))); // NOI18N
+        jPanel1.add(loading, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, 20, 30));
 
         jPanel2.setBackground(java.awt.Color.white);
         jPanel2.setMaximumSize(new java.awt.Dimension(380, 100));
@@ -373,23 +382,8 @@ public class MainWindow extends javax.swing.JFrame {
                     } else {
 
                         try {
-                            /*
-                            System.out.println(indexJogo+" "+ indexPublico+" "+ indexPlayer+" "+ indexFase+" "+ indexNivel);
-                            System.out.println("GAME" + gameWindow);
-                            System.out.println("JOGO"+ "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getId() + "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getNome());
-                            System.out.println("PUBLICO"+Move4Math.getPublicoId(Move4Math.indicePublicoAtual).getNome());
-                            System.out.println("PLAYER"+Move4Math.players.elementAt(Move4Math.indicePlayerAtual).getNome());
-                            System.out.println("OUTROS"+Move4Math.conjuntosDeTrabalho +","+ indexFase +","+ indexNivel);
-                            gameWindow.Iniciar(gameWindow,"Classificacao",1, 1, Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                            gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getId(),Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbTipoJogo.getSelectedIndex()).getId(), Move4Math.players.elementAt(cmbNome.getSelectedIndex()).getId(), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                            */
-                            //NOVO 
                             System.out.println("mainwindow: " + Move4Math.indiceNivelAtual + "     " + Move4Math.indiceJogoAtual);
                             gameWindow2.Iniciar(gameWindow2, Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual), Move4Math.getPublicoId(Move4Math.indicePublicoAtual), Move4Math.players.elementAt(Move4Math.indicePlayerAtual), Move4Math.conjuntosDeTrabalho, Move4Math.indiceFaseAtual, Move4Math.indiceNivelAtual);
-                            //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(indexJogo),Move4Math.getPublicoId(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                            //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(Move4Math.jogos.get(cmbTipoJogo.getSelectedIndex()).getId()),Move4Math.publicos.elementAt(Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().get(cmbPublico.getSelectedIndex()).getId()), Move4Math.players.elementAt(cmbNome.getSelectedIndex()), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                            //ANTIGO
-                            //gameWindow.Iniciar(gameWindow,Move4Math.publicos.elementAt(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel, tempo);
                         } catch (IOException | InterruptedException ex) {
                             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
                             System.out.println(ex.getStackTrace());
@@ -435,23 +429,8 @@ public class MainWindow extends javax.swing.JFrame {
                     } else {
 
                         try {
-                            /*
-                            System.out.println(indexJogo+" "+ indexPublico+" "+ indexPlayer+" "+ indexFase+" "+ indexNivel);
-                            System.out.println("GAME" + gameWindow);
-                            System.out.println("JOGO"+ "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getId() + "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getNome());
-                            System.out.println("PUBLICO"+Move4Math.getPublicoId(Move4Math.indicePublicoAtual).getNome());
-                            System.out.println("PLAYER"+Move4Math.players.elementAt(Move4Math.indicePlayerAtual).getNome());
-                            System.out.println("OUTROS"+Move4Math.conjuntosDeTrabalho +","+ indexFase +","+ indexNivel);
-                            gameWindow.Iniciar(gameWindow,"Classificacao",1, 1, Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                            gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getId(),Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbTipoJogo.getSelectedIndex()).getId(), Move4Math.players.elementAt(cmbNome.getSelectedIndex()).getId(), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                            */
-                            //NOVO 
                             System.out.println("mainwindow: " + Move4Math.indiceNivelAtual + "     " + Move4Math.indiceJogoAtual);
                             gameWindowSequenciacao.Iniciar(gameWindowSequenciacao, Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual), Move4Math.getPublicoId(Move4Math.indicePublicoAtual), Move4Math.players.elementAt(Move4Math.indicePlayerAtual), Move4Math.conjuntosDeTrabalho, Move4Math.indiceFaseAtual, Move4Math.indiceNivelAtual);
-                            //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(indexJogo),Move4Math.getPublicoId(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                            //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(Move4Math.jogos.get(cmbTipoJogo.getSelectedIndex()).getId()),Move4Math.publicos.elementAt(Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().get(cmbPublico.getSelectedIndex()).getId()), Move4Math.players.elementAt(cmbNome.getSelectedIndex()), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                            //ANTIGO
-                            //gameWindow.Iniciar(gameWindow,Move4Math.publicos.elementAt(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel, tempo);
                         } catch (IOException | InterruptedException ex) {
                             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
                             System.out.println(ex.getStackTrace());
@@ -497,23 +476,10 @@ public class MainWindow extends javax.swing.JFrame {
                     } else {
 
                         try {
-                            /*
-                            System.out.println(indexJogo+" "+ indexPublico+" "+ indexPlayer+" "+ indexFase+" "+ indexNivel);
-                            System.out.println("GAME" + gameWindow);
-                            System.out.println("JOGO"+ "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getId() + "" + Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual).getNome());
-                            System.out.println("PUBLICO"+Move4Math.getPublicoId(Move4Math.indicePublicoAtual).getNome());
-                            System.out.println("PLAYER"+Move4Math.players.elementAt(Move4Math.indicePlayerAtual).getNome());
-                            System.out.println("OUTROS"+Move4Math.conjuntosDeTrabalho +","+ indexFase +","+ indexNivel);
-                            gameWindow.Iniciar(gameWindow,"Classificacao",1, 1, Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                            gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getId(),Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbTipoJogo.getSelectedIndex()).getId(), Move4Math.players.elementAt(cmbNome.getSelectedIndex()).getId(), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                            */
+                            
                             //NOVO 
                             System.out.println("mainwindow: " + Move4Math.indiceNivelAtual + "     " + Move4Math.indiceJogoAtual);
                             gameWindow.Iniciar(gameWindow, Move4Math.jogos.elementAt(Move4Math.indiceJogoAtual), Move4Math.getPublicoId(Move4Math.indicePublicoAtual), Move4Math.players.elementAt(Move4Math.indicePlayerAtual), Move4Math.conjuntosDeTrabalho, Move4Math.indiceFaseAtual, Move4Math.indiceNivelAtual);
-                            //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(indexJogo),Move4Math.getPublicoId(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                            //gameWindow.Iniciar(gameWindow,Move4Math.jogos.elementAt(Move4Math.jogos.get(cmbTipoJogo.getSelectedIndex()).getId()),Move4Math.publicos.elementAt(Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().get(cmbPublico.getSelectedIndex()).getId()), Move4Math.players.elementAt(cmbNome.getSelectedIndex()), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel);
-                            //ANTIGO
-                            //gameWindow.Iniciar(gameWindow,Move4Math.publicos.elementAt(indexPublico), Move4Math.players.elementAt(indexPlayer), Move4Math.conjuntosDeTrabalho, indexFase, indexNivel, tempo);
                         } catch (IOException | InterruptedException ex) {
                             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
                             System.out.println(ex.getStackTrace());
@@ -525,6 +491,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void cmbTipoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoJogoActionPerformed
         atualizaComboPublico();
+//        atualizaComboFaseNivel();
         
     }//GEN-LAST:event_cmbTipoJogoActionPerformed
 
@@ -556,18 +523,19 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbFaseActionPerformed
 
+    private void cmbTipoJogoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoJogoItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTipoJogoItemStateChanged
+
     public String getTipoJogo() {
         return cmbTipoJogo.getSelectedItem().toString();
     }
 
     public void atualizaComboJogos() {
-        //cmbPublico.removeAllItems();
-        //cmbPublico.addItem("");
-        //*
         int i;
         for (i = 0; i < Move4Math.jogos.size(); i++) {
             cmbTipoJogo.addItem(Move4Math.jogos.elementAt(i).getNome());
-        } // */
+        }
     }
 
     public void atualizaComboPublico() {
@@ -595,20 +563,17 @@ public class MainWindow extends javax.swing.JFrame {
         
         int aux = Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbPublico.getSelectedIndex()).getFases().size();
         System.out.println("A: " + aux + ", B: " + Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbPublico.getSelectedIndex()).getFases().size());
-        for (i = 0; i < aux; i++) {
-            cmbFase.addItem(Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbPublico.getSelectedIndex()).getFases().elementAt(i).getNumeroFase());
-            //cmbFase.addItem(Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbPublico.getSelectedIndex()).getFases().elementAt(i).getNome());
+        if (cmbTipoJogo.getSelectedIndex() == 2) {
+            cmbFase.addItem(1);
+        }else{
+            for (i = 0; i < aux; i++) {
+                cmbFase.addItem(Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbPublico.getSelectedIndex()).getFases().elementAt(i).getNumeroFase());
+            }
         }
-
         for (j = 0; j < Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbPublico.getSelectedIndex()).getNiveis().size() / 4; j++) {
             cmbNivel.addItem(j + 1);            
         }
-
-        /*
-        for(j=0;j<Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbPublico.getSelectedIndex()).getNiveis().size();j++){
-            cmbNivel.addItem(Move4Math.jogos.elementAt(cmbTipoJogo.getSelectedIndex()).getPublico().elementAt(cmbPublico.getSelectedIndex()).getNiveis().elementAt(j).getNumero());
-        }
-         */
+        
         for (i = 0; i < Move4Math.players.size(); i++) {
             if (Move4Math.players.elementAt(i).getNome().equals(cmbNome.getSelectedItem())) { //Procura o jogador selecionado no vetor de players
                 if (!Move4Math.players.elementAt(i).getSessoes().isEmpty()) {//se há pelo menos uma sessao jogada
@@ -647,6 +612,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblParceiro;
     private javax.swing.JLabel lblUdesc;
     private javax.swing.JLabel lblUdesc1;
+    public javax.swing.JLabel loading;
     // End of variables declaration//GEN-END:variables
 
 }
