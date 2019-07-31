@@ -137,7 +137,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, 25));
 
         cmbTipoJogo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cmbTipoJogo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Classificacao", "Ordenacao", "Sequenciacao" }));
+        cmbTipoJogo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Classificacao", "Ordenacao", "Sequenciacao", "Contagem" }));
         cmbTipoJogo.setSelectedIndex(-1);
         cmbTipoJogo.setToolTipText("");
         cmbTipoJogo.addItemListener(new java.awt.event.ItemListener() {
